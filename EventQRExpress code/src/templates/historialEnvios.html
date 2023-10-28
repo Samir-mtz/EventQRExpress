@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Titulo de pagina -->
+  <title>CLIENTE - HISTORIAL ENVIOS</title>
+  <!-- Favicon de la empresa -->
+  <link href="../static/img/empresa/favicon.png" rel="icon"/>
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../static/css/historialEnvios.css" />
+  <script src="https://kit.fontawesome.com/0daeb1a0d1.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <a href="{{ url_for('index') }}">
+        <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
+      </a>
+    </div>
+    <div class="links">
+      <div class="link-header">HISTORIAL DE ENVIOS</div>
+    </div>
+    <div class="usuario">
+      <div class="tarjeta">
+        <div class="tarjeta-izq">
+          <i class="bi bi-person-circle"></i>
+        </div>
+        <div class="tarjeta-der">
+          <div class="nombre-tarjeta">{{ current_user.nombre }}</div>
+          <div class="iconos-tarjeta">
+            <a href="{{ url_for('homeCliente') }}" class="elemento ">
+              <!-- <div class="contenido-elemento activo"> -->
+              <div class="contenido-elemento">
+                <i class="bi bi-house"></i>
+                <h6>Inicio</h6>
+              </div>
+            </a>
+            <h5>|</h5>
+            <a href="{{ url_for('datosCliente') }}" class="elemento">
+              <div class="contenido-elemento">
+                <i class="bi bi-person-rolodex"></i>
+                <h6>Info. General</h6>
+              </div>
+            </a>
+            <h5>|</h5>
+            <a href="{{ url_for('userRastrear') }}" class="elemento activo">
+              <div class="contenido-elemento">
+                <i class="bi bi-geo-alt"></i>
+                <h6>Rastrear</h6>
+              </div>
+            </a>
+            <h5>|</h5>
+            <a href="{{ url_for('logout') }}" class="elemento">
+              <div class="contenido-elemento">
+                <i class="bi bi-box-arrow-in-left cerrar"></i>
+                <h6 class="cerrar">Salir</h6>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+    <section class="arriba">
+      <div class="boton-regreso">
+        <a href="{{ url_for('homeCliente') }}">
+          <i class="bi bi-arrow-left-circle"></i>
+          <span>INICIO</span>
+        </a>
+      </div>
+      <div class="buscar">
+        <form action="{{ url_for('userHistorial') }}" method="POST">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <input type="text" name="id" value="" hidden>
+          <input type="text" placeholder="Buscar" id="myInput" name="dato_consulta">
+          <button type="submit" class='fa-search lupa fas boton-buscar'></button>
+        </form>
+      </div>
+      <div class="logo-categoria">
+        <a href="{{ url_for('userHistorial') }}" class="link-categoria">
+          <img src="../static/img/categorias/historial.png" alt="Categoria Clientes">
+        </a>
+      </div>
+    </section>
+    {% with messages = get_flashed_messages()[-1]%}
+    {% if messages %}
+    <p class="info-message">
+      {{ messages }}
+    </p>
+    {% endif %}
+    {% endwith %}
+    <section class="tabla">
+      <table align="center" class="tablatest" id="myTable">
+        <thead class="sticky">
+          <!-- Encabezados de la tabla -->
+          <tr>
+            <th rowspan="2" class="id">ID ENVIO</th>
+            <th colspan="2" class="">DATOS DESTINATARIO</th>
+            <th colspan="5" class="">DATOS PAQUETE</th>
+            <th rowspan="2" class="accion">ACCIÓN</th>
+            <tr style="background-color: #f9d950;">
+              <th class="nombre">NOMBRE</th>
+              <th class="correo">EMAIL</th>
+              <!-- <th class="">DESCRIPCIÓN</th> -->
+              <th class="origen">LOCKER ORIGEN</th>
+              <th class="destino">LOCKER DESTINO</th>
+              <th class="fecha">FECHA ENVIO</th>
+              <th class="fecha">FECHA RECOLECCIÓN</th>
+              <th class="estatus">ESTATUS</th>
+            </tr>
+          </tr>
+        </thead>
+        <tbody>
+          {% for envio in envios %}
+          <tr>
+            <td>{{ envio.id }}</td>
+            <td class="nombre-destinatario">{{ envio.nombre }}</td>
+            <td class="correo-destinatario">{{ envio.email }}</td>
+            <!-- <td class="descripcion-paquete">Regalo de navidad</td> -->
+            <td>{{ envio.origen }}</td>
+            <td>{{ envio.destino }}</td>
+            <td>{{ envio.fechainicio }}</td>
+            {%if envio.fechaentregado != None %}
+              <td>{{ envio.fechaentregado }}</td>
+            {% else %}
+              <td> - </td>
+            {% endif %}
+            <td>{{ envio.estado }}</td>
+            <td>
+              <button onclick="abrirRastrear('{{ envio.id }}')" class="btn-rastrear btn-ventana-rastrear">
+                <img src="../static/img/Admin/acciones/rastrear.png" />
+              </button>
+            </td>
+          </tr>
+          {% endfor %}
+          {% if envios == [] %}
+          <tr><td colspan="11"></td></tr>
+          <tr><td colspan="11"><p class="error-message">No se encontraron resultados</p></td></tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+
+  <!-- Modal para rastrear -->
+  <dialog class="modal-btn-rastrear" id="modal-btn">
+    <center>
+      <div class="contenido-modal">
+        <div class="encabezado-modal"><button onclick="cerrarRastrear()" class="modal-btn-cerrar-rastrear"><i
+              class="bi bi-x-circle"></i></button></div>
+        <div class="titulo-modal">
+          <h2>¿Desea rastrear el paquete?</h2>
+        </div>
+        <div class="botones-modal">
+          <form action="{{ url_for('userRastrear') }}" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="number" name="Buscar" value="" id='rastrear_id' hidden>
+            <button class="confirmar">Confirmar</button>
+          </form>
+          <button onclick="cerrarRastrear()" class="cancelar">Cancelar</button>
+        </div>
+      </div>
+    </center>
+  </dialog>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="derechos">
+      <div class="copyright">
+        <span>&copy;2022 México. Todos los derechos reservados.</span>
+      </div>
+    </div>
+    <div class="redes">
+      <a href="#"><i class="red bi bi-facebook"></i></a>
+      <a href="#"><i class="red bi bi-instagram"></i></a>
+      <a href="#"><i class="red bi bi-telegram"></i></a>
+      <a href="#"><i class="red bi bi-envelope-fill"></i></a>
+    </div>
+  </footer>
+  <script src="../static/js/ventanas/acciones.js"></script>
+</body>
+
+</html>

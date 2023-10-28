@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- Titulo de pagina -->
+	<title>REPARTIDOR - PENDIENTES</title>
+	<!-- Favicon de la empresa -->
+	<link href="../static/img/empresa/favicon.png" rel="icon" />
+	<!-- Estilos -->
+	<link rel="stylesheet" href="../static/css/pendientesRepartidor.css" />
+	<script src="https://kit.fontawesome.com/0daeb1a0d1.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<!-- Header -->
+	<header class="header">
+		<div class="logo">
+			<a href="{{ url_for('index') }}">
+				<img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
+			</a>
+		</div>
+		<div class="links">
+			<div class="link-header">PENDIENTES DEL REPARTIDOR</div>
+		</div>
+		<div class="usuario">
+			<div class="tarjeta">
+				<div class="tarjeta-izq">
+					<i class="bi bi-person-circle"></i>
+				</div>
+				<div class="tarjeta-der">
+					<div class="nombre-tarjeta">{{ current_user.nombre }}</div>
+					<div class="iconos-tarjeta">
+						<a href="{{ url_for('homeRepartidor') }}" class="elemento ">
+							<!-- <div class="contenido-elemento activo"> -->
+							<div class="contenido-elemento">
+								<i class="bi bi-house"></i>
+								<h6>Inicio</h6>
+							</div>
+						</a>
+						<h5>|</h5>
+						<a href="{{ url_for('datosRepartidor') }}" class="elemento">
+							<div class="contenido-elemento">
+								<i class="bi bi-person-rolodex"></i>
+								<h6>Info. General</h6>
+							</div>
+						</a>
+						<h5>|</h5>
+						<a href="{{ url_for('listaDePaquetes') }}" class="elemento activo">
+							<div class="contenido-elemento">
+								<i class="bi bi-card-checklist"></i>
+								<h6>Pendientes</h6>
+							</div>
+						</a>
+						<h5>|</h5>
+						<a href="{{ url_for('logout') }}" class="elemento">
+							<div class="contenido-elemento">
+								<i class="bi bi-box-arrow-in-left cerrar"></i>
+								<h6 class="cerrar">Salir</h6>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Main -->
+	<main class="main">
+		<section class="izq">
+			<div class="filtrar">
+				<form action="{{ url_for('listaDePaquetes') }}" method="POST" class=" formulario">
+					<div class="form-selector">
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+						<select name="estado" id="estado" class="selector">
+							<option hidden value="ELEGIR ESTADO">ELEGIR ESTADO</option>
+							<option value="EN ESPERA DEL REPARTIDOR">RECOLECTAR</option>
+							<option value="EN CAMINO">ENTREGAR</option>
+						</select>
+
+						<button class="btn-filtrar">FILTRAR</button>
+					</div>
+					<div class="btn-borrar">
+						<!-- {% if fly==1 %} -->
+						<a href="{{ url_for('listaDePaquetes') }}"><button class="btn3">BORRAR FILTRO</button></a>
+						<!-- {% endif %} -->
+					</div>
+				</form>
+			</div>
+
+			<!-- Genenrar ruta -->
+			<div class="generar">
+				<!-- <a href="{{ url_for('rutaEnvio') }}"><button class="btn3">GENERAR RUTA</button></a>	 -->
+			</div>
+
+			<!-- <div>BOTON AMARILLO</div> -->
+			<div class="img-repartidor">
+				<img src="../static/img/repartidores/Repartidor_8.png" alt="">
+			</div>
+		</section>
+		<section class="der">
+			<section class="tabla">
+				<section style="display: block;">
+					{% with messages = get_flashed_messages()[-1]%}
+					{% if messages %}
+					<div class="info-message">
+						{{ messages }}
+					</div>
+					{% endif %}
+					{% endwith %}
+				</section>
+				<table align="center" class="tablatest" id="myTable">
+					<thead class="sticky">
+						<tr>
+							<th rowspan="1" class="estado">ID DEL PAQUETE</th>
+							<th rowspan="1" class="estado">ACCIÓN</th>
+							<th colspan="1" class="origen">LOCKER ORIGEN</th>
+							<th colspan="1" class="destino">LOCKER DESTINO</th>
+							<th colspan="1" class="qr">QR MASTER</th>
+							<th colspan="1" class="actualizar">ACTUALIZAR ESTADO</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- Fila -->
+						{% for paquete in paquetes %}
+						<tr>
+							<td>{{paquete.id}}</td>
+							<td>{{paquete.estado}}</td>
+							<td>{{paquete.origen}}</td>
+							<td>{{paquete.destino}}</td>
+							<td class="modal-qr"><img src="../static/img/qr/qrMaster.png" width="60" height="60"
+									onclick="abrirImagen(this.src)" /></td>
+							<td><button onclick="abrirEstado('{{ paquete.id }}', '1')" class="btn-actualizar">Actualizar</button></td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</section>
+		</section>
+	</main>
+	<!-- Modal para activar/desacrtivar -->
+	<dialog class="modal-btn-estado" id="modal-btn">
+		<center>
+			<div class="contenido-modal">
+				<div class="encabezado-modal"><button onclick="cerrarEstado()" class="modal-btn-cerrar-estado"><i
+							class="bi bi-x-circle"></i></button></div>
+				<div class="titulo-modal">
+					<h2 id="estadoSig"></h2>
+				</div>
+				<div class="botones-modal">
+					<form action="{{ url_for('repartidorModificarEstado') }}" method="POST">
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+						<input type="number" name="id" value="" id='estado_id' hidden>
+						<button class="confirmar">Confirmar</button>
+					</form>
+					<button onclick="cerrarEstado()" class="cancelar">Cancelar</button>
+				</div>
+			</div>
+		</center>
+	</dialog>
+
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="derechos">
+			<div class="copyright">
+				<span>&copy;2022 México. Todos los derechos reservados.</span>
+			</div>
+		</div>
+		<div class="redes">
+			<a href="#"><i class="red bi bi-facebook"></i></a>
+			<a href="#"><i class="red bi bi-instagram"></i></a>
+			<a href="#"><i class="red bi bi-telegram"></i></a>
+			<a href="#"><i class="red bi bi-envelope-fill"></i></a>
+		</div>
+	</footer>
+
+	<div class="full-img" id="fullImgBox" class>
+		<img src="../static/img/qr/qrMaster.png" />
+		<span onclick="cerrarImagen()">X</span>
+	</div>
+	<script src="../static/js/ventanas/qrMaster.js"></script>
+	<script src="../static/js/ventanas/accionesRepartidor.js"></script>
+</body>
+
+</html>
