@@ -1,0 +1,45 @@
+<!-- Documento con el template de alertas del sistema -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alertas EventQRXpress</title>
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../static/css/alertas.css">
+  <!-- Libreria de alertas -->
+  <link rel="stylesheet" href="sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+  <h1>Alertas en EventQRXpress</h1>
+  <div class="contenedor_botones">
+    <button class="btn" onclick="validarCorreo()">Validar Correo Registar</button>
+    <button class="btn" onclick="validarCorreo()">Validar Correo Recuperar</button>
+    <button class="btn" onclick="passwordActualizado()">Contraseña Actualizada</button>
+    <button class="btn" onclick="preguntaCerrarSesion()">Cerrar Sesión</button>
+    <button class="btn" onclick="preguntaAgregarEvento()">Agregar Evento</button>
+    <button class="btn" onclick="preguntaAgregarEstablecimiento()">Agregar Establecimeinto</button>
+    <button class="btn" onclick="preguntaAgregarInvitacion()">Agregar Invitación</button>
+    <button class="btn" onclick="datosActualizados()">Datos Actualizados</button>
+    <button class="btn" onclick="preguntaCancelarRegistroEvento()">Cancelar Registro de Evento</button>
+    <button class="btn" onclick="preguntaEditarRegistroInvitado()">Editar Registro</button>
+    <button class="btn" onclick="preguntaEliminarRegistroInvitado()">Eliminar Registro</button>
+    <button class="btn" onclick="enviarLinkConfirmacion()">Enviar Link de Confirmación</button>
+    <button class="btn" onclick="enviarLinksConfirmacion()">Enviar Links de Confirmación</button>
+    <button class="btn" onclick="preguntaEditarRegistroAsistente()">Editar Registro de Asistente</button>
+    <button class="btn" onclick="preguntaEliminarRegistroAsistente()">Eliminar Registro de Asistente</button>
+    <button class="btn" onclick="enviarInvitacion()">Enviar Invitación</button>
+    <button class="btn" onclick="noAsistira()">No asistire</button>
+    <button class="btn" onclick="registroInvitado()">Registro de invitado</button>
+    <button class="btn" onclick="confirmacionAsientos()">Confirmar asientos</button>
+    <button class="btn" onclick="validarAcceso()">Validar Acceso</button>
+    <button class="btn" onclick="error()">Error</button>
+  </div>
+  <!-- Scrips -->
+  <script src="../static/js/alertas.js"></script>
+</body>
+
+</html>
