@@ -28,11 +28,6 @@
   --button-no-color: #f90c0c;
 }
 
-/* Etiqueta HTML */
-/* html {
-  font-size: 68.5%;
-} */
-
 /* Etiqueta BODY */
 body {
   background: var(--bg-color);
@@ -48,6 +43,7 @@ h1 {
 }
 
 .contenedor_botones {
+  font-size: 68.5%;
   width: 90%;
   margin: auto;
   padding: 20px;

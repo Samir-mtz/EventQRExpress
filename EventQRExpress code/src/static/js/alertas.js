@@ -1,3 +1,4 @@
+// Alerta para validacion de correo (Register y Recuperar
 function validarCorreo() {
   Swal.fire({
     icon: "info",
@@ -6,6 +7,7 @@ function validarCorreo() {
   });
 }
 
+// Alerta con mensaje de confirmacion al cambiar contraseña
 function passwordActualizado() {
   Swal.fire({
     icon: "success",
@@ -15,6 +17,7 @@ function passwordActualizado() {
   });
 }
 
+// Alerta para preguntar si desea cerrar sesion, en caso de confirmar sale alerta de confirmacion
 function preguntaCerrarSesion() {
   Swal.fire({
     icon: "question",
@@ -36,6 +39,7 @@ function preguntaCerrarSesion() {
   });
 }
 
+// Alerta para preguntar si el administrador desea agregar un evento en el calendario
 function preguntaAgregarEvento() {
   Swal.fire({
     icon: "question",
@@ -49,6 +53,7 @@ function preguntaAgregarEvento() {
   });
 }
 
+// Alerta para preguntar si el administrador dese agregar un nuevo establecimiento
 function preguntaAgregarEstablecimiento() {
   Swal.fire({
     icon: "question",
@@ -62,6 +67,7 @@ function preguntaAgregarEstablecimiento() {
   });
 }
 
+// Alerta para preguntar si el administrador dese agregar un nuevo diseño de invitacion
 function preguntaAgregarInvitacion() {
   Swal.fire({
     icon: "question",
@@ -75,6 +81,7 @@ function preguntaAgregarInvitacion() {
   });
 }
 
+// Alerta con mensaje de confirmacion de datos actualizados en pantalla de configuracion
 function datosActualizados() {
   Swal.fire({
     icon: "success",
@@ -84,6 +91,7 @@ function datosActualizados() {
   });
 }
 
+// Alerta para preguntar si ya no se quiere continuar con los pasos para crear el evento
 function preguntaCancelarRegistroEvento() {
   Swal.fire({
     icon: "question",
@@ -97,6 +105,7 @@ function preguntaCancelarRegistroEvento() {
   });
 }
 
+// Alerta para preguntar si se desea editar un registro de los invitados (Solo hazta donde confirman asistencia)
 function preguntaEditarRegistroInvitado() {
   Swal.fire({
     icon: "question",
@@ -110,6 +119,7 @@ function preguntaEditarRegistroInvitado() {
   });
 }
 
+// Alerta para preguntar si se desea eliminar un registro de los invitados (Solo hazta donde confirman asistencia)
 function preguntaEliminarRegistroInvitado() {
   Swal.fire({
     icon: "warning",
@@ -131,6 +141,7 @@ function preguntaEliminarRegistroInvitado() {
   });
 }
 
+// Alerta con mensaje de confirmacion de envio del link para seleccionar asientos (Uno por uno)
 function enviarLinkConfirmacion() {
   Swal.fire({
     icon: "success",
@@ -140,6 +151,7 @@ function enviarLinkConfirmacion() {
   });
 }
 
+// Alerta con mensaje de confirmacion de envio del link para seleccionar asientos (Todos con un solo clic)
 function enviarLinksConfirmacion() {
   Swal.fire({
     icon: "success",
@@ -149,6 +161,7 @@ function enviarLinksConfirmacion() {
   });
 }
 
+// Alerta para preguntar si se desea editar un registro de los asistentes (Incluido los asientos, solo si hay disponibles)
 function preguntaEditarRegistroAsistente() {
   Swal.fire({
     icon: "question",
@@ -162,6 +175,7 @@ function preguntaEditarRegistroAsistente() {
   });
 }
 
+// Alerta para preguntar si se desea eliminar un registro de los asistentes (Incluido los asientos, solo si hay disponibles)
 function preguntaEliminarRegistroAsistente() {
   Swal.fire({
     icon: "warning",
@@ -183,6 +197,7 @@ function preguntaEliminarRegistroAsistente() {
   });
 }
 
+// Alerta con mensaje de confirmacion de envio de invitación individual (Uno por uno)
 function enviarInvitacion() {
   Swal.fire({
     icon: "success",
@@ -192,6 +207,7 @@ function enviarInvitacion() {
   });
 }
 
+// Alerta con mensaje si no confirma asistencia
 function noAsistira() {
   Swal.fire({
     title: "Vaya...",
@@ -200,15 +216,35 @@ function noAsistira() {
   });
 }
 
+// Alerta con mensaje de confirmacion de registro de invitados, despues sale una alerta con recordatorio para no olvidar la contraseña
 function registroInvitado() {
   Swal.fire({
     icon: "success",
     title: "Registro de Invitados",
     text: "Se ha realizado el registro con éxito.",
     confirmButtonText: "¡Genial!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        icon: "info",
+        title: "Recordatorio",
+        text: "Genial! En unos días te haremos envio del formulario para seleccionar tus asientos, no olvides tu contraseña.",
+      });
+    }
   });
 }
 
+// Alerta con mensaje de confirmacion del registro de asistentes (Solo anfitrion (Familiares cercanos como madre, padre, hermano))
+function registroAsistentes() {
+  Swal.fire({
+    icon: "success",
+    title: "Registro de Asistentes",
+    text: "Se ha realizado el registro con éxito.",
+    confirmButtonText: "¡Genial!",
+  });
+}
+
+// Alerta con mensaje de confirmacion de asientos seleccioandos, despues sale una alerta con recordatorio informando el envio de la invitacion digital
 function confirmacionAsientos() {
   Swal.fire({
     icon: "success",
@@ -226,45 +262,47 @@ function confirmacionAsientos() {
   });
 }
 
-
-function error() {
-  Swal.fire({
-    icon: "error",
-    title: "¡Ups...",
-    text: "Algo salió mal, intentalo de nuevo.",
-  });
-}
-
-
+// Alerta con mensaje de solicitud de la contraseña, para poder tener acceso a la eleccion de asientos
 function validarAcceso() {
   Swal.fire({
     title: "Ingrese su contraseña",
     input: "password",
     inputAttributes: {
-      autocapitalize: "off"
+      autocapitalize: "off",
     },
     showCancelButton: true,
     confirmButtonText: "Ingresar",
     showLoaderOnConfirm: true,
   }).then((result) => {
     const isValidPassword = result.value === "2407Bryan";
-
+    // En caso de que se llegue a capturar la contraseña correcta tiene acceso al formulario para seleccionar los asientos deseados
     if (result.isConfirmed && isValidPassword) {
       Swal.fire({
         title: "Acceso permitido",
         text: "Llegó el momento de que selecciones tus asientos.",
-        icon: "success"
+        icon: "success",
       });
-    } else {
+    }
+    // En caso de no capturar la contraseña correcta, muestra mensaje de acceso denegado y solicita nuevamente la contraseña
+    else {
       Swal.fire({
         title: "Acceso denegado",
         text: "La contraseña capturada no es válida.",
-        icon: "error"
+        icon: "error",
       }).then((result) => {
         if (result.isConfirmed) {
           validarAcceso();
         }
       });
     }
+  });
+}
+
+// Alerta con mensaje de error, en caso de que algun proceso no se complete correctamente
+function error() {
+  Swal.fire({
+    icon: "error",
+    title: "¡Ups...",
+    text: "Algo salió mal, intentalo de nuevo.",
   });
 }
