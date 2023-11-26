@@ -1,0 +1,49 @@
+/***********************************************************************************************************************************
+                                                    Ajustes generales
+***********************************************************************************************************************************/
+
+/* Importaciones */
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+
+/* Variables con los colores de la pagina */
+:root {
+  /* Colores principales */
+  --bg-color: #1e1e1e;
+  --main-color: #f9610c;
+  --second-bg-color: #2e2d2d;
+  --bg-color-hover: #2e2d2de4;
+  --third-bg-color: #d1d1d1;
+  --fourth-bg-color: #b5b5b5;
+  --text-color: #ffffff;
+  --text-color-form: #353535;
+  --second-text-color: #00a3ff;
+  --third-text-color: #000;
+  --bg-color-button-menu: #f9620b99;
+  --bg-color-button: #f9620bcc;
+  --button-yes-color: #009a06;
+  --button-no-color: #f90c0c;
+  --border-form: #797979;
+}
+
+/* Ajustes geenrales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  scroll-behavior: smooth;
+  font-family: "Lora", "sans-serif";
+}
+
+/* Estilos del scroll del menu lateral */
+html::-webkit-scrollbar {
+  width: 5px;
+  background-color: var(--bg-color);
+}
+html::-webkit-scrollbar-thumb {
+  background-color: var(--second-bg-color);
+}
+html::-webkit-scrollbar-thumb:hover {
+  background-color: var(--third-bg-color);
+}

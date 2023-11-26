@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Metadatos -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../static/img/logo.png">
+  <!-- Titulo de la pagina en la pestaña -->
+  <title>EventQRXpress</title>
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="../static/css/general.css">
+  <link rel="stylesheet" href="../static/css/headerGeneral.css">
+  <link rel="stylesheet" href="../static/css/landingPage.css">
+  <link rel="stylesheet" href="../static/css/footerGeneral.css">
+  <!-- Box-Icons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- SwiperJS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Scripts -->
+  <script src="../static/js/landingPage.js" defer></script>
+</head>
+
+<body>
+  <!-- Encabezado de la pagina -->
+  <header>
+    <nav class="navbar">
+      <i class='bx bx-menu hamburger-btn'></i>
+      <!-- <span class="hamburger-btn material-symbols-rounded">menu</span> -->
+      <a href="#" class="logo">
+        <img src="../static/img/logo.png" alt="logo">
+        <h2>EventQRXpress.</h2>
+      </a>
+      <ul class="links">
+        <!-- Boton para cerrar -->
+        <i class='bx bx-x close-btn'></i>
+        <!-- Links a secciones de la pagina -->
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#conocenos">Conócenos</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#referencias">Referencias</a></li>
+      </ul>
+      <!-- Boton para abrir formulario de login/register -->
+      <a class="login-btn" href="./formularioLoginRegister.html">Ingresar / Registrar</a>
+    </nav>
+  </header>
+
+  <!-- Contendo de la pagina -->
+  <main>
+    <!-- Seccion de INICO -->
+    <section class="inicio" id="inicio">
+      <!-- Imagen de fondo -->
+      <img class="imagen-fondo" src="../static/img/fondo01.webp" alt="Fondo 1">
+      <!-- Frase principal -->
+      <p class="frase">Organiza tus eventos inolvidables</p>
+      <!-- Slogan -->
+      <p class="slogan">
+        Expertos en planificación y coordinación de eventos.<br> Deja todo en nuestras manos y disfruta al máximo.
+      </p>
+      <!-- Boton para crear evento -->
+      <button class="crear-btn">¡Crear evento ahora!</button>
+    </section>
+
+    <!-- Seccion de CONOCENOS -->
+    <section class="conocenos" id="conocenos">
+      <!-- Titulo de la seccion -->
+      <h1>Conócenos</h1>
+      <!-- Contendio -->
+      <div class="contenedor">
+        <!-- Texto de conocenos -->
+        <p class="texto">
+          Somos <span>EventQRXpress</span>, una empresa de planificación y gestión de eventos. Nos especializamos en
+          crear experiencias únicas y memorables para nuestros usuarios. <br><br>
+          Nuestro sistema se encarga de cada detalle, desde la conceptualización hasta la realización, asegurando que
+          cada evento sea un éxito. Entendemos tus necesidades y superamos sus expectativas. Confié en nosotros para
+          hacer de su próximo evento una ocasión inolvidable.
+        </p>
+        <!-- Imagen de salon de fiestas -->
+        <img src="../static/img/salon01.webp" alt="Salon de fiestas">
+      </div>
+    </section>
+
+    <!-- Seccion de SERVICIOS -->
+    <section class="servicios" id="servicios">
+      <!-- Imagen de fondo -->
+      <img class="imagen-fondo" src="../static/img/fondo02.webp" alt="Fondo 2">
+      <!-- Titulo de la seccion -->
+      <h1>Servicios</h1>
+      <!-- Contenedor imagenes de servicios-->
+      <div class="contenedor_servicios">
+        <!-- Servicio #1 -->
+        <figure>
+          <img src="../static/img/servicio01.webp" alt="Servicio 1">
+          <div class="descripcion">
+            <h3>Planificación y organización de eventos</h3>
+            <p>Ofrécemos servicios de planificación y organización de eventos para que su celebración sea un éxito.</p>
+          </div>
+        </figure>
+        <!-- Servicio #2 -->
+        <figure>
+          <img src="../static/img/servicio02.webp" alt="Servicio 2">
+          <div class="descripcion">
+            <h3>Reservación en diferentes espacios</h3>
+            <p>Contamos con una gran variedad de espacios (salones, restaurantes) disponibles para realizar tu evento.
+            </p>
+          </div>
+        </figure>
+        <!-- Servicio #3 -->
+        <figure>
+          <img src="../static/img/servicio03.webp" alt="Servicio 3">
+          <div class="descripcion">
+            <h3>Invitaciones en formato digital</h3>
+            <p>Crear tu invitación digital, de forma moderna y fácil, ademas de que al mismo tiempo apoyamos al medio
+              ambiente.</p>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Seccion de REFERENCIAS -->
+    <section class="referencias" id="referencias">
+      <!-- Titulo de la seccion -->
+      <h1>Referecias</h1>
+      <!-- Contenedor de referencias -->
+      <div class="contenedor_referencias">
+        <div class="textos_referencias mySwiper">
+          <div class="swiper-wrapper">
+            <!-- Referencia #1 -->
+            <div class="slide swiper-slide">
+              <!-- Texto de la referencia/opinion -->
+              <p>
+                "¡Gracias EventQRXpress por hacer de mi evento un éxito! Su planificación impecable hicieron que todo
+                saliera perfecto. ¡Recomiendo sus servicios a todos los que busquen tener un evento inolvidable! ¡Mil
+                gracias!"
+              </p>
+              <!-- Datos del autor de la referencia -->
+              <div class="autor">
+                <span class="nombre">María Jiménez</span>
+                <span class="tipoUsuario">(Anfitrión)</span>
+              </div>
+            </div>
+            <!-- Referencia #2 -->
+            <div class="slide swiper-slide">
+              <!-- Texto de la referencia/opinion -->
+              <p>
+                "EventQRXpress sobresale en su sistema de gestión de eventos. La eficiencia y precisión en la
+                planificación hacen que cada ocasión sea excepcional. ¡Mi evento fue un éxito gracias a su destacado
+                servicio de organización y gestión de eventos!"
+              </p>
+              <!-- Datos del autor de la referencia -->
+              <div class="autor">
+                <span class="nombre">Mike F.</span>
+                <span class="tipoUsuario">(Invitado)</span>
+              </div>
+            </div>
+            <!-- Referencia #3 -->
+            <div class="slide swiper-slide">
+              <!-- Texto de la referencia/opinion -->
+              <p>
+                "EventQRXpress permitió que disfrutara mi evento sin preocupaciones ni estrés. Su impecable gestión y
+                dedicación garantizaron que todo saliera perfecto. ¡Recomendaría sus servicios una y otra vez!"
+              </p>
+              <!-- Datos del autor de la referencia -->
+              <div class="autor">
+                <span class="nombre">Pablo Gómez</span>
+                <span class="tipoUsuario">(Anfitrión)</span>
+              </div>
+            </div>
+          </div>
+          <!-- Botones de flechas e indicador -->
+          <div class="swiper-button-next nav-btn"></div>
+          <div class="swiper-button-prev nav-btn"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+      <!-- Contenedor de imagenes de marquee -->
+      <div class="contenedor_marquee">
+        <div class="imagenes_marquee">
+          <img src="../static/img/marquee01.webp" alt="Imagen de Marquee 1" class="elemento">
+          <img src="../static/img/marquee02.webp" alt="Imagen de Marquee 2" class="elemento">
+          <img src="../static/img/marquee03.webp" alt="Imagen de Marquee 3" class="elemento">
+          <img src="../static/img/marquee04.webp" alt="Imagen de Marquee 4" class="elemento">
+          <img src="../static/img/marquee05.webp" alt="Imagen de Marquee 5" class="elemento">
+          <img src="../static/img/marquee06.webp" alt="Imagen de Marquee 6" class="elemento">
+          <img src="../static/img/marquee07.webp" alt="Imagen de Marquee 7" class="elemento">
+          <img src="../static/img/marquee01.webp" alt="Imagen de Marquee 1" class="elemento">
+          <img src="../static/img/marquee02.webp" alt="Imagen de Marquee 2" class="elemento">
+          <img src="../static/img/marquee03.webp" alt="Imagen de Marquee 3" class="elemento">
+          <img src="../static/img/marquee04.webp" alt="Imagen de Marquee 4" class="elemento">
+          <img src="../static/img/marquee05.webp" alt="Imagen de Marquee 5" class="elemento">
+          <img src="../static/img/marquee06.webp" alt="Imagen de Marquee 6" class="elemento">
+          <img src="../static/img/marquee07.webp" alt="Imagen de Marquee 7" class="elemento">
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pie de la pagina -->
+  <footer class="footer">
+    <!-- Texto del Copyright -->
+    <p class="derechos">
+      <i class='bx bx-copyright'></i>Todos los derechos reservados.
+    </p>
+    <!-- Redes sociales -->
+    <p class="redes">
+      <a href="https://www.facebook.com/" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+      <a href="https://www.instagram.com/" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+      <a href="https://twitter.com/" target="_blank"><i class='bx bxl-twitter'></i></a>
+      <a href="https://outlook.office.com/" target="_blank"><i class='bx bxs-envelope'></i></a>
+    </p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../static/js/actualizarMenuHeader.js"></script>
+  <script src="../static/js/referencias.js"></script>
+</body>
+
+</html>

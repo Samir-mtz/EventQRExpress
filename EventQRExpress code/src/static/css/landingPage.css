@@ -1,0 +1,418 @@
+/***********************************************************************************************************************************
+                                                      Cuerpo de la pagina
+***********************************************************************************************************************************/
+body {
+  height: 100vh;
+  width: 100%;
+  background: var(--second-bg-color);
+}
+
+/***********************************************************************************************************************************
+                                                            Seccion INICIO
+***********************************************************************************************************************************/
+
+/* Contenedor de inicio */
+.inicio {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: calc(100vh - 40px);
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Imagen de fondo de la sección */
+.inicio .imagen-fondo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+/* Frase principal */
+.inicio .frase {
+  padding-top: 50px;
+  text-align: center;
+  width: 80%;
+  color: var(--text-color);
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-wrap: balance;
+}
+
+/* Slogan */
+.inicio .slogan {
+  text-align: center;
+  width: 90%;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-wrap: balance;
+}
+
+/* Boton de crear evento ahora */
+.inicio .crear-btn {
+  border: none;
+  outline: none;
+  background: var(--bg-color-button);
+  color: var(--text-color);
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 15px 25px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+/* Animacion al pasar el cursor encima */
+.inicio .crear-btn:hover {
+  background: var(--main-color);
+}
+
+/***********************************************************************************************************************************
+                                                              Seccion CONOCENOS
+***********************************************************************************************************************************/
+
+/* Contenedor de conocenos */
+.conocenos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: var(--second-bg-color);
+  opacity: 1;
+}
+
+/* Titulo de la seccion */
+.conocenos h1 {
+  font-size: 3rem;
+  color: var(--text-color);
+  border-bottom: 2px solid var(--text-color);
+  text-align: center;
+  margin: 80px auto 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-wrap: balance;
+}
+
+/* Contendor de datos */
+.conocenos .contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 80%;
+  margin-bottom: 30px;
+  padding-bottom: 40px;
+}
+
+/* Columna izquierda con texto */
+.conocenos .contenedor .texto {
+  flex: 2;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-color);
+  text-align: justify;
+}
+
+/* Estilo del nombre EventWRXpress */
+.conocenos .contenedor .texto span {
+  color: var(--main-color);
+}
+
+/* Estilo de la imagen del salon */
+.conocenos .contenedor img {
+  padding: 25px;
+  flex: 1;
+  height: 100%;
+  width: 350px;
+  border-radius: 40px;
+}
+
+/* Acciones responsive */
+@media (max-width: 1000px) {
+  /* Se extiende el texto en horizontal y se oculta la imagen */
+  .conocenos .contenedor {
+    flex-direction: column;
+  }
+  .conocenos .contenedor img {
+    display: none;
+  }
+}
+
+/***********************************************************************************************************************************
+                                                              Seccion SERVICIOS
+***********************************************************************************************************************************/
+
+/* Contenedor de servicios */
+.servicios {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Imagen de fondo de la sección */
+.servicios .imagen-fondo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+/* Titulo de la seccion */
+.servicios h1 {
+  font-size: 3rem;
+  color: var(--text-color);
+  border-bottom: 2px solid var(--text-color);
+  text-align: center;
+  margin: 80px auto 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-wrap: balance;
+}
+
+/* Contenedor con imagenes de servicios */
+.contenedor_servicios {
+  width: 80%;
+  min-height: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px 0 100px;
+}
+
+/* Contenedor de imaegn y texto del servicio */
+.contenedor_servicios figure {
+  position: relative;
+  height: 280px;
+  cursor: pointer;
+  width: 280px;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Imagen del servicio */
+.contenedor_servicios figure img {
+  width: 100%;
+  height: 100%;
+  transition: all 400ms ease-out;
+  will-change: transform;
+}
+
+/* Descripcion del servicio dentro de la imagen */
+.contenedor_servicios figure .descripcion {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-color-hover);
+  transition: all 400ms ease-out;
+  opacity: 0;
+  visibility: hidden;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  color: var(--text-color);
+}
+
+/* Titulos de cada servicio de las imagenes */
+.contenedor_servicios figure > .descripcion h3 {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  max-width: 75%;
+  text-wrap: balance;
+}
+
+/* Texto de cada servicio de las imagenes */
+.contenedor_servicios figure > .descripcion p {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  max-width: 75%;
+  text-align: justify;
+  line-height: 1.5;
+}
+
+/* Animacion al pasar el cursor por encima de las imagenes */
+.contenedor_servicios figure:hover > .descripcion {
+  opacity: 1;
+  visibility: visible;
+}
+.contenedor_servicios figure:hover > img {
+  transform: scale(1.3);
+}
+
+/***********************************************************************************************************************************
+                                                              Seccion REFERENCIAS
+***********************************************************************************************************************************/
+
+/* Contenedor de referencias */
+.referencias {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 40px);
+  width: 100%;
+  background: var(--second-bg-color);
+}
+
+/* Titulo de la seccion */
+.referencias h1 {
+  font-size: 3rem;
+  color: var(--text-color);
+  border-bottom: 2px solid var(--text-color);
+  text-align: center;
+  margin: 80px auto 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-wrap: balance;
+}
+
+/* Contemedor de las referencias*/
+.contenedor_referencias {
+  width: 90%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* Flechas, indicador y texto de la referencia */
+.textos_referencias {
+  position: relative;
+  max-width: 1000px;
+  width: 100%;
+  padding: 25px 0;
+  overflow: hidden;
+  display: flex;
+  z-index: 8;
+}
+
+/* Flechas y texto de la referencia */
+.textos_referencias .slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 15px;
+  height: 100%;
+  width: 100%;
+}
+
+/* Texto de la referencia */
+.slide p {
+  width: 80%;
+  text-align: center;
+  font-style: italic;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+/* Contenedor para los datos del autor de la referencia */
+.slide .autor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Nombre del autor de la referencia */
+.autor .nombre {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* Tipo de usuario al que pertenece el autor de la referencia */
+.autor .tipoUsuario {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+/* Botones de anterior y sigueinte */
+.nav-btn::after,
+.nav-btn::before {
+  color: var(--text-color);
+}
+
+/* Indicadores de referencias */
+.textos_referencias .swiper-pagination-bullet-active {
+  background-color: var(--main-color);
+}
+
+/* Contenedor para el marquee de imagenes */
+.contenedor_marquee {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin: 25px auto;
+}
+
+/* Contenedor que almacena las imagnenes */
+.imagenes_marquee {
+  position: relative;
+  width: auto;
+  height: 150px;
+  display: inline-flex;
+  animation: slide 40s infinite linear;
+  transition: all ease-out 0.5s;
+}
+
+/* Imagen del servicio */
+.imagenes_marquee img {
+  width: 25%;
+  height: 100%;
+  transition: all 400ms ease-out;
+  will-change: transform;
+  border-radius: 8px;
+}
+
+/* Cada elemento de la marquee */
+.elemento {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto;
+  margin: 0 15px;
+}
+
+/* Animacion de la marquee */
+@keyframes slide {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(calc(-175px * 14));
+  }
+}
+
+/* Acciones responsive */
+@media screen and (max-width: 768px) {
+  /* Oculto las flechas */
+  .textos_referencias .nav-btn {
+    display: none;
+  }
+}

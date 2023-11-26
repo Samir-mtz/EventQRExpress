@@ -1,0 +1,172 @@
+/***********************************************************************************************************************************
+                                                      HEADER de la pagina
+***********************************************************************************************************************************/
+
+/* Contendor del header */
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: var(--bg-color);
+}
+
+/* Contenedor del menu de opciones */
+.navbar {
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* Menu hamburguesa */
+.navbar .hamburger-btn {
+  display: none;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 30px;
+}
+
+/* Seccion del nombre y logo del proyecto */
+.navbar .logo {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* Imagen con el logo de EventQRXpress */
+.navbar .logo img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+/* Titulo de EventQRXpress */
+.navbar .logo h2 {
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 20px;
+}
+
+/* Contenedor de los links */
+.navbar .links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  align-items: center;
+}
+
+/* Estilo del boton de cerrar */
+.navbar .close-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  display: none;
+  font-size: 25px;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+/* Links del menu del header */
+.navbar .links a {
+  color: var(--text-color);
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.1s ease;
+}
+
+/* Animacion al pasar el cursor por encima */
+.navbar .links a:hover {
+  color: var(--main-color);
+}
+
+/* Estilo de la opcion seleccionada */
+.navbar .links .seleccion a {
+  padding: 5px 10px;
+  color: var(--main-color);
+  border-bottom: 1px solid var(--main-color);
+}
+
+/* Boton de login/register */
+.navbar .login-btn {
+  border: none;
+  outline: none;
+  background: var(--bg-color-button);
+  color: var(--text-color);
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+/* Animacion al pasar el cursor encima */
+.navbar .login-btn:hover {
+  background: var(--main-color);
+}
+
+/* Acciones respondive */
+@media (max-width: 950px) {
+  /* Mostramos el icono de menu hamburguesa */
+  .navbar :is(.hamburger-btn, .close-btn) {
+    display: block;
+  }
+
+  /* Ajustamos el contenedor del menu */
+  .navbar {
+    padding: 15px 0;
+  }
+
+  /* Oculto el logo */
+  .navbar .logo img {
+    display: none;
+  }
+
+  /* Modifico el tamaño del nombre del poryecto */
+  .navbar .logo h2 {
+    font-size: 1.4rem;
+  }
+
+  /* Links del menu */
+  .navbar .links {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    left: -100%;
+    display: block;
+    height: 100vh;
+    width: 100%;
+    padding-top: 60px;
+    text-align: center;
+    background: var(--bg-color);
+    transition: 0.2s ease;
+  }
+
+  /* Muestro el menu de izquierda a derecha  */
+  .navbar .links.show-menu {
+    left: 0;
+  }
+
+  /* Estilo de cada uno de los iconos */
+  .navbar .links a {
+    display: inline-flex;
+    margin: 20px 0;
+    font-size: 30px;
+    color: var(--text-color);
+  }
+
+  /* Animacion al pasar el cursor encima */
+  .navbar .links a:hover {
+    color: var(--main-color);
+  }
+
+  /* Ajusto la posicion del boton de login-btn */
+  .navbar .login-btn {
+    font-size: 0.9rem;
+    padding: 7px 5px;
+  }
+}
