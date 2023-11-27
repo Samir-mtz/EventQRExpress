@@ -1,0 +1,257 @@
+/***********************************************************************************************************************************
+                                                      Cuerpo de la pagina
+***********************************************************************************************************************************/
+body {
+  height: 100vh;
+  width: 100%;
+  background: var(--second-bg-color);
+}
+
+/***********************************************************************************************************************************
+                                                                Seccion FORMULARIO
+***********************************************************************************************************************************/
+
+/* Contenedor de formularios */
+.formularios {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: calc(100vh - 40px);
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Imagen de fondo de la sección */
+.formularios .imagen-fondo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+/* Contenedor de los formularios */
+.contenedor_formualrios {
+  position: relative;
+  max-width: 850px;
+  width: 95%;
+  background: var(--login-register-bg-color);
+  padding: 20px 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  perspective: 2700px;
+  margin-top: 70px;
+  border-radius: 25px;
+}
+
+/* Contenedor de la imagen */
+.contenedor_formualrios .cover {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 50%;
+  z-index: 98;
+  transition: all 1s ease;
+  transform-origin: left;
+  transform-style: preserve-3d;
+}
+
+/* Giro estilo libro */
+.contenedor_formualrios #flip:checked ~ .cover {
+  transform: rotateY(-180deg);
+}
+
+/* Posicionamiento de la imagen del formulario */
+.contenedor_formualrios .cover .front,
+.contenedor_formualrios .cover .back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* Visivilidad de la imagen del formulario */
+.cover .back {
+  backface-visibility: hidden;
+}
+
+/* Fondo opaco de la imagen del formulario */
+.contenedor_formualrios .cover::before,
+.contenedor_formualrios .cover::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: var(--bg-color-hover);
+  opacity: 0.2;
+  z-index: 12;
+  border-radius: 0 25px 25px 0;
+}
+
+/* Opacidad de la imagen del formulario */
+.contenedor_formualrios .cover::after {
+  opacity: 0.3;
+  backface-visibility: hidden;
+}
+
+/* Estilo de la imagen del formulario */
+.contenedor_formualrios .cover img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: 10;
+  border-radius: 0 25px 25px 0;
+}
+
+/* COntenedor de ambos formularios */
+.contenedor_formualrios .form-content {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+}
+
+/* Contenedor de la etiqueta formulario */
+.form-content .login-form,
+.form-content .signup-form {
+  width: calc(100% / 2 - 50px);
+}
+
+/* Titulo del formulario */
+.forms .form-content .title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--text-color-form);
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 2px;
+  text-decoration: underline;
+  padding: 20px 0;
+}
+
+/* Contenedor de cada campo del formulario */
+.forms .form-content .input-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 40px;
+  width: 100%;
+  margin: 10px 0;
+  position: relative;
+}
+
+/* Input de cada campo del formulario */
+.form-content .input-box .contenido_campo {
+  height: 100%;
+  width: 100%;
+  border: none;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 500;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  background: none;
+}
+
+/* Icono del campo */
+.form-content .input-box .contenido_campo i {
+  position: absolute;
+  color: var(--main-color);
+  font-size: 1.5rem;
+  padding-left: 5px;
+}
+
+/* Input de cada campo del formulario */
+.form-content .input-box .contenido_campo input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 0 15px 0 40px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: none;
+}
+
+/* Contenedor de los botones */
+.contenedor_botones {
+    padding: 20px 0;
+}
+
+/* Boton del formulario */
+.forms .form-content .btn-form {
+  color: var(--text-color);
+  background: var(--bg-color-button);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  transition: all 0.4s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Animacion al pasar el cursor por encima */
+.forms .form-content .btn-form:hover {
+  background: var(--main-color);
+}
+
+/* Texto de Crear una/Ingresar */
+.forms .form-content label {
+  color: var(--main-color);
+  cursor: pointer;
+}
+
+/* Animacion al pasar el cursor por encima */
+.forms .form-content label:hover {
+  text-decoration: underline;
+}
+
+/* Texto de la pregunta de los formularios */
+.forms .form-content .no-recibido-text {
+  text-align: justify;
+  margin-top: 25px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-color-form);
+}
+
+/* Checkbox para la animacion de la imagen */
+.contenedor_formualrios #flip {
+  display: none;
+}
+
+/* Acciones responsive */
+@media (max-width: 768px) {
+  /* Se oculta la imagen del formulario */
+  .contenedor_formualrios .cover {
+    display: none;
+  }
+  /* Los campos del formulario pasa a ser el conntenido total */
+  .form-content .login-form,
+  .form-content .signup-form {
+    width: 100%;
+  }
+  /* Fomato libro oculto */
+  .form-content .signup-form {
+    display: none;
+  }
+  /* Acciones para el intercambio de formularios */
+  .contenedor_formualrios #flip:checked ~ .forms .signup-form {
+    display: block;
+  }
+  .contenedor_formualrios #flip:checked ~ .forms .login-form {
+    display: none;
+  }
+}
