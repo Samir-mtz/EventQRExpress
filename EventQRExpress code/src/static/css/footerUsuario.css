@@ -1,0 +1,57 @@
+/***********************************************************************************************************************************
+                                                             Footer
+***********************************************************************************************************************************/
+
+/* Contenedor del footer */
+footer {
+    position: sticky;
+    bottom: 0;
+    background: var(--bg-color);
+    color: var(--text-color);
+    width: calc(100%);
+    transition: all 0.5s ease;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+  }
+  
+  /* Contenedor de derechos */
+  .derechos {
+    width: 35%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70%;
+    margin-left: 20px;
+  }
+  
+  /* Contenedor de derechos */
+  .derechos i {
+    margin-right: 10px;
+    font-size: 20px;
+  }
+  
+  /* Contenedor de redes */
+  .redes {
+    width: 70%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  /* Iconos de redes sociales */
+  .redes a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 25px;
+  }
+  
+  /* Ajuste de footer con menu lateral abierto */
+  .menuLateral.open ~ footer {
+    width: calc(100% - 250px);
+  }
+  

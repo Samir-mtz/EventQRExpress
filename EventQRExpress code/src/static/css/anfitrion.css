@@ -1,0 +1,584 @@
+/***********************************************************************************************************************************
+                                                        Main / Contenido pagina
+***********************************************************************************************************************************/
+
+/* Dimension y posicionamiento del contenido al abrir el menu lateral */
+.menuLateral.open ~ main {
+  left: 250px;
+  width: calc(100% - 250px);
+}
+
+/* Seccion para el contenido */
+.contenido {
+  position: relative;
+  min-height: calc(100vh);
+  top: 0;
+  left: 78px;
+  width: calc(100% - 78px);
+  transition: all 0.5s ease;
+  z-index: 2;
+}
+
+/***********************************************************************************************************************************
+                                                            Seccion INICIO
+***********************************************************************************************************************************/
+
+/* Contenedor de incio */
+.inicio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh);
+  width: 100%;
+  background: var(--third-bg-color);
+}
+
+/* Titulo de la seccion */
+.inicio h1 {
+  border-bottom: 1px solid gray;
+  text-align: center;
+  width: 50%;
+  margin: 25px auto 15px;
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-wrap: balance;
+}
+
+/* Texto resaltado del titulo */
+.inicio span {
+  color: var(--main-color);
+}
+
+/* Imagen de la seccion */
+.inicio img {
+  height: calc(100vh - 150px);
+  max-width: calc(95%);
+  max-height: calc(80%);
+  margin: 0px auto;
+}
+
+/***********************************************************************************************************************************
+                                                          Seccion CREAR EVENTO
+***********************************************************************************************************************************/
+
+/* Contenedor de crear */
+.crear {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--fourth-bg-color);
+}
+
+/* Titulo de la seccion */
+.crear h1 {
+  border-bottom: 1px solid gray;
+  text-align: center;
+  width: 50%;
+  margin: 25px auto 15px;
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-wrap: balance;
+}
+
+/* Contenedor del numero del paso en el que nos encontramos en el formulario */
+.crear .numeroPaso {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  text-align: center;
+  font-size: 24px;
+  /* border: 1px solid blue; */
+}
+
+/* Botones de las flechas para ir al numero de paso siguiente/anterior */
+.crear .numeroPaso a {
+  /* border: 1px solid red; */
+  font-size: 30px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--third-text-color);
+}
+
+/* Animacion al pasar el cursor encima de las felcas */
+.crear .numeroPaso a:hover {
+  cursor: pointer;
+}
+
+/* Texto Paso N/T */
+.crear .numeroPaso h2 {
+  /* border: 1px solid green; */
+  letter-spacing: 2px;
+  width: 200px;
+}
+
+/* Contendor del formulario */
+.crear .formulario_crear {
+  width: 70%;
+  margin: 10px 0px 20px;
+  /* border: 1px solid green; */
+}
+
+/* Titulo del formulario */
+.crear .formulario_crear h3 {
+  font-size: 20px;
+  text-align: center;
+  font-weight: 700;
+  text-wrap: balance;
+  margin: 5px;
+}
+
+/************************ Formulario para el paso 1 ************************/
+
+/* Contenedor de cada campo del formulario */
+.crear .campo-formulario {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  margin: 10px 0;
+  /* border: 1px solid red; */
+}
+
+/* Contenedor icono y nombre del campo */
+.nombre-campo {
+  /* border: 1px solid blue; */
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  height: 30px;
+}
+
+/* Icono del campo */
+.nombre-campo i {
+  font-size: 22px;
+  color: var(--main-color);
+  width: 15%;
+  text-align: center;
+  /* border: 1px solid orangered; */
+}
+
+/* Contenedor del nombre del campo */
+.nombre-campo span {
+  /* border: 1px solid purple; */
+  font-size: 16px;
+  width: 85%;
+}
+
+/* Contenedor de los input del formulario */
+.input-campo {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: justify;
+  margin-bottom: 5px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 1px solid green; */
+}
+
+/* Etiquetas INPUT */
+.input-campo input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Estilo del mensaje de error */
+.input-campo small {
+  color: red;
+  font-size: 12px;
+  width: 100%;
+  /* border: 1px solid red; */
+}
+
+/* Estilos para los inputs de tipo texto */
+input[type="text"],
+input[type="number"] {
+  margin: 4.5px 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  border-bottom: 1px solid var(--border-form);
+  color: var(--text-color-form);
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Estilos para input de tipo date */
+input[type="date"] {
+  width: 100%;
+  padding: 1px;
+  margin: 0.5px 0;
+  background: none;
+  box-sizing: border-box;
+  border: 2px solid var(--border-form);
+  color: var(--text-color-form);
+  font-weight: 500;
+  letter-spacing: 4px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Estilos para input de tipo time */
+input[type="time"] {
+  width: 100%;
+  padding: 2px;
+  margin: 0.5px 0;
+  background: none;
+  box-sizing: border-box;
+  border: 2px solid var(--border-form);
+  color: var(--text-color-form);
+  font-weight: 500;
+  letter-spacing: 4px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Estilos para los select de opciones */
+select {
+  width: 100%;
+  padding: 2px;
+  margin: 1.8px 0;
+  background: none;
+  box-sizing: border-box;
+  border: 2px solid var(--border-form);
+  color: var(--text-color-form);
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Desactivar boton de control numerico */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* Estilos para el enfoque de los inputs */
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+select:focus {
+  outline: none;
+  border-color: var(--main-color);
+}
+
+/************************ Formulario para el paso 2 ************************/
+
+/* Estilos generales del contenedor */
+.campo-formulario-invitaciones {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-around; 
+  align-items: center;
+  margin-top: 20px;
+}
+
+.imagen-container {
+  position: relative;
+  margin: 5px;
+  box-sizing: border-box;
+}
+
+/* Estilo específico para todas las imágenes */
+.campo-formulario-invitaciones img {
+  width: 200px;
+  height: 300px;
+}
+
+/* Estilo para el borde al hacer clic */
+.imagen-container.clicked {
+  border: 3px solid green;
+  border-radius: 12px;
+  box-sizing: border-box;
+  display: flex;
+}
+
+/* Estilo para el icono */
+.imagen-container i {
+  display: none; /* Oculta el icono por defecto */
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 30px;
+  color: green;
+  background: white;
+  border-radius: 50%;
+}
+
+/* Muestra el icono solo cuando la imagen está seleccionada */
+.imagen-container.clicked i {
+  display: block;
+}
+
+/* Estilo específico para la segunda imagen */
+.imagen-container.special-image img {
+  width: 300px;
+  height: 200px;
+}
+
+/************************ Formulario para el paso 3 ************************/
+
+.valores_evento{
+  /* border: 1px solid green; */
+  display: flex;
+  justify-content: space-around;
+}
+
+.valores_evento .contenedor_valores{
+  /* border: 1px solid red; */
+  width: 60%;
+}
+
+.valores_evento .contenedor_valores .valor {
+  display: flex;
+  /* border: 1px solid violet; */
+  justify-content: space-between;
+  margin: 25px 0;
+}
+
+.valores_evento .contenedor_valores .valor i{
+  font-size: 22px;
+  color: var(--main-color);
+  width: 10%;
+  text-align: center;
+  /* border: 1px solid orangered; */
+}
+
+.valores_evento .contenedor_valores .valor span.nombre_valor {
+  font-size: 18px;
+  font-weight: 600;
+  /* border: 1px solid black; */
+  margin-right: 10px;
+}
+
+.valores_evento .contenedor_valores .valor .texto_valor {
+  font-size: 18px;
+  color: var(--text-color-form);
+  font-weight: 600;
+  font-style: italic;
+  text-align: justify;  
+  flex: 1;
+}
+
+.valores_evento img{
+  height: 100%;
+  /* width: 200px; */
+}
+
+
+/* Contenedor de los borones del formulario */
+.formulario_crear .botones_formulario {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-decoration: none;
+  margin: 40px 0px 30px;
+}
+
+/* Estilos del boton */
+.formulario_crear .botones_formulario button {
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Estilos del ancla */
+.formulario_crear .botones_formulario a {
+  padding: 5px 20px;
+  border-radius: 8px;
+}
+
+/* Estilos del boton para cancelar */
+.formulario_crear .botones_formulario a.no {
+  background-color: var(--button-no-color);
+}
+
+/* Estilos del boton para confirmar */
+.formulario_crear .botones_formulario a.yes {
+  background-color: var(--button-yes-color);
+}
+
+/* Animacion al pasar el cursor por encima de las anclas */
+.formulario_crear .botones_formulario a:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Animacion al pasar el cursor por encima de los botones */
+.formulario_crear .botones_formulario button:hover {
+  cursor: pointer;
+}
+
+/***********************************************************************************************************************************
+                                                      Seccion HISTORIAL DE EVENTOS
+***********************************************************************************************************************************/
+
+/* Contenedor de eventos */
+.eventos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--third-bg-color);
+}
+
+/* Titulo de la seccion */
+.eventos h1 {
+  border-bottom: 1px solid gray;
+  text-align: center;
+  width: 50%;
+  margin: 25px auto 15px;
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-wrap: balance;
+}
+
+/* Estilos generales del contenedor */
+.campo-historial-eventos {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-around; 
+  align-items: center;
+  margin-top: 20px;
+  width: 75%;
+}
+
+/* Contenedor de cada una de las imagenes */
+.campo-historial-eventos .imagen-container {
+  position: relative;
+  margin: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilo específico para todas las imágenes */
+.campo-historial-eventos img {
+  width: 300px;
+  height: 450px;
+}
+
+/* Estilo para el borde al hacer clic */
+.campo-historial-eventos .imagen-container.clicked {
+  border: 3px solid red;
+  border-radius: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilo para el icono */
+.campo-historial-eventos .imagen-container p {
+  font-size: 1.2rem;
+  color: var(--third-text-color);
+  font-weight: 700;
+  margin-top: 10px;
+  text-align: center;
+  max-width: 350px;
+}
+
+/* Estilo específico para la segunda imagen */
+.campo-historial-eventos .imagen-container.special-image img {
+  width: 400px;
+  height: 300px;
+}
+
+/***********************************************************************************************************************************
+                                                      Seccion  GESTIONAR EVENTO
+***********************************************************************************************************************************/
+
+/* Contenedor de gestionar */
+.gestionar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--fourth-bg-color);
+}
+
+/* Titulo de la seccion */
+.gestionar h1 {
+  border-bottom: 1px solid gray;
+  text-align: center;
+  width: 50%;
+  margin: 25px auto 15px;
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-wrap: balance;
+}
+
+/************************ Formulario para el paso 3 ************************/
+
+.gestionar .valores_evento{
+  border: 1px solid green;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.gestionar .valores_evento img{
+  height: 300px;
+  margin: auto;
+}
+
+.gestionar .valores_evento .contenedor_valores{
+  width: 100%;
+}
+
+.gestionar .valores_evento .contenedor_valores .valor {
+  display: flex;
+  justify-content: left;
+  margin: 25px 0;
+  border: 1px solid red;
+}
+
+.gestionar .valores_evento .contenedor_valores .valor i{
+  font-size: 20px;
+  color: var(--main-color);
+  width: 10%;
+  text-align: center;
+}
+
+.gestionar .valores_evento .contenedor_valores .valor span.nombre_valor {
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.gestionar .valores_evento .contenedor_valores .valor .texto_valor {
+  font-size: 12px;
+  color: var(--text-color-form);
+  font-weight: 600;
+  font-style: italic;
+  text-align: justify;  
+  flex: 1;
+}
+
+.gestionar .valores_evento .contenedor_valores .valor button {
+  right: 30px;
+}
+
+
+

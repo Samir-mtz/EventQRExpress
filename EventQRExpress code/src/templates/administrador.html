@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
+
+<head>
+  <!-- Metadatos -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../static/img/logo.png">
+  <!-- Titulo de la pagina en la pestaña -->
+  <title>EventQRXpress | Administrador</title>
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="../static/css/general.css">
+  <link rel="stylesheet" href="../static/css/menuUsuario.css">
+  <link rel="stylesheet" href="../static/css/administrador.css">
+  <link rel="stylesheet" href="../static/css/footerUsuario.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+  <!-- Menu Lateral -->
+  <nav class="menuLateral">
+
+    <!-- Seccion para el logo del usuario -->
+    <div class="detalles_usuario">
+      <div class="datos_usuario">
+        <i class='bx bxs-user-circle'></i>
+        <p class="nombre">nombreAdministrador</p>
+        <!-- Boton para ir a CONFIGURACION DEL PERFIL -->
+        <a href="#configuracion" class="configuracion">
+          <p class="configuracion">Configurar Perfil</p>
+        </a>
+      </div>
+      <i class='bx bx-menu' id="btn"></i>
+    </div>
+
+    <!-- Contenido del menu -->
+    <ul class="navBar">
+      <!-- Boton para ir a INICIO -->
+      <li class="seleccion">
+        <a href="#inicio">
+          <i class='bx bxs-home'></i>
+          <span class="nombre_link">Inicio</span>
+        </a>
+      </li>
+      <!-- Boton para ir a GESTIONAR EVENTOS -->
+      <li>
+        <a href="#gestionar">
+          <i class='bx bxs-calendar-event'></i>
+          <span class="nombre_link">Gestionar Eventos</span>
+        </a>
+      </li>
+      <!-- Boton para ir a ESTABLECIMIENTOS -->
+      <li>
+        <a href="#establecimientos">
+          <i class='bx bxs-buildings' ></i>
+          <span class="nombre_link">Establecimientos</span>
+        </a>
+      </li>
+      <!-- Boton para ir a INVITACIONES -->
+      <li>
+        <a href="#invitaciones">
+          <i class='bx bxs-balloon' ></i>
+          <span class="nombre_link">Invitaciones</span>
+        </a>
+      </li>
+      <!-- Boton para ir a INFORMES Y ESTADISTICAS -->
+      <li>
+        <a href="#informes">
+          <i class='bx bxs-report' ></i>
+          <span class="nombre_link">Informes y Estadisticas</span>
+        </a>
+      </li>
+      <!-- Boton para ir a CERRAR SESION -->
+      <li class="logout fondo">
+        <a href="#">
+          <i class='bx bx-log-out'></i>
+          <span class="nombre_link">Cerrar Sesión</span>
+        </a>
+      </li>
+    </ul>
+
+  </nav>
+
+  <!-- Contenido de la pagina -->
+  <main class="contenido">
+
+    <!-- Seccion INICIO de la pagina -->
+    <section class="inicio" id="inicio">
+      <h1>Bienvenido <span>Anfitrión</span></h1>
+      <img src="../static/img/inicioAdministrador.svg" alt="Imagen de inicio de administrador">
+    </section>
+
+    <!-- Seccion GESTIONAR EVENTOS de la pagina -->
+    <section class="gestionar" id="gestionar">
+      <h1>Gestionar Eventos</span></h1>
+    </section>
+
+    <!-- Seccion ESTABLECIMEINTOS de la pagina -->
+    <section class="establecimientos" id="establecimientos">
+      <h1>Establecimientos</span></h1>
+    </section>
+
+    <!-- Seccion INVITACIONES de la pagina -->
+    <section class="invitaciones" id="invitaciones">
+      <h1>Invitaciones</span></h1>
+    </section>
+
+    <!-- Seccion INFORMES Y ESTADISTICAS de la pagina -->
+    <section class="informes" id="informes">
+      <h1>Informes y Estadisticas</span></h1>
+    </section>
+
+    <!-- Pie de la pagina -->
+    <footer class="footer">
+      <!-- Texto del Copyright -->
+      <p class="derechos">
+        <i class='bx bx-copyright'></i>Todos los derechos reservados.
+      </p>
+      <!-- Redes sociales -->
+      <p class="redes">
+        <a href="https://www.facebook.com/" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class='bx bxl-twitter'></i></a>
+        <a href="https://outlook.office.com/" target="_blank"><i class='bx bxs-envelope'></i></a>
+      </p>
+    </footer>
+  </main>
+
+  <!-- Scripts -->
+  <script src="../static/js/barraLateral.js"></script>
+  <script src="../static/js/actualizarBarraLateral.js"></script>
+  <script src="../static/js/pasosFormulario.js"></script>
+  <script src="../static/js/seleccionarInvitacion.js"></script>
+
+</body>
+
+</html>

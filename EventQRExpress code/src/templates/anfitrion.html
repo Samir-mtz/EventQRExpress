@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
+
+<head>
+  <!-- Metadatos -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../static/img/logo.png">
+  <!-- Titulo de la pagina en la pestaña -->
+  <title>EventQRXpress | Anfitrión</title>
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="../static/css/general.css">
+  <link rel="stylesheet" href="../static/css/menuUsuario.css">
+  <link rel="stylesheet" href="../static/css/anfitrion.css">
+  <link rel="stylesheet" href="../static/css/footerUsuario.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+  <!-- Menu Lateral -->
+  <nav class="menuLateral">
+
+    <!-- Seccion para el logo del usuario -->
+    <div class="detalles_usuario">
+      <div class="datos_usuario">
+        <i class='bx bxs-user-circle'></i>
+        <p class="nombre">nombreAnfitrion</p>
+        <!-- Boton para ir a CONFIGURACION DEL PERFIL -->
+        <a href="#configuracion" class="configuracion">
+          <p class="configuracion">Configurar Perfil</p>
+        </a>
+      </div>
+      <i class='bx bx-menu' id="btn"></i>
+    </div>
+
+    <!-- Contenido del menu -->
+    <ul class="navBar">
+      <!-- Boton para ir a INICIO -->
+      <li class="seleccion">
+        <a href="#inicio">
+          <i class='bx bxs-home'></i>
+          <span class="nombre_link">Inicio</span>
+        </a>
+      </li>
+      <!-- Boton para ir a CREAR EVENTO -->
+      <li>
+        <a href="#crear">
+          <i class='bx bxs-calendar-event'></i>
+          <span class="nombre_link">Crear Evento</span>
+        </a>
+      </li>
+      <!-- Boton para ir a EVENTOS -->
+      <li>
+        <a href="#eventos">
+          <i class='bx bx-history'></i>
+          <span class="nombre_link">Eventos</span>
+        </a>
+      </li>
+      <!-- Boton para ir a CERRAR SESION -->
+      <li class="logout fondo">
+        <a href="#">
+          <i class='bx bx-log-out'></i>
+          <span class="nombre_link">Cerrar Sesión</span>
+        </a>
+      </li>
+    </ul>
+
+  </nav>
+
+  <!-- Contenido de la pagina -->
+  <main class="contenido">
+
+    <!-- Seccion INICIO de la pagina -->
+    <section class="inicio" id="inicio">
+      <h1>Bienvenido <span>Anfitrión</span></h1>
+      <img src="../static/img/inicioAnfitrion.svg" alt="Imagen de inicio de anfitrion">
+    </section>
+
+    <!-- Seccion CREAR EVENTO de la pagina -->
+    <section class="crear" id="crear">
+      <h1>Crear Evento</h1>
+      <div class="numeroPaso" id="numeroPaso">
+        <a id="anterior" onclick="anteriorPaso()"><i class='bx bx-left-arrow-alt'></i></a>
+        <h2>Paso 1/3</h2>
+        <a id="siguiente" onclick="siguientePaso()"><i class='bx bx-right-arrow-alt'></i></a>
+      </div>
+
+      <!-- Formulario Paso #1 - Datos generales del evento -->
+      <form action="" class="formulario_crear paso" id="paso1">
+        <!-- Titulo del formulario -->
+        <h3>Datos generales del evento</h3>
+        <!-- Campo para el nombre del evento -->
+        <div class="campo-formulario">
+          <div class="nombre-campo">
+            <i class='bx bxs-calendar-event'></i>
+            <span>Nombre del eveto:</span>
+          </div>
+          <div class="input-campo">
+            <input type="text" name="nombreEvento" id="nombreEvento" autocomplete="off">
+            <!-- <small>Error</small> -->
+          </div>
+        </div>
+        <!-- Campo para la fecha del evento -->
+        <div class="campo-formulario">
+          <div class="nombre-campo">
+            <i class='bx bx-calendar'></i>
+            <span>Fecha:</span>
+          </div>
+          <div class="input-campo">
+            <input type="date" name="fecha" id="fecha" autocomplete="off">
+            <!-- <small>Error</small> -->
+          </div>
+        </div>
+        <!-- Campo para la hora de inicio  -->
+        <div class="campo-formulario">
+          <div class="nombre-campo">
+            <i class='bx bxs-watch'></i>
+            <span>Hora de inicio:</span>
+          </div>
+          <div class="input-campo">
+            <input type="time" name="horaInicio" id="horaInicio" autocomplete="off">
+            <!-- <small>Error</small> -->
+          </div>
+        </div>
+        <!-- Campo para la hora de termino -->
+        <div class="campo-formulario">
+          <div class="nombre-campo">
+            <i class='bx bxs-watch bx-flip-horizontal'></i>
+            <span>Hora de termino:</span>
+          </div>
+          <div class="input-campo">
+            <input type="time" name="horaFin" id="horaFin" autocomplete="off">
+            <!-- <small>Error</small> -->
+          </div>
+        </div>
+        <!-- Campo para el numero de asistentes -->
+        <div class="campo-formulario">
+          <div class="nombre-campo">
+            <i class='bx bx-male-female'></i>
+            <span>Número estimado de asistentes:</span>
+          </div>
+          <div class="input-campo">
+            <input type="number" name="numeroAsistentes" id="numeroAsistentes" min="0" max="12" autocomplete="off">
+            <!-- <small>Error</small> -->
+          </div>
+        </div>
+        <!-- Campo para el tipo de evento -->
+        <div class="campo-formulario">
+          <div class="nombre-campo">
+            <i class='bx bxs-balloon'></i>
+            <span>Tipo de evento:</span>
+          </div>
+          <div class="input-campo">
+            <select name="tipoEvento" id="tipoEvento" autocomplete="off">
+              <option value="">Seleccionar una opción</option>
+              <option value="XV">XV Años</option>
+              <option value="boda">Boda</option>
+              <option value="graducacion">Graduacion</option>
+            </select>
+            <!-- <small>Error</small> -->
+          </div>
+        </div>
+        <!-- Campo para el lugar del evento -->
+        <div class="campo-formulario">
+          <div class="nombre-campo">
+            <i class='bx bxs-map'></i>
+            <span>Lugar del eveto:</span>
+          </div>
+          <div class="input-campo">
+            <select name="lugarEvento" id="lugarEvento" autocomplete="off">
+              <option value="">Seleccionar una opción</option>
+              <option value="salon1">Salon 1</option>
+              <option value="salon2">Salon 2</option>
+              <option value="salon3">Salon 3</option>
+              <option value="salon4">Salon 4</option>
+            </select>
+            <!-- <small>Error</small> -->
+          </div>
+        </div>
+        <!-- Botones del formulario -->
+        <div class="botones_formulario">
+          <a href="#" class="no" onclick="preguntaCancelarRegistroEvento(); return false;">
+            <button>Cancelar</button>
+          </a>
+          <a href="#" class="yes" onclick="siguientePaso(); return false;">
+            <button>Guardar</button>
+          </a>
+        </div>
+      </form>
+
+      <!-- Formulario Paso #2 - Seleccione el diseño de invitacion que mas le guste -->
+      <form action="" class="formulario_crear paso" id="paso2">
+        <!-- Titulo del formulario -->
+        <h3>Seleccione el diseño de invitación que mas le guste</h3>
+        <!-- Campo para las invitaciones -->
+        <div class="campo-formulario-invitaciones">
+          <div class="imagen-container">
+            <img src="../static/img/invitacion01.webp" alt="Invitacion 01">
+            <i class='bx bxs-check-circle'></i>
+          </div>
+          <div class="imagen-container special-image">
+            <img src="../static/img/invitacion02.webp" alt="Invitacion 02">
+            <i class='bx bxs-check-circle'></i>
+          </div>
+          <div class="imagen-container">
+            <img src="../static/img/invitacion03.webp" alt="Invitacion 03">
+            <i class='bx bxs-check-circle'></i>
+          </div>
+        </div>
+
+        <!-- Botones del formulario -->
+        <div class="botones_formulario">
+          <a href="#" class="no" onclick="preguntaCancelarRegistroEvento(); return false;">
+            <button>Cancelar</button>
+          </a>
+          <a href="#" class="yes" onclick="siguientePaso(); return false;">
+            <button>Guardar</button>
+          </a>
+        </div>
+      </form>
+
+      <!-- Formulario Paso #3 - Confirmar datos del evento -->
+      <form action="" class="formulario_crear paso" id="paso3">
+        <!-- Titulo del formulario -->
+        <h3>Confirme los datos de su evento</h3>
+        <!-- Campo para el nombre del evento -->
+        <div class="valores_evento">
+          <div class="contenedor_valores">
+            <!-- Campo para NOMBRE DEL EVENTO -->
+            <p class="valor">
+              <i class='bx bxs-calendar-event'></i>
+              <span class="nombre_valor">Nombre del evento:</span>
+              <span class="texto_valor">nombreEvento</span>
+            </p>
+            <!-- Campo para FECHA -->
+            <p class="valor">
+              <i class='bx bx-calendar' ></i>
+              <span class="nombre_valor">Fecha:</span>
+              <span class="texto_valor">DD / MM / AAAA</span>
+            </p>
+            <!-- Campo para HORARIO -->
+            <p class="valor">
+              <i class='bx bxs-watch' ></i>
+              <span class="nombre_valor">"Horario:"</span>
+              <span class="texto_valor">HH:MM x.m.</span>
+            </p>
+            <!-- Campo para NUMERO DE ASISTENTES -->
+            <p class="valor">
+              <i class='bx bx-male-female' ></i>
+              <span class="nombre_valor">Número estimado de asistentes:</span>
+              <span class="texto_valor">###</span>
+            </p>
+            <!-- Campo para TIPO DE EVENTO -->
+            <p class="valor">
+              <i class='bx bxs-balloon'></i>
+              <span class="nombre_valor">Tipo de evento:</span>
+              <span class="texto_valor">(XV años / Boda / Reunión)</span>
+            </p>
+            <!-- Campo para LUGAR DEL EVENTO -->
+            <p class="valor">
+              <i class='bx bxs-map'></i>
+              <span class="nombre_valor">Lugar del evento:</span>
+              <span class="texto_valor">Salon de eventos NOMBRE <small><br>Nombre de la calle, Numelo
+                  Colonia/Distrito/Region, Ciudad.</small></span>
+            </p>
+          </div>
+          <img src="../static/img/invitacion01.webp" alt="">
+        </div>
+        <!-- Botones del formulario -->
+        <div class="botones_formulario">
+          <a href="#" class="no" onclick="preguntaCancelarRegistroEvento(); return false;">
+            <button>Cancelar</button>
+          </a>
+          <a href="#" class="yes" onclick="siguientePaso(); return false;">
+            <button>Confirmar</button>
+          </a>
+        </div>
+      </form>
+    </section>
+
+    <!-- Seccion HISTORIAL DE EVENTOS de la pagina -->
+    <section class="eventos" id="eventos">
+      <h1>Historial de Eventos</span></h1>
+      <div class="campo-historial-eventos">
+        <div class="imagen-container">
+          <img src="../static/img/invitacion01.webp" alt="Invitacion 01">
+          <p class="nombre_evento">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, autem!</p>
+        </div>
+        <div class="imagen-container special-image">
+          <img src="../static/img/invitacion02.webp" alt="Invitacion 02">
+          <p class="nombre_evento">Nombre del evento</p>
+        </div>
+        <div class="imagen-container">
+          <img src="../static/img/invitacion03.webp" alt="Invitacion 03">
+          <p class="nombre_evento">Nombre del evento</p>
+        </div>
+        <div class="imagen-container">
+          <img src="../static/img/invitacion03.webp" alt="Invitacion 03">
+          <p class="nombre_evento">Nombre del evento</p>
+        </div>
+        <div class="imagen-container">
+          <img src="../static/img/invitacion01.webp" alt="Invitacion 01">
+          <p class="nombre_evento">Nombre del evento</p>
+        </div>
+        <div class="imagen-container special-image">
+          <img src="../static/img/invitacion02.webp" alt="Invitacion 02">
+          <p class="nombre_evento">Nombre del evento</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seccion GESTIONAR EVENTO de la pagina -->
+    <section class="gestionar" id="gestionar">
+      <!-- Titulo de la seccion -->
+      <h1>Gestionar Evento</h1>
+      <!-- Contenedor de resumen del evento -->
+      <div class="valores_evento">
+        <img src="../static/img/invitacion01.webp" alt="">
+        <div class="contenedor_valores">
+          <!-- Campo para NOMBRE DEL EVENTO -->
+          <p class="valor">
+            <i class='bx bxs-calendar-event'></i>
+            <span class="nombre_valor">Nombre del evento:</span>
+            <span class="texto_valor">nombreEvento</span>
+          </p>
+          <!-- Campo para FECHA -->
+          <p class="valor">
+            <i class='bx bx-calendar' ></i>
+            <span class="nombre_valor">Fecha:</span>
+            <span class="texto_valor">DD / MM / AAAA</span>
+          </p>
+          <!-- Campo para HORARIO -->
+          <p class="valor">
+            <i class='bx bxs-watch' ></i>
+            <span class="nombre_valor">"Horario:"</span>
+            <span class="texto_valor">HH:MM x.m.</span>
+          </p>
+          <!-- Campo para NUMERO DE ASISTENTES -->
+          <p class="valor">
+            <i class='bx bx-male-female' ></i>
+            <span class="nombre_valor">Número estimado de asistentes:</span>
+            <span class="texto_valor">###</span>
+          </p>
+          <!-- Campo para TIPO DE EVENTO -->
+          <p class="valor">
+            <i class='bx bxs-balloon'></i>
+            <span class="nombre_valor">Tipo de evento:</span>
+            <span class="texto_valor">(XV años / Boda / Reunión)</span>
+          </p>
+          <!-- Campo para LUGAR DEL EVENTO -->
+          <p class="valor">
+            <i class='bx bxs-map'></i>
+            <span class="nombre_valor">Lugar del evento:</span>
+            <span class="texto_valor">Salon de eventos NOMBRE <small><br>Nombre de la calle, Numelo
+                Colonia/Distrito/Region, Ciudad.</small></span>
+          </p>
+          <!-- Campo para LINK DE INVITACION -->
+          <p class="valor">
+            <i class='bx bx-link-alt' ></i>
+            <span class="nombre_valor">Link de invitación:</span>
+            <span class="texto_valor">https://eventqrxpress.com/ABC123/</span>
+            <button class="copiar"><i class='bx bx-copy' ></i></button>
+          </p>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Pie de la pagina -->
+    <footer class="footer">
+      <!-- Texto del Copyright -->
+      <p class="derechos">
+        <i class='bx bx-copyright'></i>Todos los derechos reservados.
+      </p>
+      <!-- Redes sociales -->
+      <p class="redes">
+        <a href="https://www.facebook.com/" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class='bx bxl-twitter'></i></a>
+        <a href="https://outlook.office.com/" target="_blank"><i class='bx bxs-envelope'></i></a>
+      </p>
+    </footer>
+  </main>
+
+  <!-- Scripts -->
+  <script src="../static/js/barraLateral.js"></script>
+  <script src="../static/js/actualizarBarraLateral.js"></script>
+  <script src="../static/js/pasosFormulario.js"></script>
+  <script src="../static/js/seleccionarInvitacion.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,213 @@
+/***********************************************************************************************************************************
+                                                            Menu Lateral
+***********************************************************************************************************************************/
+
+/* Contenedor del menu lateral */
+.menuLateral {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 78px;
+    background: var(--bg-color);
+    padding: 6px 14px;
+    z-index: 99;
+    transition: all 0.5s ease;
+  }
+  
+  /* Menu lateral activo */
+  .menuLateral.open {
+    width: 250px;
+  }
+  
+  /* Contenedor de los valores de ususario con icono de menu*/
+  .menuLateral .detalles_usuario {
+    height: 140px;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  /* Anclas en el menu lateral */
+  .menuLateral .detalles_usuario > a {
+    text-decoration: none;
+  }
+  
+  /* Contenedor de los valores de ususario*/
+  .menuLateral .detalles_usuario .datos_usuario {
+    height: 140px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
+  
+  /* Icono del usuario */
+  .menuLateral .detalles_usuario .datos_usuario i {
+    color: var(--main-color);
+    font-size: 100px;
+    margin: 20px;
+  }
+  
+  /* Nombre del usuario */
+  .menuLateral .detalles_usuario .datos_usuario p.nombre {
+    font-size: 16px;
+    text-align: center;
+    width: 180px;
+    overflow-y: hidden;
+  }
+  
+  /* Link de configuracion del usuario */
+  .menuLateral .detalles_usuario .datos_usuario p.configuracion {
+    font-size: 12px;
+    color: var(--second-text-color);
+  }
+  
+  /* Accion de los valores del usuario al ocultar la barra */
+  .menuLateral.open .detalles_usuario .icon,
+  .menuLateral.open .detalles_usuario .datos_usuario {
+    opacity: 1;
+  }
+  
+  /* Pocisionamiento de los botones del menu */
+  .menuLateral .detalles_usuario #btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: 35px;
+    transition: all 0.4s ease;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+  
+  /* Alineacion del boton de menu */
+  .menuLateral.open .detalles_usuario #btn {
+    text-align: right;
+  }
+  
+  /* Iconos en el menu lateral */
+  .menuLateral i {
+    color: var(--text-color);
+    height: 60px;
+    min-width: 50px;
+    font-size: 40px;
+    text-align: center;
+    line-height: 60px;
+  }
+  /* Contenedor del menu lateral */
+  .menuLateral .navBar {
+    height: 70%;
+    overflow-y: scroll;
+  }
+  
+  /* Estilos del scroll del menu lateral */
+  .menuLateral .navBar::-webkit-scrollbar {
+    width: 0px;
+  }
+  .menuLateral .navBar::-webkit-scrollbar-thumb {
+    background-color: var(--color-scroll);
+    border-radius: 5px;
+  }
+  .menuLateral .navBar::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-scroll-hover);
+  }
+  
+  /* Estilos para los inconos del menu */
+  .menuLateral .navBar i {
+    font-size: 30px;
+  }
+  
+  /* Estilo por opcion del menu */
+  .menuLateral li {
+    position: relative;
+    margin: 15px 0 20px 0;
+    list-style: none;
+  }
+  
+  /* Enlaces de cada elemento del menu lateral */
+  .menuLateral li a {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+  }
+  
+  /* Fondo para menu con seleccion o logout */
+  .menuLateral .seleccion {
+    background: var(--main-color);
+    border-radius: 12px;
+  }
+  
+  /* Estilo por opcion del menu */
+  .menuLateral li.logout {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    list-style: none;
+  }
+  
+  /* Estilo para el enlace de cerrar sesión */
+  .menuLateral li.logout a {
+    display: flex;
+    height: 100%;
+    width: calc(100% - 28px);
+    border-radius: 12px;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    justify-content: flex-start;
+  }
+  
+  /* Fondo para el enlace de cerrar sesión */
+  .menuLateral li.logout {
+    background: var(--main-color);
+    border-radius: 12px;
+    width: calc(100% - 28px);
+  }
+  
+  /* Estilo del menu al pasar el cursor por los elementos */
+  .menuLateral li a:hover {
+    background: var(--bg-color-button-menu);
+  }
+  
+  /* Textos de los elementos del menu */
+  .menuLateral li a .nombre_link {
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 900;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s;
+  }
+  
+  /* Animacion al mostrar la barra lateral */
+  .menuLateral.open li a .nombre_link {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  /* Animacion al pasar el cursor por encima de los elementos del menu */
+  .menuLateral li a:hover .nombre_link,
+  .menuLateral li a:hover i {
+    transition: all 0.5s ease;
+    color: var(--text-color);
+  }
+  
+  /* Iconos de los elementos del menu */
+  .menuLateral li i {
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    border-radius: 12px;
+  }
