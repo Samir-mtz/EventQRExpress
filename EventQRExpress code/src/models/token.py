@@ -1,5 +1,5 @@
 
-from itsdangerous import URLSafeTimedSerializer
+from itsdangerous import URLSafeTimedSerializer, BadTimeSignature
 from config import Config
 
 
@@ -8,14 +8,20 @@ def generate_confirmation_token(email):
     return serializer.dumps(email, salt=Config.SECURITY_PASSWORD_SALT)
 
 
-def confirm_token(token, expiration=900):
+def confirm_token(token):
     serializer = URLSafeTimedSerializer(Config.SECRET_KEY)
     try:
         email = serializer.loads(
             token,
             salt=Config.SECURITY_PASSWORD_SALT,
-            max_age=expiration
+            max_age=1500
         )
-    except:
+    except BadTimeSignature as e:
+        
+        print(f"Error al deserializar el token: {e}")
+        return False
+    except Exception as e:
+        
+        print(f"Error inesperado al deserializar el token: {e}")
         return False
     return email

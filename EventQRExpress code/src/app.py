@@ -14,11 +14,9 @@ from datetime import datetime
 # Clases
 # Models:
 from models.ModelUser import ModelUser
-from models.ModelLoker import ModelLocker
 
 # Entities:
 from models.entities.User import User
-from models.entities.Locker import Locker
 
 app = Flask(__name__)
 csrf = CSRFProtect()
@@ -50,46 +48,15 @@ def load_user(id):
 #########################################################################################
 
 # Ruta raíz
-
-
 @app.route('/')
 def index():
-    return render_template('inicio.html')
-
-@app.route('/conocenos')
-def conocenos():
-    return render_template('Conocenos.html')
-
-@app.route('/sucursales')
-def sucursales():
-    return render_template('Sucursales.html')
-
-@app.route('/sucursales/valle')
-def sucursalesValle():
-    return render_template('Valle.html')
-
-
-@app.route('/sucursales/lindavista')
-def sucursalesLindavista():
-    return render_template('Lindavista.html')
-
-
-@app.route('/sucursales/satelite')
-def sucursalesSatelite():
-    return render_template('Satelite.html')
-
-
-@app.route('/sucursales/aragon')
-def sucursalesAragon():
-    return render_template('Aragon.html')
+    return render_template('landingPage.html')
 
 #########################################################################################
 ##################################### Usuario cliente ###################################
 #########################################################################################
 
 # Inicio de sesion
-
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_active == False:
@@ -110,7 +77,6 @@ def login():
                     if confirmed_user.confirmed:  # En caso de no ser confirmado reenvia un correo para confirmar
                         if confirmed_user.tipo == 'usuario':
                             return redirect(url_for('homeCliente'))
-                    
                         elif confirmed_user.tipo == 'admin':
                             return redirect(url_for('admin'))
                         else:
@@ -124,14 +90,14 @@ def login():
                             return render_template('ingresar.html')
                 else:
                     flash("Usuario y/o contraseña incorrectos.")
-                    return render_template('ingresar.html')
+                    return redirect(url_for('/login'))
             else:
                 flash("Usuario y/o contraseña incorrectos.")
-                return render_template('ingresar.html')
+                return render_template('formularioLoginRegister.html')
         else:  # Se pide por get
-            return render_template('ingresar.html')
+            return render_template('formularioLoginRegister.html')
     else:
-        return redirect(url_for('homeCliente'))
+        return redirect(url_for('homeCliente')) ##Cambiar al inicio de usuario
 
 # Cerrar sesion
 @app.route('/logout')
@@ -146,16 +112,17 @@ def homeCliente():
     user = ModelUser.consulta_email(db, current_user.email)
     # print(user.tipo)
     if user.tipo == 'usuario':
-        return render_template('bienvenidaCliente.html')
+        return render_template('anfitrion.html')
     elif user.tipo == 'admin':
         return redirect(url_for('admin'))
     else:
         return redirect(url_for('index'))
 
 # Registro de una nueva cuenta
-@app.route('/registro', methods=['GET', 'POST'])
+@app.route('/registro', methods=['POST'])
 def register():
     if request.method == 'POST':
+        print("LLegue")
         if current_user.is_active == True:
             logout_user()
         # ¿El correo no esta registrado?
@@ -185,16 +152,15 @@ def register():
                 mail.send(msg)
                 # login_user(execution) # Marco sus datos como logeado para que vea verificacion
                 logout_user()
-                return render_template('validacionCorreo.html', nombre=user.nombre, email=user.email)
+                return render_template('validacionCorreo.html', nombre=user.nombre, email=user.email)##########Cambiar
             else:
                 flash("Algo salió mal, intenta de nuevo")
-                return render_template('registrar.html')
+                # return render_template('formularioLoginRegister.html')
+                return redirect('/login')
         else:
             flash("El correo ingresado ya ha sido registrado")
-            return render_template('registrar.html')
-    else:
-        return render_template('registrar.html')
-
+            # return render_template('formularioLoginRegister.html')
+            return redirect('/login')
 
 # Envio de confirmacion de correo
 @app.route('/confirm/<token>')
@@ -206,8 +172,7 @@ def confirm_email(token):
         # En caso de cuenta creada pero no confirmada
         flash('Algo salió mal. Por favor intenta de nuevo')
         return redirect(url_for('login'))
-
-    # print(email)
+    # print(f"El email es: {email}")
     user = ModelUser.consulta_email(db, email)
     if user != None:
         if user.confirmed:
@@ -218,14 +183,14 @@ def confirm_email(token):
             ModelUser.confirm_user(db, email)
             return render_template('ingresarVerificado.html')  # En caso de cuenta creada pero no confirmada
     else:  # Codigo expiro
-        return render_template('tokenError.html')  # En caso de cuenta creada pero no confirmada
+        return "Hola"  # En caso de cuenta creada pero no confirmada
 
 
 # Reenvío de correo
 @app.route('/resend/<email>')
 def resend_confirmation(email):
-    hash_email = confirm_token(email)
-    token = generate_confirmation_token(hash_email)
+    # hash_email = confirm_token(email)
+    token = generate_confirmation_token(email)
     # Envio de correo
     confirm_url = url_for('confirm_email', token=token, _external=True)
     template = render_template(
@@ -241,7 +206,7 @@ def resend_confirmation(email):
     mail.send(msg)
 
     flash('Tu cuenta sigue sin confirmar, hemos enviado un nuevo correo de confirmación.')
-    return render_template('ingresar.html')
+    return redirect(url_for('login'))
 
 
 # No llego ningun correo
@@ -698,7 +663,7 @@ def userHistorial():
 def admin():
     user = ModelUser.consulta_email(db, current_user.email)
     if user.tipo == 'admin':
-        return render_template('Catalogos.html')
+        return render_template('administrador.html')
     else:
         return redirect(url_for('homeCliente'))
 
@@ -1103,7 +1068,7 @@ def status_401(error):
 # En caso de que el usuario acceda a una pagina no definida
 def status_404(error):
     # return "<h1>Página no encontrada</h1>", 404
-    return render_template('error404.html')
+    return "render_template('error404.html')"
 
 
 # This forces the app to start at '/'

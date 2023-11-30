@@ -27,7 +27,7 @@
     <nav class="navbar">
       <i class='bx bx-menu hamburger-btn'></i>
       <!-- <span class="hamburger-btn material-symbols-rounded">menu</span> -->
-      <a href="#" class="logo">
+      <a href="./" class="logo">
         <img src="../static/img/logo.png" alt="logo">
         <h2>EventQRXpress.</h2>
       </a>
@@ -35,10 +35,10 @@
         <!-- Boton para cerrar -->
         <i class='bx bx-x close-btn'></i>
         <!-- Links a secciones de la pagina -->
-        <li><a href="./landingPage.html#inicio">Inicio</a></li>
-        <li><a href="./landingPage.html#conocenos">Conócenos</a></li>
-        <li><a href="./landingPage.html#servicios">Servicios</a></li>
-        <li><a href="./landingPage.html#referencias">Referencias</a></li>
+        <li><a href="./#inicio">Inicio</a></li>
+        <li><a href="./#conocenos">Conócenos</a></li>
+        <li><a href="./#servicios">Servicios</a></li>
+        <li><a href="./#referencias">Referencias</a></li>
       </ul>
       <!-- Boton para abrir formulario de login/register -->
       <a class="login-btn" href="#">Ingresar / Registrar</a>
@@ -74,13 +74,22 @@
               <!-- Titulo del formulario -->
               <div class="title">Ingresar</div>
               <!-- Formulario -->
-              <form action="#">
+              <form action="/login" method="post">
+                {% with messages = get_flashed_messages()[-1]%}
+                  {% if messages %}
+                    <br />
+                    <div>
+                      <strong style="color: #e41f1a;">{{ messages }}</strong>
+                    </div>
+                  {% endif %}
+                {% endwith %}
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="input-boxes">
                   <!-- Campo para CORREO ELECTRONICO-->
                   <div class="input-box">
                     <div class="contenido_campo">
                       <i class='bx bxs-envelope'></i>
-                      <input type="text" placeholder="Correo electrónico" required>
+                      <input type="text"  name="email" placeholder="Correo electrónico" required>
                     </div>
                     <!-- <span>Error</span> -->
                   </div>
@@ -88,14 +97,14 @@
                   <div class="input-box">
                     <div class="contenido_campo">
                       <i class='bx bxs-lock-alt'></i>
-                      <input type="text" placeholder="Contraseña" required>
+                      <input type="password" name="password" placeholder="Contraseña" required>
                     </div>
                     <!-- <span>Error</span> -->
                   </div>
                 </div>
                 <div class="contenedor_botones">
                   <!-- Boton del formulario -->
-                  <button class="btn-form input-box">Ingresar</button>
+                  <button  type="submit" class="btn-form input-box">Ingresar</button>
                   <!-- Pregunta del formulario -->
                   <div class="text sign-up-text">¿Aun no tienes una cuenta? <label for="flip" id="enlaceRegistrar">Crear una</label></div>
                 </div>
@@ -107,13 +116,22 @@
               <!-- Titulo del formulario -->
               <div class="title">Registrar</div>
               <!-- Formulario -->
-              <form action="#">
+              <form action="/registro" method="post">
+                {% with messages = get_flashed_messages()[-1]%}
+                  {% if messages %}
+                    <br />
+                    <div>
+                      <strong style="color: #e41f1a;">{{ messages }}</strong>
+                    </div>
+                  {% endif %}
+                {% endwith %}
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="input-boxes">
                   <!-- Campo para NOMBRE DE USUARIO -->
                   <div class="input-box">
                     <div class="contenido_campo">
                       <i class='bx bxs-user'></i>
-                      <input type="text" placeholder="Nombre de usuario" required>
+                      <input type="text" name="nombre" placeholder="Nombre de usuario" required>
                     </div>
                     <!-- <span>Error</span> -->
                   </div>
@@ -121,7 +139,7 @@
                   <div class="input-box">
                     <div class="contenido_campo">
                       <i class='bx bxs-envelope'></i>
-                      <input type="text" placeholder="Correo electrónico" required>
+                      <input type="text" name="email" placeholder="Correo electrónico" required>
                     </div>
                     <!-- <span>Error</span> -->
                   </div>
@@ -129,7 +147,7 @@
                   <div class="input-box">
                     <div class="contenido_campo">
                       <i class='bx bxs-phone'></i>
-                      <input type="text" placeholder="Telefóno" required>
+                      <input type="text" name="telefono" placeholder="Telefóno" required>
                     </div>
                     <!-- <span>Error</span> -->
                   </div>
@@ -137,7 +155,7 @@
                   <div class="input-box">
                     <div class="contenido_campo">
                       <i class='bx bxs-lock-alt'></i>
-                      <input type="text" placeholder="Contraseña" required>
+                      <input type="text" name="password" placeholder="Contraseña" required>
                     </div>
                     <!-- <span>Error</span> -->
                   </div>
@@ -152,7 +170,7 @@
                 </div>
                 <div class="contenedor_botones">
                   <!-- Boton del formulario -->
-                  <button class="btn-form input-box">Registar</button>
+                  <button  type="submit" class="btn-form input-box">Registar</button>
                   <!-- Pregunta del formulario -->
                   <div class="text sign-up-text">¿Ya tienes una cuenta? <label for="flip" id="enlaceIngresar">Ingresa</label></div>
                 </div>
