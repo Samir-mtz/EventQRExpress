@@ -7,7 +7,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
     MYSQL_HOST = 'localhost'
     MYSQL_USER = 'root'
-    MYSQL_PASSWORD = ''
+    MYSQL_PASSWORD = 'admin123'
     MYSQL_DB = 'eventqrxpress' #Nombre de la base de datos
 
 config = {
