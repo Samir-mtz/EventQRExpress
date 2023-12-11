@@ -26,8 +26,6 @@ db = MySQL(app)
 #########################################################################################
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-# app.config['MAIL_USERNAME'] = 'sendiitadsscrumios@gmail.com'
-# app.config['MAIL_PASSWORD'] = "xeqesdzdiuknempi"
 app.config['MAIL_USERNAME'] = 'eventqrxpress@gmail.com'
 app.config['MAIL_PASSWORD'] = "aebe rqbb fgau zgxj"
 app.config['MAIL_USE_TLS'] = False
@@ -91,7 +89,7 @@ def login():
                             return render_template('ingresar.html')
                 else:
                     flash("Usuario y/o contraseña incorrectos.")
-                    return redirect(url_for('/login'))
+                    return redirect(url_for('login'))
             else:
                 flash("Usuario y/o contraseña incorrectos.")
                 return render_template('formularioLoginRegister.html')
@@ -123,7 +121,6 @@ def homeCliente():
 @app.route('/registro', methods=['POST'])
 def register():
     if request.method == 'POST':
-        print("LLegue")
         if current_user.is_active == True:
             logout_user()
         # ¿El correo no esta registrado?
@@ -148,20 +145,21 @@ def register():
                     subject,
                     recipients=[''+request.form['email']],
                     html=template,
-                    sender="sendiitadsscrumios@gmail.com"
+                    sender="eventqrxpress@gmail.com"
                 )
                 mail.send(msg)
                 # login_user(execution) # Marco sus datos como logeado para que vea verificacion
                 logout_user()
-                return render_template('validacionCorreo.html', nombre=user.nombre, email=user.email)##########Cambiar
+                # return render_template('validacionCorreo.html', nombre=user.nombre, email=user.email)##########Cambiar
+                return redirect(url_for('login'))
             else:
                 flash("Algo salió mal, intenta de nuevo")
                 # return render_template('formularioLoginRegister.html')
-                return redirect('/login')
+                return redirect(url_for('login'))
         else:
             flash("El correo ingresado ya ha sido registrado")
             # return render_template('formularioLoginRegister.html')
-            return redirect('/login')
+            return redirect(url_for('login'))
 
 # Envio de confirmacion de correo
 @app.route('/confirm/<token>')
@@ -182,9 +180,11 @@ def confirm_email(token):
         else:
             # print('llego')
             ModelUser.confirm_user(db, email)
-            return render_template('ingresarVerificado.html')  # En caso de cuenta creada pero no confirmada
+            flash('Gracias por confirmar tu cuenta. Por favor inicia sesión.', 'success')
+            return redirect(url_for('login'))
     else:  # Codigo expiro
-        return "Hola"  # En caso de cuenta creada pero no confirmada
+        flash('Algo salió mal. Por favor intenta de nuevo')
+        return redirect(url_for('login'))
 
 
 # Reenvío de correo
@@ -196,13 +196,13 @@ def resend_confirmation(email):
     confirm_url = url_for('confirm_email', token=token, _external=True)
     template = render_template(
         'correoValidaciones.html', confirm_url=confirm_url)
-    subject = "Activación de cuenta - Sendiit"
+    subject = "Activación de cuenta - Eventqrxpress"
 
     msg = Message(
         subject,
         recipients=[''+email],  # Cambiar al correo de usuario
         html=template,
-        sender="sendiitadsscrumios@gmail.com"
+        sender="eventqrxpress@gmail.com"
     )
     mail.send(msg)
 
@@ -225,14 +225,14 @@ def resend_email():
         confirm_url = url_for('confirm_email', token=token, _external=True)
         template = render_template(
             'correoValidaciones.html', confirm_url=confirm_url)
-        subject = "Activación de cuenta - Sendiit"
+        subject = "Activación de cuenta - Eventqrxpress"
 
         msg = Message(
             subject,
             # Cambiar al correo de usuario
             recipients=[''+request.form['email']],
             html=template,
-            sender="sendiitadsscrumios@gmail.com"
+            sender="eventqrxpress@gmail.com"
         )
         mail.send(msg)
 
@@ -254,8 +254,8 @@ def recuperar():
                     token = generate_confirmation_token(email)
                     confirm_url = url_for('confirm_email_restablecer', token=token, _external=True)
                     template = render_template('correoRecuperarContrasena.html', confirm_url=confirm_url)
-                    subject = "Recuperación de cuenta - Sendiit"
-                    msg = Message(subject, recipients=[email], html=template, sender="sendiitadsscrumios@gmail.com")
+                    subject = "Recuperación de cuenta - Eventqrxpress"
+                    msg = Message(subject, recipients=[email], html=template, sender="eventqrxpress@gmail.com")
                     mail.send(msg)
                     return render_template('validacionCorreoRecuperar.html', email=email)
                 else:
@@ -293,8 +293,8 @@ def resend_email_recuperacion():
         token = generate_confirmation_token(email)
         confirm_url = url_for('confirm_email_restablecer', token=token, _external=True)
         template = render_template('correoRecuperarContrasena.html', confirm_url=confirm_url)
-        subject = "Recuperación de cuenta - Sendiit"
-        msg = Message(subject, recipients=[email], html=template, sender="sendiitadsscrumios@gmail.com")
+        subject = "Recuperación de cuenta - Eventqrexpress"
+        msg = Message(subject, recipients=[email], html=template, sender="eventqrxpress@gmail.com")
         mail.send(msg)
         flash('Se ha enviado un nuevo correo de recuperación de cuenta.')
         return render_template('validacionCorreoRecuperar.html', email=email)
@@ -325,9 +325,9 @@ def resend_confirmation_repartidor(email):
     # Envio de correo
     confirm_url = url_for('confirm_email_restablecer', token=token, _external=True)
     template = render_template('correoValidacionesRepartidor.html', confirm_url=confirm_url)
-    subject = "Activación de cuenta - Sendiit"
+    subject = "Activación de cuenta - Eventqrxpress"
 
-    msg = Message(subject, recipients=[email], html=template, sender="sendiitadsscrumios@gmail.com")
+    msg = Message(subject, recipients=[email], html=template, sender="eventqrxpress@gmail.com")
     mail.send(msg)
 
     flash('Tu cuenta sigue sin confirmar, hemos enviado un nuevo correo de cambio de contraseña.')
@@ -821,9 +821,9 @@ def repartidoresAgregado():
                 
                 confirm_url = url_for('confirm_email_restablecer', token=token, _external=True)
                 template = render_template('correoValidacionesRepartidor.html', confirm_url=confirm_url)
-                subject = "Activación de cuenta - Sendiit"
+                subject = "Activación de cuenta - Eventqrxpress"
                 
-                msg = Message(subject, recipients=[email], html=template, sender="sendiitadsscrumios@gmail.com")
+                msg = Message(subject, recipients=[email], html=template, sender="eventqrxpress@gmail.com")
                 
                 mail.send(msg)        
                 
@@ -1069,7 +1069,7 @@ def status_401(error):
 # En caso de que el usuario acceda a una pagina no definida
 def status_404(error):
     # return "<h1>Página no encontrada</h1>", 404
-    return "render_template('error404.html')"
+    return render_template('error404.html')
 
 
 # This forces the app to start at '/'

@@ -41,7 +41,7 @@
         <li><a href="./#referencias">Referencias</a></li>
       </ul>
       <!-- Boton para abrir formulario de login/register -->
-      <a class="login-btn" href="#">Ingresar / Registrar</a>
+      <a class="login-btn" href="#" >Ingresar / Registrar</a>
     </nav>
   </header>
 
@@ -75,12 +75,20 @@
               <div class="title">Ingresar</div>
               <!-- Formulario -->
               <form action="/login" method="post">
-                {% with messages = get_flashed_messages()[-1]%}
-                  {% if messages %}
-                    <br />
-                    <div>
-                      <strong style="color: #e41f1a;">{{ messages }}</strong>
-                    </div>
+                {% with last_message = get_flashed_messages(with_categories=true)[-1]%}
+                  {% if last_message %}
+                    {% set category, messages = last_message if last_message is iterable else (None, last_message) %}
+                    {% if category == 'success' %}
+                      <br />
+                      <div>
+                        <strong style="color: rgb(5, 191, 5);">{{ messages }}</strong>
+                      </div>
+                    {% else %}
+                      <br />
+                      <div>
+                        <strong style="color: #e41f1a;">{{ messages }}</strong>
+                      </div>
+                    {% endif %}
                   {% endif %}
                 {% endwith %}
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -116,15 +124,15 @@
               <!-- Titulo del formulario -->
               <div class="title">Registrar</div>
               <!-- Formulario -->
-              <form action="/registro" method="post">
-                {% with messages = get_flashed_messages()[-1]%}
-                  {% if messages %}
+              <form action="/registro" method="post" onsubmit="validarCorreo(event)">
+                <!-- {% with messages = get_flashed_messages()[-1]%}
+                  {% if messages != "El correo ingresado ya ha sido registrado" %}
                     <br />
                     <div>
                       <strong style="color: #e41f1a;">{{ messages }}</strong>
                     </div>
                   {% endif %}
-                {% endwith %}
+                {% endwith %} -->
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="input-boxes">
                   <!-- Campo para NOMBRE DE USUARIO -->
@@ -197,7 +205,8 @@
       <a href="https://outlook.office.com/" target="_blank"><i class='bx bxs-envelope'></i></a>
     </p>
   </footer>
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../static/js/alertas.js"></script>
 </body>
 
 </html>
