@@ -11,6 +11,19 @@ function validarCorreo(event) {
     }
   });
 }
+// Alerta para validacion de correo (Register y Recuperar
+function recuperarContrasena(event) {
+  event.preventDefault();
+  Swal.fire({
+    icon: "info",
+    title: "Recuperar Contraseña",
+    html: "Si tu correo es valido, enviaremos un correo electrónico para recuperar tu contraseña.<br/><br/> Por favor, revisa tus correos recibidos, spam y sigue las instrucciones enviadas.",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      event.target.submit();
+    }
+  });
+}
 // Alerta con mensaje de confirmacion al cambiar contraseña
 function passwordActualizado() {
   Swal.fire({

@@ -249,26 +249,30 @@ def recuperar():
             email = request.form['email']
             verificar = ModelUser.check_email(db, email)
             confirmado = ModelUser.consulta_email(db, email)
-            if confirmado.confirmed_on != None:
+            if confirmado != None and confirmado.confirmed_on != None:
                 if verificar == True:
                     token = generate_confirmation_token(email)
                     confirm_url = url_for('confirm_email_restablecer', token=token, _external=True)
-                    template = render_template('correoRecuperarContrasena.html', confirm_url=confirm_url)
+                    template = render_template('correoRecuperar.html', confirm_url=confirm_url) #CAMBIAR AL HMTL PARA PONER CONTRASENA
                     subject = "Recuperación de cuenta - Eventqrxpress"
                     msg = Message(subject, recipients=[email], html=template, sender="eventqrxpress@gmail.com")
                     mail.send(msg)
-                    return render_template('validacionCorreoRecuperar.html', email=email)
+                    return render_template('formularioRecuperar.html')
                 else:
                     flash('El usuario ingresado no está registrado en el sistema')
-                    return render_template('recuperar.html')
+                    return render_template('formularioRecuperar.html')
             else:
-                    flash('Se requiere de la activación previa de tu cuenta para poder recuperar contraseña')
-                    return render_template('recuperar.html')
+                if verificar == True:
+                    flash('Se requiere de la activación previa de tu cuenta para poder recuperar tu contraseña.')
+                    return render_template('formularioRecuperar.html')
+                else:
+                    flash('El usuario ingresado no está registrado en el sistema')
+                    return render_template('formularioRecuperar.html')
         except:
-            flash('Error al verificar datos')
-            return render_template('recuperar.html')
+            flash(f'Error al verificar datos')
+            return render_template('formularioRecuperar.html')
     else:
-        return render_template('recuperar.html')
+        return render_template('formularioRecuperar.html')
 
 # Envio de confirmacion de correo
 @app.route('/confirmRestablecer/<token>')
@@ -282,9 +286,9 @@ def confirm_email_restablecer(token):
 
     user = ModelUser.consulta_email(db, email)
     if user != None:
-        return render_template('restablecer.html', usuario = user)  # En caso de cuenta creada pero no confirmada
+        return render_template('correoRecuperar.html', usuario = user)  # En caso de cuenta creada pero no confirmada
     else:  # Codigo expiro
-        return render_template('tokenErrorContrasena.html')  # En caso de cuenta creada pero no confirmada
+        return render_template('error404.html')  # En caso de cuenta creada pero no confirmada
 
 @app.route('/resendEmailRecuperacion', methods=['GET', 'POST'])
 def resend_email_recuperacion():

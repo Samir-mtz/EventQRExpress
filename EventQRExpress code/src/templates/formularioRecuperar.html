@@ -33,10 +33,10 @@
         <!-- Boton para cerrar -->
         <i class='bx bx-x close-btn'></i>
         <!-- Links a secciones de la pagina -->
-        <li><a href="./landingPage.html#inicio">Inicio</a></li>
-        <li><a href="./landingPage.html#conocenos">Conócenos</a></li>
-        <li><a href="./landingPage.html#servicios">Servicios</a></li>
-        <li><a href="./landingPage.html#referencias">Referencias</a></li>
+        <li><a href="./#inicio">Inicio</a></li>
+        <li><a href="./#conocenos">Conócenos</a></li>
+        <li><a href="./#servicios">Servicios</a></li>
+        <li><a href="./#referencias">Referencias</a></li>
       </ul>
       <!-- Boton para abrir formulario de login/register -->
       <a class="login-btn" href="#">Ingresar / Registrar</a>
@@ -72,14 +72,23 @@
               <!-- Titulo del formulario -->
               <div class="title">Recuperar</div>
               <!-- Formulario -->
-              <form action="#">
+              <form action="/recuperar" method="post" onsubmit="recuperarContrasena(event)">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <p class="text no-recibido-text">Captura el correo electrónico al que se enviara un código de verificación.</p>
+                {% with messages = get_flashed_messages()[-1]%}
+                  {% if messages != "El correo ingresado ya ha sido registrado" %}
+                    <br />
+                    <div>
+                      <strong style="color: #e41f1a;">{{ messages }}</strong>
+                    </div>
+                  {% endif %}
+                {% endwith %}
                 <div class="input-boxes">
                   <!-- Campo para CORREO ELECTRONICO-->
                   <div class="input-box">
                     <div class="contenido_campo">
                       <i class='bx bxs-envelope'></i>
-                      <input type="text" placeholder="Correo electrónico" required>
+                      <input type="text" placeholder="Correo electrónico" name="email" required>
                     </div>
                     <!-- <span>Error</span> -->
                   </div>
@@ -146,5 +155,6 @@
   </footer>
 
 </body>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../static/js/alertas.js"></script>
 </html>
