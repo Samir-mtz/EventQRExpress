@@ -1,0 +1,83 @@
+/***********************************************************************************************************************************
+                                                      Cuerpo de la pagina
+***********************************************************************************************************************************/
+body {
+  height: 100vh;
+  width: 100%;
+  background: var(--second-bg-color);
+}
+
+/***********************************************************************************************************************************
+                                                            Seccion ERROR 404
+***********************************************************************************************************************************/
+
+/* Contenedor de error */
+.error {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: calc(100vh - 40px);
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Imagen de fondo de la sección */
+.error .imagen-fondo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.2;
+}
+
+/* Frase de error */
+.error .frase {
+  padding-top: 50px;
+  text-align: center;
+  width: 80%;
+  color: var(--text-color);
+  font-size: 6rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-wrap: balance;
+}
+
+/* Mensaje */
+.error .mensaje {
+  text-align: center;
+  width: 90%;
+  color: var(--text-color);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-wrap: balance;
+}
+
+/* Botones de los links alternos */
+.error .error-btn {
+  border: none;
+  outline: none;
+  text-decoration: none;
+  background: var(--bg-color-button);
+  color: var(--text-color);
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 15px 25px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+/* Estilos de los links de los botones */
+.error .error-btn a{
+  color: var(--text-color);
+}
+
+/* Animacion al pasar el cursor encima */
+.error .error-btn:hover {
+  background: var(--main-color);
+}
+
