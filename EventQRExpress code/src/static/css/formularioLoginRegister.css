@@ -185,6 +185,17 @@ body {
     padding: 20px 0;
 }
 
+/* Pregunta de olvidar contraseña */
+.contenedor_botones .olvidar{
+  text-decoration: none;
+  color: var(--main-color);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  display: block;
+  padding: 20px 0 30px;
+}
+
 /* Boton del formulario */
 .forms .form-content .btn-form {
   color: var(--text-color);
@@ -200,6 +211,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 10px 0px;
 }
 
 /* Animacion al pasar el cursor por encima */
@@ -209,12 +221,14 @@ body {
 
 /* Texto de Crear una/Ingresar */
 .forms .form-content label {
+  text-decoration: none;
   color: var(--main-color);
   cursor: pointer;
 }
 
 /* Animacion al pasar el cursor por encima */
-.forms .form-content label:hover {
+.forms .form-content label:hover, 
+.forms .form-content a:hover {
   text-decoration: underline;
 }
 
@@ -222,10 +236,9 @@ body {
 .forms .form-content .login-text,
 .forms .form-content .sign-up-text {
   text-align: center;
-  margin-top: 25px;
+  /* margin-top: 25px; */
   font-size: 1rem;
   font-weight: 700;
-  color: red;
   color: var(--text-color-form);
 }
 
