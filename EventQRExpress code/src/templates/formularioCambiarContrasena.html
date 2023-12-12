@@ -8,7 +8,7 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../static/img/logo.png">
   <!-- Titulo de la pagina en la pestaña -->
-  <title>EventQRXpress | Recuperar</title>
+  <title>EventQRXpress | Contraseña</title>
   <!-- Estilos CSS -->
   <link rel="stylesheet" href="../static/css/general.css">
   <link rel="stylesheet" href="../static/css/headerGeneral.css">
@@ -52,6 +52,7 @@
 
       <!-- Contenedor de los formularios -->
       <div class="contenedor_formualrios">
+        <input type="checkbox" id="flip">
         <!-- Seleccion de imagenes para el formulario -->
         <div class="cover">
           <div class="front">
@@ -64,43 +65,38 @@
 
         <div class="forms">
           <div class="form-content">
-            <!-- Formulario de RECUPERAR -->
-            <div class="recuperar-form">
+             <!-- Formulario de RECUPERAR -->
+             <div class="recuperar-form">
+             </div>
+            <!-- Formulario de CAMBIAR CONTRASEÑA -->
+            <div class="cambiarContrasena-form">
               <!-- Titulo del formulario -->
-              <div class="title">Recuperar</div>
+              <div class="title">Cambiar Contraseña</div>
               <!-- Formulario -->
-              <form action="/recuperar" method="post" onsubmit="recuperarContrasena(event)">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                <p class="text no-recibido-text">Captura el correo electrónico al que se enviara un código de verificación.</p>
-                {% with messages = get_flashed_messages()[-1]%}
-                  {% if messages != "El correo ingresado ya ha sido registrado" %}
-                    <br />
-                    <div>
-                      <strong style="color: #e41f1a;">{{ messages }}</strong>
-                    </div>
-                  {% endif %}
-                {% endwith %}
+              <form action="#">
                 <div class="input-boxes">
-                  <!-- Campo para CORREO ELECTRONICO-->
+                  <!-- Campo para CONTRASEÑA -->
                   <div class="input-box">
                     <div class="contenido_campo">
-                      <i class='bx bxs-envelope'></i>
-                      <input type="text" placeholder="Correo electrónico" name="email" required>
+                      <i class='bx bxs-lock-alt'></i>
+                      <input type="password" placeholder="Nueva Contraseña" required>
+                    </div>
+                    <!-- <span>Error</span> -->
+                  </div>
+                  <!-- Campo para CONFIRMAR CONTRASEÑA -->
+                  <div class="input-box">
+                    <div class="contenido_campo">
+                      <i class='bx bxs-lock-alt'></i>
+                      <input type="password" placeholder="Confirmar Nueva Contraseña" required>
                     </div>
                     <!-- <span>Error</span> -->
                   </div>
                 </div>
                 <div class="contenedor_botones">
                   <!-- Boton del formulario -->
-                  <button class="btn-form input-box">Ingresar</button>
-                  <!-- Pregunta del formulario -->
-                  <div class="text no-recibido-text">¿No recibiste ningún correo? <label>Enviar de nuevo</label></div>
+                  <button class="btn-form input-box">Registar</button>
                 </div>
               </form>
-            </div>
-
-            <!-- Formulario CAMBIAR CONTRASEÑA -->
-            <div class="cambiarContrasena-form">
             </div>
           </div>
         </div>

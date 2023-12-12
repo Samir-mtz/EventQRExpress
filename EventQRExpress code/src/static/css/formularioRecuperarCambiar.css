@@ -60,8 +60,8 @@ body {
 }
 
 /* Giro estilo libro */
-.contenedor_formualrios #flip:checked ~ .cover {
-  transform: rotateY(-180deg);
+.contenedor_formualrios #flip~ .cover {
+  transform: rotateY(180deg);
 }
 
 /* Posicionamiento de la imagen del formulario */
@@ -117,8 +117,8 @@ body {
 }
 
 /* Contenedor de la etiqueta formulario */
-.form-content .login-form,
-.form-content .signup-form {
+.form-content .recuperar-form,
+.form-content .cambiarContrasena-form {
   width: calc(100% / 2 - 50px);
 }
 
@@ -227,11 +227,6 @@ body {
   color: var(--text-color-form);
 }
 
-/* Checkbox para la animacion de la imagen */
-.contenedor_formualrios #flip {
-  display: none;
-}
-
 /* Acciones responsive */
 @media (max-width: 768px) {
   /* Se oculta la imagen del formulario */
@@ -239,19 +234,12 @@ body {
     display: none;
   }
   /* Los campos del formulario pasa a ser el conntenido total */
-  .form-content .login-form,
-  .form-content .signup-form {
+  .form-content .recuperar-form,
+  .form-content .cambiarContrasena-form {
     width: 100%;
   }
   /* Fomato libro oculto */
-  .form-content .signup-form {
-    display: none;
-  }
-  /* Acciones para el intercambio de formularios */
-  .contenedor_formualrios #flip:checked ~ .forms .signup-form {
-    display: block;
-  }
-  .contenedor_formualrios #flip:checked ~ .forms .login-form {
+  .form-content .cambiarContrasena-form {
     display: none;
   }
 }
