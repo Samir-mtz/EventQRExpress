@@ -73,7 +73,7 @@
               <!-- Titulo del formulario -->
               <div class="title">Cambiar Contraseña</div>
               <!-- Formulario -->
-              <form action="/contrasenaRestablecido" method="post" onsubmit="passwordActualizado(event)">
+              <form action="/contrasenaRestablecido" method="post" onsubmit="passwordActualizado(event)" id="formulario_cambiar" autocomplete="off" novalidate>
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <input type="text" name="id" value="{{ usuario.id }}" hidden>
                 <input type="text" name="confirmed" value="{{ usuario.confirmed_on }}" hidden>
@@ -82,22 +82,22 @@
                   <div class="input-box">
                     <div class="contenido_campo">
                       <i class='bx bxs-lock-alt'></i>
-                      <input type="password" placeholder="Nueva Contraseña" name="password" required>
+                      <input type="password" placeholder="Nueva Contraseña" id="password_cambiar" name="password" required>
                     </div>
-                    <!-- <span>Error</span> -->
+                    <span id="password_cambiar_msg" class="error-msg"></span>
                   </div>
                   <!-- Campo para CONFIRMAR CONTRASEÑA -->
                   <div class="input-box">
                     <div class="contenido_campo">
                       <i class='bx bxs-lock-alt'></i>
-                      <input type="password" placeholder="Confirmar Nueva Contraseña" required>
+                      <input type="password" placeholder="Confirmar Nueva Contraseña" id="password2_cambiar" required>
                     </div>
-                    <!-- <span>Error</span> -->
+                    <span id="password2_cambiar_msg" class="error-msg"></span>
                   </div>
                 </div>
                 <div class="contenedor_botones">
                   <!-- Boton del formulario -->
-                  <button class="btn-form input-box">Registar</button>
+                  <button class="btn-form input-box" id="submitBtn_cambiar" disabled>Confirmar</button>
                 </div>
               </form>
             </div>
@@ -126,4 +126,6 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../static/js/alertas.js"></script>
+<script src="../static/js/validacionCambiarContrasena.js"></script>
+
 </html>

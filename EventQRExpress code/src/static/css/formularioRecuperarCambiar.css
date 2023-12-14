@@ -39,7 +39,7 @@ body {
   max-width: 850px;
   width: 95%;
   background: var(--login-register-bg-color);
-  padding: 20px 15px;
+  padding: 20px 0px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   perspective: 2700px;
   margin-top: 70px;
@@ -144,6 +144,14 @@ body {
   width: 100%;
   margin: 10px 0;
   position: relative;
+}
+
+/* Contenedor de cada campo del formulario */
+.forms .form-content .input-box span{
+  color: red;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: justify;
 }
 
 /* Input de cada campo del formulario */
