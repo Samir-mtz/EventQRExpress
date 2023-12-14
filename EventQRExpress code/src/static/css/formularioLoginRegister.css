@@ -146,6 +146,14 @@ body {
   position: relative;
 }
 
+/* Contenedor de cada campo del formulario */
+.forms .form-content .input-box span{
+  color: red;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: justify;
+}
+
 /* Input de cada campo del formulario */
 .form-content .input-box .contenido_campo {
   height: 100%;

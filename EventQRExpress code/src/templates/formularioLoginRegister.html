@@ -40,7 +40,7 @@
         <li><a href="./#referencias">Referencias</a></li>
       </ul>
       <!-- Boton para abrir formulario de login/register -->
-      <a class="login-btn" href="#" >Ingresar / Registrar</a>
+      <a class="login-btn" href="#">Ingresar / Registrar</a>
     </nav>
   </header>
 
@@ -73,50 +73,53 @@
               <!-- Titulo del formulario -->
               <div class="title">Ingresar</div>
               <!-- Formulario -->
-              <form action="/login" method="post">
+              <form action="/login" method="post" id="formulario_login" autocomplete="off" novalidate>
                 {% with last_message = get_flashed_messages(with_categories=true)[-1]%}
-                  {% if last_message %}
-                    {% set category, messages = last_message if last_message is iterable else (None, last_message) %}
-                    {% if category == 'success' %}
-                      <br />
-                      <div>
-                        <strong style="color: rgb(5, 191, 5);">{{ messages }}</strong>
-                      </div>
-                    {% else %}
-                      <br />
-                      <div>
-                        <strong style="color: #e41f1a;">{{ messages }}</strong>
-                      </div>
-                    {% endif %}
-                  {% endif %}
+                {% if last_message %}
+                {% set category, messages = last_message if last_message is iterable else (None, last_message) %}
+                {% if category == 'success' %}
+                <br />
+                <div>
+                  <strong style="color: rgb(5, 191, 5);">{{ messages }}</strong>
+                </div>
+                {% else %}
+                <br />
+                <div>
+                  <strong style="color: #e41f1a;">{{ messages }}</strong>
+                </div>
+                {% endif %}
+                {% endif %}
                 {% endwith %}
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="input-boxes">
-                  <!-- Campo para CORREO ELECTRONICO-->
+                  <!-- Campo para CORREO ELECTRÓNICO -->
                   <div class="input-box">
                     <div class="contenido_campo">
                       <i class='bx bxs-envelope'></i>
-                      <input type="text"  name="email" placeholder="Correo electrónico" required>
+                      <input type="text" name="email" placeholder="Correo electrónico" id="email_login" required>
                     </div>
-                    <!-- <span>Error</span> -->
+                    <span id="email_login_msg" class="error-msg"></span>
                   </div>
+
                   <!-- Campo para CONTRASEÑA -->
                   <div class="input-box">
                     <div class="contenido_campo">
                       <i class='bx bxs-lock-alt'></i>
-                      <input type="password" name="password" placeholder="Contraseña" required>
+                      <input type="password" name="password" placeholder="Contraseña" id="password_login" required>
                     </div>
-                    <!-- <span>Error</span> -->
+                    <span id="password_login_msg" class="error-msg"></span>
                   </div>
                 </div>
                 <div class="contenedor_botones">
                   <!-- Pregunta del formulario -->
                   <a href="./recuperar" class="olvidar">¿Olvidaste tu contraseña?</a>
                   <!-- Boton del formulario -->
-                  <button  type="submit" class="btn-form input-box">Ingresar</button>
+                  <button type="submit" class="btn-form input-box" id="submitBtn_login" disabled>Ingresar</button>
                   <!-- Pregunta del formulario -->
-                  <div class="text sign-up-text">¿Aun no tienes una cuenta? <label for="flip" id="enlaceRegistrar">Crear una</label></div>
+                  <div class="text sign-up-text">¿Aun no tienes una cuenta? <label for="flip" id="enlaceRegistrar">Crear
+                      una</label></div>
                 </div>
+
               </form>
             </div>
 
@@ -125,7 +128,8 @@
               <!-- Titulo del formulario -->
               <div class="title">Registrar</div>
               <!-- Formulario -->
-              <form action="/registro" method="post" onsubmit="validarCorreo(event)">
+              <form action="/registro" method="post" onsubmit="validarCorreo(event)" id="formulario_register"
+                autocomplete="off" novalidate>
                 <!-- {% with messages = get_flashed_messages()[-1]%}
                   {% if messages != "El correo ingresado ya ha sido registrado" %}
                     <br />
@@ -140,48 +144,49 @@
                   <div class="input-box">
                     <div class="contenido_campo">
                       <i class='bx bxs-user'></i>
-                      <input type="text" name="nombre" placeholder="Nombre de usuario" required>
+                      <input type="text" name="nombre" placeholder="Nombre de usuario" id="nombre_register" required>
                     </div>
-                    <!-- <span>Error</span> -->
+                    <span id="nombre_register_msg" class="error-msg"></span>
                   </div>
                   <!-- Campo para CORREO ELECTRONICO-->
                   <div class="input-box">
                     <div class="contenido_campo">
                       <i class='bx bxs-envelope'></i>
-                      <input type="text" name="email" placeholder="Correo electrónico" required>
+                      <input type="text" name="email" placeholder="Correo electrónico" id="email_register" required>
                     </div>
-                    <!-- <span>Error</span> -->
+                    <span id="email_register_msg" class="error-msg"></span>
                   </div>
                   <!-- Campo para TELEFONO -->
                   <div class="input-box">
                     <div class="contenido_campo">
                       <i class='bx bxs-phone'></i>
-                      <input type="tel" name="telefono" placeholder="Telefóno" required>
+                      <input type="tel" name="telefono" placeholder="Telefóno" id="telefono_register" required>
                     </div>
-                    <!-- <span>Error</span> -->
+                    <span id="telefono_register_msg" class="error-msg"></span>
                   </div>
                   <!-- Campo para CONTRASEÑA -->
                   <div class="input-box">
                     <div class="contenido_campo">
                       <i class='bx bxs-lock-alt'></i>
-                      <input type="password" name="password" placeholder="Contraseña" required>
+                      <input type="password" name="password" placeholder="Contraseña" id="password_register" required>
                     </div>
-                    <!-- <span>Error</span> -->
+                    <span id="password_register_msg" class="error-msg"></span>
                   </div>
                   <!-- Campo para CONFIRMAR CONTRASEÑA -->
                   <div class="input-box">
                     <div class="contenido_campo">
                       <i class='bx bxs-lock-alt'></i>
-                      <input type="password" placeholder="Confirmar contraseña" required>
+                      <input type="password" placeholder="Confirmar contraseña" id="password2_register" required>
                     </div>
-                    <!-- <span>Error</span> -->
+                    <span id="password2_register_msg" class="error-msg"></span>
                   </div>
                 </div>
                 <div class="contenedor_botones">
                   <!-- Boton del formulario -->
-                  <button  type="submit" class="btn-form input-box">Registar</button>
+                  <button type="submit" class="btn-form input-box" id="submitBtn_register" disabled>Registrar</button>
                   <!-- Pregunta del formulario -->
-                  <div class="text sign-up-text">¿Ya tienes una cuenta? <label for="flip" id="enlaceIngresar">Ingresa</label></div>
+                  <div class="text sign-up-text">¿Ya tienes una cuenta? <label for="flip"
+                      id="enlaceIngresar">Ingresa</label></div>
                 </div>
               </form>
             </div>
@@ -209,5 +214,6 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../static/js/alertas.js"></script>
+<script src="../static/js/validacionLoginRegister.js"></script>
 
 </html>
