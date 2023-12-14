@@ -27,7 +27,7 @@
     <div class="detalles_usuario">
       <div class="datos_usuario">
         <i class='bx bxs-user-circle'></i>
-        <p class="nombre">nombreAdministrador</p>
+        <p class="nombre">{{ current_user.nombre }}</p>
         <!-- Boton para ir a CONFIGURACION DEL PERFIL -->
         <a href="#configuracion" class="configuracion">
           <p class="configuracion">Configurar Perfil</p>
@@ -75,7 +75,7 @@
       </li>
       <!-- Boton para ir a CERRAR SESION -->
       <li class="logout fondo">
-        <a href="#">
+        <a href="{{url_for('logout')}}">
           <i class='bx bx-log-out'></i>
           <span class="nombre_link">Cerrar Sesión</span>
         </a>
@@ -89,7 +89,7 @@
 
     <!-- Seccion INICIO de la pagina -->
     <section class="inicio" id="inicio">
-      <h1>Bienvenido <span>Anfitrión</span></h1>
+      <h1>Bienvenido <span>Administrador</span></h1>
       <img src="../static/img/inicioAdministrador.svg" alt="Imagen de inicio de administrador">
     </section>
 

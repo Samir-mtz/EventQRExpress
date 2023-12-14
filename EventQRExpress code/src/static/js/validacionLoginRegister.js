@@ -42,9 +42,9 @@ function validarPasswordLogin() {
   // Posibles mensajes
   if (!passwordInput_login.value.trim())
     passwordErrorMsg.textContent = "Este campo no puede estar vacío.";
-  else if (!passwordRegex_login.test(passwordInput_login.value))
-    passwordErrorMsg.textContent =
-      "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número.";
+  // else if (!passwordRegex_login.test(passwordInput_login.value))
+  //   passwordErrorMsg.textContent =
+  //     "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número.";
   else passwordErrorMsg.textContent = "";
 }
 
@@ -56,7 +56,7 @@ function validarFormularioLogin() {
     passwordInput_login.value.trim()
   );
   // Solo cuando sean validos todos los elementos, se envia el formulario
-  if (isEmailValid && isPasswordValid)
+  if (isEmailValid)
     submitButton_login.removeAttribute("disabled");
   else submitButton_login.setAttribute("disabled", "disabled");
 }
