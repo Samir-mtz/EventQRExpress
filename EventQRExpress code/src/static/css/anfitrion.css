@@ -533,7 +533,7 @@ select:focus {
 /************************ Formulario para el paso 3 ************************/
 
 .gestionar .valores_evento{
-  border: 1px solid green;
+  /* border: 1px solid green; */
   display: flex;
   justify-content: space-evenly;
 }
@@ -551,7 +551,7 @@ select:focus {
   display: flex;
   justify-content: left;
   margin: 25px 0;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .gestionar .valores_evento .contenedor_valores .valor i{
