@@ -25,12 +25,17 @@ function recuperarContrasena(event) {
   });
 }
 // Alerta con mensaje de confirmacion al cambiar contraseña
-function passwordActualizado() {
+function passwordActualizado(event) {
+  event.preventDefault();
   Swal.fire({
     icon: "success",
     title: "Contraseña Actualizada",
     text: "La contraseña se actualizó con éxito.",
     confirmButtonText: "¡Genial!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      event.target.submit();
+    }
   });
 }
 

@@ -73,13 +73,16 @@
               <!-- Titulo del formulario -->
               <div class="title">Cambiar Contraseña</div>
               <!-- Formulario -->
-              <form action="#">
+              <form action="/contrasenaRestablecido" method="post" onsubmit="passwordActualizado(event)">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="text" name="id" value="{{ usuario.id }}" hidden>
+                <input type="text" name="confirmed" value="{{ usuario.confirmed_on }}" hidden>
                 <div class="input-boxes">
                   <!-- Campo para CONTRASEÑA -->
                   <div class="input-box">
                     <div class="contenido_campo">
                       <i class='bx bxs-lock-alt'></i>
-                      <input type="password" placeholder="Nueva Contraseña" required>
+                      <input type="password" placeholder="Nueva Contraseña" name="password" required>
                     </div>
                     <!-- <span>Error</span> -->
                   </div>

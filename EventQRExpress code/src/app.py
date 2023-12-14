@@ -286,7 +286,7 @@ def confirm_email_restablecer(token):
 
     user = ModelUser.consulta_email(db, email)
     if user != None:
-        return render_template('correoRecuperar.html', usuario = user)  # En caso de cuenta creada pero no confirmada
+        return render_template('formularioCambiarContrasena.html', usuario = user)  # En caso de cuenta creada pero no confirmada
     else:  # Codigo expiro
         return render_template('error404.html')  # En caso de cuenta creada pero no confirmada
 
@@ -316,7 +316,7 @@ def contrasenaRestablecido():
             ModelUser.update_contrasena_repartidor(db, id_usuario, contrasena)
         else:
             ModelUser.update_contrasena(db, id_usuario, contrasena)
-        return render_template('ingresarRecuperado.html')
+        return redirect(url_for('login'))
     except:
         flash('Algo salió mal. Por favor intenta de nuevo')
         return redirect(url_for('login'))
