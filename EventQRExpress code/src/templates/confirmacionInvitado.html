@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <!-- Metadatos -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../static/img/logo.png">
+  <!-- Titulo de la pagina en la pestaña -->
+  <title>EventQRXpress | Invitado</title>
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="../static/css/general.css">
+  <link rel="stylesheet" href="../static/css/menuInvitado.css">
+  <link rel="stylesheet" href="../static/css/invitado.css">
+  <link rel="stylesheet" href="../static/css/footerUsuario.css">
+  <!-- Box-Icons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- Libreria de alertas -->
+  <link rel="stylesheet" href="sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+  <!-- Menu Lateral -->
+  <nav class="menuLateral">
+
+    <!-- Seccion para el logo del usuario -->
+    <div class="detalles_usuario">
+      <div class="datos_usuario">
+        <i class='bx bxs-user-circle'></i>
+        <p class="nombre">NombreAnfitrion</p>
+        <a href="#configuracion" class="configuracion"></a>
+      </div>
+      <i class='bx bx-menu' id="btn"></i>
+    </div>
+
+    <!-- Contenido del menu -->
+    <ul class="navBar">
+      <!-- Mensaje de anfitrion para invitado -->
+      <div class="mensaje">
+        <p>¡Hola!</p>
+        <p>Estoy emocionado/a de invitarte a mi TIPODEEVENTO. Será una noche llena de alegría y momentos especiales. Tu
+          presencia hará que este día sea inolvidable.</p>
+        <p>Confírmame si podrás asistir para asegurar el mejor lugar.</p>
+        <p>¡Espero contar contigo y compartir esta celebración única!</p>
+      </div>
+      <!-- Boton para ir a EventQRXpress -->
+      <li class="logout fondo">
+        <a href="./landingPage.html">
+          <i class='bx bxs-home'></i>
+          <span class="nombre_link">Ir a EventQRXpress</span>
+        </a>
+      </li>
+    </ul>
+
+  </nav>
+
+  <!-- Contenido de la pagina -->
+  <main class="contenido">
+
+    <!-- Seccion CONFIRMACION de la pagina -->
+    <section class="confirmacion" id="confirmacion">
+      <h1>Nombre del Evento</h1>
+      <!-- Formulario Confirmacion - Confirmacion del invitado -->
+      <form action="" class="formulario_confirmacion" id="formulario_confirmacion">
+        <!-- Titulo del formulario -->
+        <h3>Confirmación de asistencia</h3>
+        <img src="../static/img/inicioAnfitrion.svg" alt="Imagen de inicio de anfitrion">
+        <!-- Botones del formulario -->
+        <div class="botones_formulario">
+          <button class="no btn_formulario" onclick="noAsistira(); return false;">No Asistiré</button>
+          <a class="yes btn_formulario" href="./administrador.html">Si Asistiré</a>
+        </div>
+      </form>
+    </section>
+
+    <!-- Pie de la pagina -->
+    <footer class="footer">
+      <!-- Texto del Copyright -->
+      <p class="derechos">
+        <i class='bx bx-copyright'></i>Todos los derechos reservados.
+      </p>
+      <!-- Redes sociales -->
+      <p class="redes">
+        <a href="https://www.facebook.com/" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class='bx bxl-twitter'></i></a>
+        <a href="https://outlook.office.com/" target="_blank"><i class='bx bxs-envelope'></i></a>
+      </p>
+    </footer>
+  </main>
+
+  <!-- Scripts -->
+  <script src="../static/js/barraLateral.js"></script>
+  <script src="../static/js/alertas.js"></script>
+
+</body>
+
+</html>

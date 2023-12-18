@@ -1,0 +1,106 @@
+/***********************************************************************************************************************************
+                                                        Main / Contenido pagina
+***********************************************************************************************************************************/
+
+/* Dimension y posicionamiento del contenido al abrir el menu lateral */
+.menuLateral.open ~ main {
+  left: 250px;
+  width: calc(100% - 250px);
+}
+
+/* Seccion para el contenido */
+.contenido {
+  position: relative;
+  min-height: calc(100vh);
+  top: 0;
+  left: 78px;
+  width: calc(100% - 78px);
+  transition: all 0.5s ease;
+  z-index: 2;
+}
+
+/***********************************************************************************************************************************
+                                                            Seccion CONFIRMACION
+***********************************************************************************************************************************/
+
+/* Contenedor de confirmacion */
+.confirmacion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh);
+  width: 100%;
+  background: var(--third-bg-color);
+}
+
+/* Titulo de la seccion */
+.confirmacion h1 {
+  border-bottom: 1px solid gray;
+  text-align: center;
+  width: 50%;
+  margin: 25px auto 15px;
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-wrap: balance;
+}
+
+/* Titulo del formulario */
+.confirmacion .formulario_confirmacion h3 {
+  font-size: 20px;
+  text-align: center;
+  font-weight: 700;
+  text-wrap: balance;
+  margin: 5px;
+}
+
+/* Imagen de la seccion */
+.confirmacion img {
+  height: calc(50vh - 150px);
+  /* max-width: calc(95%); */
+  /* max-height: calc(80%); */
+  margin: 0px auto;
+}
+
+/* Contenedor de los borones del formulario */
+.formulario_confirmacion .botones_formulario {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-decoration: none;
+  margin: 40px 0px 30px;
+}
+
+/* Estilos del boton */
+.formulario_confirmacion .botones_formulario .btn_formulario {
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 5px 20px;
+  border-radius: 8px;
+  margin: 5px 100px;
+}
+
+/* Estilos del boton para cancelar */
+.formulario_confirmacion .botones_formulario .btn_formulario.no {
+  background-color: var(--button-no-color);
+}
+
+/* Estilos del boton para confirmar */
+.formulario_confirmacion .botones_formulario .btn_formulario.yes {
+  background-color: var(--button-yes-color);
+}
+
+/* Animacion al pasar el cursor por encima de las anclas */
+.formulario_confirmacion .botones_formulario .btn_formulario:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Animacion al pasar el cursor por encima de los botones */
+.formulario_confirmacion .botones_formulario .btn_formulario:hover {
+  cursor: pointer;
+}
