@@ -99,7 +99,7 @@
             <span>Nombre del eveto:</span>
           </div>
           <div class="input-campo">
-            <input type="text" name="nombreEvento" id="nombreEvento" autocomplete="off">
+            <input type="text" name="nombreEvento" id="nombreEvento" autocomplete="off" value="" oninput="actualizarInvitacion()">
             <!-- <small>Error</small> -->
           </div>
         </div>
@@ -110,7 +110,7 @@
             <span>Fecha:</span>
           </div>
           <div class="input-campo">
-            <input type="date" name="fecha" id="fecha" autocomplete="off">
+            <input type="date" name="fecha" id="fecha" autocomplete="off" value="" oninput="actualizarInvitacion()">
             <!-- <small>Error</small> -->
           </div>
         </div>
@@ -121,7 +121,7 @@
             <span>Hora de inicio:</span>
           </div>
           <div class="input-campo">
-            <input type="time" name="horaInicio" id="horaInicio" autocomplete="off">
+            <input type="time" name="horaInicio" id="horaInicio" autocomplete="off"  value="" oninput="actualizarInvitacion()">
             <!-- <small>Error</small> -->
           </div>
         </div>
@@ -132,7 +132,7 @@
             <span>Hora de termino:</span>
           </div>
           <div class="input-campo">
-            <input type="time" name="horaFin" id="horaFin" autocomplete="off">
+            <input type="time" name="horaFin" id="horaFin" autocomplete="off"  value="" oninput="actualizarInvitacion()">
             <!-- <small>Error</small> -->
           </div>
         </div>
@@ -143,7 +143,7 @@
             <span>Número estimado de asistentes:</span>
           </div>
           <div class="input-campo">
-            <input type="number" name="numeroAsistentes" id="numeroAsistentes" min="0" max="12" autocomplete="off">
+            <input type="number" name="numeroAsistentes" id="numeroAsistentes" autocomplete="off"  value="" oninput="actualizarInvitacion()">
             <!-- <small>Error</small> -->
           </div>
         </div>
@@ -154,11 +154,11 @@
             <span>Tipo de evento:</span>
           </div>
           <div class="input-campo">
-            <select name="tipoEvento" id="tipoEvento" autocomplete="off">
+            <select name="tipoEvento" id="tipoEvento" autocomplete="off"  value="" oninput="actualizarInvitacion()">
               <option value="">Seleccionar una opción</option>
-              <option value="XV">XV Años</option>
-              <option value="boda">Boda</option>
-              <option value="graducacion">Graduacion</option>
+              <option value="XV Años">XV Años</option>
+              <option value="Boda">Boda</option>
+              <option value="Graducación">Graduacion</option>
             </select>
             <!-- <small>Error</small> -->
           </div>
@@ -170,7 +170,7 @@
             <span>Lugar del eveto:</span>
           </div>
           <div class="input-campo">
-            <select name="lugarEvento" id="lugarEvento" autocomplete="off">
+            <select name="lugarEvento" id="lugarEvento" autocomplete="off" value="" oninput="actualizarInvitacion()">
               <option value="">Seleccionar una opción</option>
               <option value="salon1">Salon 1</option>
               <option value="salon2">Salon 2</option>
@@ -197,17 +197,26 @@
         <h3>Seleccione el diseño de invitación que mas le guste</h3>
         <!-- Campo para las invitaciones -->
         <div class="campo-formulario-invitaciones">
+          <!-- Imagen de invitacion #1 -->
           <div class="imagen-container">
-            <img src="../static/img/invitacion01.webp" alt="Invitacion 01">
-            <i class='bx bxs-check-circle'></i>
+            <input type="radio" name="contenido" id="opcion1" value="opcion1" onchange="cargarContenido(value)">
+            <label for="opcion1">
+              <img src="../static/img/invitacion01.webp" alt="Invitacion 01">
+            </label>
           </div>
+          <!-- Imagen de invitacion #2 -->
           <div class="imagen-container special-image">
-            <img src="../static/img/invitacion02.webp" alt="Invitacion 02">
-            <i class='bx bxs-check-circle'></i>
+            <input type="radio" name="contenido" id="opcion2" value="opcion2" onchange="cargarContenido(value)">
+            <label for="opcion2">
+              <img src="../static/img/invitacion02.webp" alt="Invitacion 02">
+            </label>
           </div>
+          <!-- Imagen de invitacion #3 -->
           <div class="imagen-container">
-            <img src="../static/img/invitacion03.webp" alt="Invitacion 03">
-            <i class='bx bxs-check-circle'></i>
+            <input type="radio" name="contenido" id="opcion3" value="opcion3" onchange="cargarContenido(value)">
+            <label for="opcion3">
+              <img src="../static/img/invitacion03.webp" alt="Invitacion 03">
+            </label>
           </div>
         </div>
 
@@ -232,42 +241,42 @@
             <!-- Campo para NOMBRE DEL EVENTO -->
             <p class="valor">
               <i class='bx bxs-calendar-event'></i>
-              <span class="nombre_valor">Nombre del evento:</span>
-              <span class="texto_valor">nombreEvento</span>
+              <span class="nombre_valor">Nombre del evento: </span>
+              <span class="texto_valor" id="valor_nombreEvento"></span>
             </p>
             <!-- Campo para FECHA -->
             <p class="valor">
-              <i class='bx bx-calendar' ></i>
-              <span class="nombre_valor">Fecha:</span>
-              <span class="texto_valor">DD / MM / AAAA</span>
+              <i class='bx bx-calendar'></i>
+              <span class="nombre_valor">Fecha: </span>
+              <span class="texto_valor" id="valor_fecha"></span>
             </p>
             <!-- Campo para HORARIO -->
             <p class="valor">
-              <i class='bx bxs-watch' ></i>
-              <span class="nombre_valor">"Horario:"</span>
-              <span class="texto_valor">HH:MM x.m.</span>
+              <i class='bx bxs-watch'></i>
+              <span class="nombre_valor">Horario: </span>
+              <span class="texto_valor" id="valor_horario"></span>
             </p>
             <!-- Campo para NUMERO DE ASISTENTES -->
             <p class="valor">
-              <i class='bx bx-male-female' ></i>
-              <span class="nombre_valor">Número estimado de asistentes:</span>
-              <span class="texto_valor">###</span>
+              <i class='bx bx-male-female'></i>
+              <span class="nombre_valor">Número estimado de asistentes: </span>
+              <span class="texto_valor" id="valor_numeroAsistentes"></span>
             </p>
             <!-- Campo para TIPO DE EVENTO -->
             <p class="valor">
               <i class='bx bxs-balloon'></i>
-              <span class="nombre_valor">Tipo de evento:</span>
-              <span class="texto_valor">(XV años / Boda / Reunión)</span>
+              <span class="nombre_valor">Tipo de evento: </span>
+              <span class="texto_valor" id="valor_tipoEvento"></span>
             </p>
             <!-- Campo para LUGAR DEL EVENTO -->
             <p class="valor">
               <i class='bx bxs-map'></i>
-              <span class="nombre_valor">Lugar del evento:</span>
-              <span class="texto_valor">Salon de eventos NOMBRE <small><br>Nombre de la calle, Numelo
-                  Colonia/Distrito/Region, Ciudad.</small></span>
+              <span class="nombre_valor">Lugar del evento: </span>
+              <span class="texto_valor" id="valor_lugarEvento"></span>
             </p>
           </div>
-          <img src="../static/img/invitacion01.webp" alt="">
+          <div id="contenedor_invitacion">
+          </div>
         </div>
         <!-- Botones del formulario -->
         <div class="botones_formulario">
@@ -328,19 +337,19 @@
           </p>
           <!-- Campo para FECHA -->
           <p class="valor">
-            <i class='bx bx-calendar' ></i>
+            <i class='bx bx-calendar'></i>
             <span class="nombre_valor">Fecha:</span>
             <span class="texto_valor">DD / MM / AAAA</span>
           </p>
           <!-- Campo para HORARIO -->
           <p class="valor">
-            <i class='bx bxs-watch' ></i>
+            <i class='bx bxs-watch'></i>
             <span class="nombre_valor">"Horario:"</span>
             <span class="texto_valor">HH:MM x.m.</span>
           </p>
           <!-- Campo para NUMERO DE ASISTENTES -->
           <p class="valor">
-            <i class='bx bx-male-female' ></i>
+            <i class='bx bx-male-female'></i>
             <span class="nombre_valor">Número estimado de asistentes:</span>
             <span class="texto_valor">###</span>
           </p>
@@ -359,7 +368,7 @@
           </p>
           <!-- Campo para LINK DE INVITACION -->
           <p class="valor">
-            <i class='bx bx-link-alt' ></i>
+            <i class='bx bx-link-alt'></i>
             <span class="nombre_valor">Link de invitación:</span>
             <span class="texto_valor">https://eventqrxpress.com/ABC123/</span>
             <!-- <button class="copiar"><i class='bx bx-copy' ></i></button> -->
@@ -390,6 +399,8 @@
   <script src="../static/js/actualizarBarraLateral.js"></script>
   <script src="../static/js/pasosFormulario.js"></script>
   <script src="../static/js/seleccionarInvitacion.js"></script>
+  <script src="../static/js/invitacionSeleccionada.js"></script>
+  <script src="../static/js/actualizarInvitacion.js"></script>
 
 </body>
 

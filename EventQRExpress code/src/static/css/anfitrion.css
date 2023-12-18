@@ -1,4 +1,8 @@
-/***********************************************************************************************************************************
+/* Importaciones */
+@import url("https://fonts.googleapis.com/css2?family=Agbalumo&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,600&family=Kaushan+Script&family=Vina+Sans&display=swap");
+
+/* **********************************************************************************************************************************
                                                         Main / Contenido pagina
 ***********************************************************************************************************************************/
 
@@ -298,56 +302,369 @@ select:focus {
 .campo-formulario-invitaciones img {
   width: 200px;
   height: 300px;
-}
-
-/* Estilo para el borde al hacer clic */
-.imagen-container.clicked {
-  border: 3px solid green;
-  border-radius: 12px;
-  box-sizing: border-box;
-  display: flex;
-}
-
-/* Estilo para el icono */
-.imagen-container i {
-  display: none; /* Oculta el icono por defecto */
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 30px;
-  color: green;
-  background: white;
-  border-radius: 50%;
-}
-
-/* Muestra el icono solo cuando la imagen está seleccionada */
-.imagen-container.clicked i {
-  display: block;
+  border-radius: 5px;
+  border: transparent;
 }
 
 /* Estilo específico para la segunda imagen */
 .imagen-container.special-image img {
   width: 300px;
   height: 200px;
+  border-radius: 5px;
+  border: transparent;
 }
+
+/* Estilos para el input radio */
+.imagen-container input[type="radio"] {
+  display: none;
+}
+
+/* Estilos al seleccioanr una invitacion */
+.imagen-container input[type="radio"]:checked+label img {
+  border: 4px solid green;
+  border-radius: 4%;
+}
+
+#contenedor_invitacion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 450px;
+  margin-left: 20px;
+}
+
+/************************ INVITACION 1 ************************/
+
+/* Contenedor con el diseño preliminar de la invitacion */
+.contendor_invitacion_1 {
+  margin: 5px;
+  border: 3px solid rgb(0, 0, 0);
+  background-image: linear-gradient(
+    45deg,
+    hsl(40deg 60% 95%) 0%,
+    hsl(40deg 60% 96%) 18%,
+    hsl(40deg 60% 97%) 26%,
+    hsl(40deg 61% 98%) 33%,
+    hsl(40deg 61% 98%) 39%,
+    hsl(40deg 61% 99%) 44%,
+    hsl(0deg 0% 100%) 50%,
+    hsl(60deg 33% 100%) 56%,
+    hsl(60deg 33% 100%) 61%,
+    hsl(60deg 33% 99%) 67%,
+    hsl(60deg 33% 99%) 74%,
+    hsl(60deg 33% 99%) 82%,
+    hsl(60deg 33% 99%) 100%
+  );
+  border-radius: 10px;
+  height: 400px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Texto 'Invitación' */
+.contendor_invitacion_1 .texto_invitacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 2px;
+  text-decoration: underline;
+  font-size: 14px;
+  height: 20px;
+  font-family: "Agbalumo";
+}
+
+/* Titulo de la invitación */
+.contendor_invitacion_1 .titulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 35px;
+  font-weight: 900;
+  max-width: 95%;
+  font-style: italic;
+  color: rgb(255, 162, 0);
+  height: 100px;
+  font-family: "Agbalumo";
+}
+
+/* Texto Fecha */
+.contendor_invitacion_1 .fecha_evento {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 2px;
+  font-style: italic;
+  width: 60%;
+  font-size: 16px;
+  font-weight: 500;
+  height: 30px;
+  font-family: "Agbalumo";
+  border-top: 2px rgb(255, 162, 0) double;
+  border-bottom: 2px rgb(255, 162, 0) double;
+}
+
+/* Texto Horario */
+.contendor_invitacion_1 .horario_evento {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 3px;
+  width: 70%;
+  font-size: 18px;
+  font-weight: 500;
+  height: 25px;
+  font-family: "Agbalumo";
+}
+
+/* Texto de la ubicacion del salon */
+.contendor_invitacion_1 .lugar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  font-size: 10px;
+  width: 90%;
+  font-family: "Agbalumo";
+}
+
+/* Texto Horario */
+.contendor_invitacion_1 .imagen_invitacion img {
+  height: 50px;
+  width: 50px;
+}
+
+/************************ INVITACION 2 ************************/
+
+.contenedor_2 {
+  display: flex;
+  height: 280px;
+  border: 3px solid rgb(0, 0, 0);
+  margin: 5px;
+  border-radius: 10px;
+  max-width: 100%;
+  background: #FFF;
+}
+
+/* Contenedor con el diseño preliminar de la invitacion */
+.contendor_invitacion_2 {
+  margin: 5px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Texto 'Invitación' */
+.contendor_invitacion_2 .texto_invitacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 2px;
+  text-decoration: underline;
+  font-size: 14px;
+  height: 20px;
+  font-family: "Agbalumo";
+}
+
+/* Titulo de la invitación */
+.contendor_invitacion_2 .titulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 35px;
+  font-weight: 900;
+  max-width: 95%;
+  font-style: italic;
+  color: rgb(255, 162, 0);
+  height: 100px;
+  font-family: "Agbalumo";
+  border-top: 2px rgb(255, 162, 0) double;
+  border-bottom: 2px rgb(255, 162, 0) double;
+}
+
+/* Texto Fecha */
+.contendor_invitacion_2 .fecha_evento {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 2px;
+  font-style: italic;
+  width: 60%;
+  font-size: 16px;
+  font-weight: 500;
+  height: 25px;
+  font-family: "Agbalumo";
+}
+
+/* Texto Horario */
+.contendor_invitacion_2 .horario_evento {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 3px;
+  width: 70%;
+  font-size: 16px;
+  font-weight: 500;
+  height: 20px;
+  font-family: "Agbalumo";
+}
+
+/* Texto de la ubicacion del salon */
+.contendor_invitacion_2 .lugar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  font-size: 10px;
+  width: 90%;
+  font-family: "Agbalumo";
+}
+
+/* Texto Horario */
+.contendor_invitacion_2 .imagen_invitacion img {
+  height: 50px;
+  width: 50px;
+}
+
+/************************ INVITACION 3 ************************/
+
+.contenedor_3{
+  border: 3px solid rgb(0, 0, 0);
+  background-image: linear-gradient(
+    300deg,
+    hsl(55deg 63% 93%) 0%,
+    hsl(50deg 67% 90%) 18%,
+    hsl(46deg 71% 87%) 26%,
+    hsl(43deg 76% 85%) 33%,
+    hsl(40deg 81% 83%) 39%,
+    hsl(37deg 86% 81%) 44%,
+    hsl(35deg 91% 79%) 50%,
+    hsl(38deg 85% 80%) 56%,
+    hsl(41deg 79% 82%) 61%,
+    hsl(45deg 72% 84%) 67%,
+    hsl(49deg 66% 86%) 74%,
+    hsl(54deg 60% 89%) 82%,
+    hsl(60deg 55% 91%) 100%
+  );
+  border-radius: 10px;
+}
+
+/* Contenedor con el diseño preliminar de la invitacion */
+.contendor_invitacion_3 {
+  margin: 5px;
+  border: 3px solid rgb(82, 80, 80);
+  height: 400px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  
+}
+
+/* Texto 'Invitación' */
+.contendor_invitacion_3 .texto_invitacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 2px;
+  text-decoration: underline;
+  font-size: 14px;
+  height: 20px;
+  font-family: "Agbalumo";
+}
+
+/* Titulo de la invitación */
+.contendor_invitacion_3 .titulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 35px;
+  font-weight: 900;
+  max-width: 95%;
+  height: 100px;
+  font-family: "Agbalumo";
+  border-top: 2px black solid;
+  border-bottom: 2px black solid;
+}
+
+/* Texto Fecha */
+.contendor_invitacion_3 .fecha_evento {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 3px;
+  width: 90%;
+  font-size: 16px;
+  font-weight: 600;
+  height: 25px;
+  font-family: "Agbalumo";
+}
+
+/* Texto Horario */
+.contendor_invitacion_3 .horario_evento {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 3px;
+  width: 70%;
+  font-size: 16px;
+  font-weight: 500;
+  height: 20px;
+  font-family: "Agbalumo";
+}
+
+/* Texto de la ubicacion del salon */
+.contendor_invitacion_3 .lugar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  font-size: 10px;
+  width: 90%;
+  font-family: "Agbalumo";
+}
+
+/* Texto Horario */
+.contendor_invitacion_3 .imagen_invitacion img {
+  height: 50px;
+  width: 50px;
+}
+
 
 /************************ Formulario para el paso 3 ************************/
 
 .valores_evento{
-  /* border: 1px solid green; */
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .valores_evento .contenedor_valores{
-  /* border: 1px solid red; */
-  width: 60%;
+  flex: 1.5;
 }
 
 .valores_evento .contenedor_valores .valor {
   display: flex;
-  /* border: 1px solid violet; */
-  justify-content: space-between;
   margin: 25px 0;
 }
 
@@ -356,13 +673,11 @@ select:focus {
   color: var(--main-color);
   width: 10%;
   text-align: center;
-  /* border: 1px solid orangered; */
 }
 
 .valores_evento .contenedor_valores .valor span.nombre_valor {
   font-size: 18px;
   font-weight: 600;
-  /* border: 1px solid black; */
   margin-right: 10px;
 }
 
@@ -377,7 +692,6 @@ select:focus {
 
 .valores_evento img{
   height: 100%;
-  /* width: 200px; */
 }
 
 
