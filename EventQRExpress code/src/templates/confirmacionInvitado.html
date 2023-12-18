@@ -17,7 +17,7 @@
   <!-- Box-Icons -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <!-- Libreria de alertas -->
-  <link rel="stylesheet" href="sweetalert2.min.css">
+  <!-- <link rel="stylesheet" href="sweetalert2.min.css"> -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -58,16 +58,17 @@
   </nav>
 
   <!-- Contenido de la pagina -->
-  <main class="contenido">
-
+  <main class="contenido"  >
     <!-- Seccion CONFIRMACION de la pagina -->
     <section class="confirmacion" id="confirmacion">
       <h1>Nombre del Evento</h1>
       <!-- Formulario Confirmacion - Confirmacion del invitado -->
-      <form action="" class="formulario_confirmacion" id="formulario_confirmacion">
+      <form action="" class="formulario_confirmacion" id="formulario_confirmacion"">
         <!-- Titulo del formulario -->
         <h3>Confirmación de asistencia</h3>
-        <img src="../static/img/inicioAnfitrion.svg" alt="Imagen de inicio de anfitrion">
+        <div class="contenedor_invitacion" id="contenedor_invitacion" >
+
+        </div>
         <!-- Botones del formulario -->
         <div class="botones_formulario">
           <button class="no btn_formulario" onclick="noAsistira(); return false;">No Asistiré</button>
@@ -95,6 +96,7 @@
   <!-- Scripts -->
   <script src="../static/js/barraLateral.js"></script>
   <script src="../static/js/alertas.js"></script>
+  <script src="../static/js/invitacionInvitado.js"></script>
 
 </body>
 
