@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <!-- Metadatos -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../static/img/logo.png">
+  <!-- Titulo de la pagina en la pestaña -->
+  <title>EventQRXpress | Invitado</title>
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="../static/css/general.css">
+  <link rel="stylesheet" href="../static/css/menuInvitado.css">
+  <link rel="stylesheet" href="../static/css/registroAsistentes.css">
+  <link rel="stylesheet" href="../static/css/footerUsuario.css">
+  <!-- Box-Icons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- Libreria de alertas -->
+  <!-- <link rel="stylesheet" href="sweetalert2.min.css"> -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+  <!-- Menu Lateral -->
+  <nav class="menuLateral">
+
+    <!-- Seccion para el logo del usuario -->
+    <div class="detalles_usuario">
+      <div class="datos_usuario">
+        <i class='bx bxs-user-circle'></i>
+        <p class="nombre">NombreAnfitrion</p>
+        <a href="#configuracion" class="configuracion"></a>
+      </div>
+      <i class='bx bx-menu' id="btn"></i>
+    </div>
+
+    <!-- Contenido del menu -->
+    <ul class="navBar">
+      <!-- Mensaje de anfitrion para invitado -->
+      <div class="mensaje">
+        <p>¡Genial!</p>
+        <p>Llego el momento de seleccionar el mejor asiento para ti. </p>
+        <p>Por favor, selecciona el número de asistentes y los asientos deseados para garantizar tu comodidad. </p>
+      </div>
+      <!-- Boton para ir a EventQRXpress -->
+      <li class="logout fondo">
+        <a href="./landingPage.html">
+          <i class='bx bxs-home'></i>
+          <span class="nombre_link">Ir a EventQRXpress</span>
+        </a>
+      </li>
+    </ul>
+
+  </nav>
+
+  <!-- Contenido de la pagina -->
+  <main class="contenido">
+
+    <!-- Seccion CREAR EVENTO de la pagina -->
+    <section class="crear" id="crear">
+      <h1>Nombre del Evento</h1>
+
+      
+      <!-- Formulario Paso #4 - Registro de asistentes -->
+      <form action="" class="formulario_crear paso" id="">
+        <!-- Titulo del formulario -->
+        <h3>Registro de asistentes</h3>
+        <h3>Agregue los datos de los asistentes del eveto</h3>
+        <!-- Campo para el nombre del evento -->
+        <div class="valores_evento">
+          <!-- Distribucion de las mesas -->
+          <div class="distribucion_salon">
+            <!-- Pista -->
+            <div class="contenedor_mesa pista">Pista</div>
+            <!-- Mesa A -->
+            <div class="contenedor_mesa">
+              <div class="casilla silla" id="1A">1A</div>
+              <div class="casilla silla" id="2A">2A</div>
+              <div class="casilla silla" id="3A">3A</div>
+              <div class="casilla silla" id="4A">4A</div>
+              <div class="casilla mesa">A</div>
+              <div class="casilla silla" id="5A">5A</div>
+              <div class="casilla silla" id="6A">6A</div>
+              <div class="casilla silla" id="7A">7A</div>
+              <div class="casilla silla" id="8A">9A</div>
+            </div>
+            <!-- Mesa B -->
+            <div class="contenedor_mesa">
+              <div class="casilla silla" id="1B">1B</div>
+              <div class="casilla silla" id="2B">2B</div>
+              <div class="casilla silla" id="3B">3B</div>
+              <div class="casilla silla" id="4B">4B</div>
+              <div class="casilla mesa">B</div>
+              <div class="casilla silla" id="5B">5B</div>
+              <div class="casilla silla" id="6B">6B</div>
+              <div class="casilla silla" id="7B">7B</div>
+              <div class="casilla silla" id="8B">9B</div>
+            </div>
+            <!-- Mesa C -->
+            <div class="contenedor_mesa">
+              <div class="casilla silla" id="1C">1C</div>
+              <div class="casilla silla" id="2C">2C</div>
+              <div class="casilla silla" id="3C">3C</div>
+              <div class="casilla silla" id="4C">4C</div>
+              <div class="casilla mesa">C</div>
+              <div class="casilla silla" id="5C">5C</div>
+              <div class="casilla silla" id="6C">6C</div>
+              <div class="casilla silla" id="7C">7C</div>
+              <div class="casilla silla" id="8C">9C</div>
+            </div>
+            <!-- Mesa D -->
+            <div class="contenedor_mesa">
+              <div class="casilla silla" id="1D">1D</div>
+              <div class="casilla silla" id="2D">2D</div>
+              <div class="casilla silla" id="3D">3D</div>
+              <div class="casilla silla" id="4D">4D</div>
+              <div class="casilla mesa">D</div>
+              <div class="casilla silla" id="5D">5D</div>
+              <div class="casilla silla" id="6D">6D</div>
+              <div class="casilla silla" id="7D">7D</div>
+              <div class="casilla silla" id="8D">8D</div>
+            </div>
+            <!-- Mesa E -->
+            <div class="contenedor_mesa">
+              <div class="casilla silla" id="1E">1E</div>
+              <div class="casilla silla" id="2E">2E</div>
+              <div class="casilla silla" id="3E">3E</div>
+              <div class="casilla silla" id="4E">4E</div>
+              <div class="casilla mesa">E</div>
+              <div class="casilla silla" id="5E">5E</div>
+              <div class="casilla silla" id="6E">6E</div>
+              <div class="casilla silla" id="7E">7E</div>
+              <div class="casilla silla" id="8E">8E</div>
+            </div>
+            <!-- Mesa F -->
+            <div class="contenedor_mesa">
+              <div class="casilla silla" id="1F">1F</div>
+              <div class="casilla silla" id="2F">2F</div>
+              <div class="casilla silla" id="3F">3F</div>
+              <div class="casilla silla" id="4F">4F</div>
+              <div class="casilla mesa">F</div>
+              <div class="casilla silla" id="5F">5F</div>
+              <div class="casilla silla" id="6F">6F</div>
+              <div class="casilla silla" id="7F">7F</div>
+              <div class="casilla silla" id="8F">8F</div>
+            </div>
+            <!-- Mesa G -->
+            <div class="contenedor_mesa">
+              <div class="casilla silla" id="1F">1G</div>
+              <div class="casilla silla" id="2G">2G</div>
+              <div class="casilla silla" id="3G">3G</div>
+              <div class="casilla silla" id="4G">4G</div>
+              <div class="casilla mesa">G</div>
+              <div class="casilla silla" id="5G">5G</div>
+              <div class="casilla silla" id="6G">6G</div>
+              <div class="casilla silla" id="7G">7G</div>
+              <div class="casilla silla" id="8G">8G</div>
+            </div>
+            <!-- Mesa H -->
+            <div class="contenedor_mesa">
+              <div class="casilla silla" id="1H">1H</div>
+              <div class="casilla silla" id="2H">2H</div>
+              <div class="casilla silla" id="3H">3H</div>
+              <div class="casilla silla" id="4H">4H</div>
+              <div class="casilla mesa">H</div>
+              <div class="casilla silla" id="5H">5H</div>
+              <div class="casilla silla" id="6H">6H</div>
+              <div class="casilla silla" id="7H">7H</div>
+              <div class="casilla silla" id="8H">8H</div>
+            </div>
+            <!-- Mesa I -->
+            <div class="contenedor_mesa">
+              <div class="casilla silla" id="1I">1I</div>
+              <div class="casilla silla" id="2I">2I</div>
+              <div class="casilla silla" id="3I">3I</div>
+              <div class="casilla silla" id="4I">4I</div>
+              <div class="casilla mesa">I</div>
+              <div class="casilla silla" id="5I">5I</div>
+              <div class="casilla silla" id="6I">6I</div>
+              <div class="casilla silla" id="7I">7I</div>
+              <div class="casilla silla" id="8I">8I</div>
+            </div>
+            <!-- Mesa J -->
+            <div class="contenedor_mesa">
+              <div class="casilla silla" id="1J">1J</div>
+              <div class="casilla silla" id="2J">2J</div>
+              <div class="casilla silla" id="3J">3J</div>
+              <div class="casilla silla" id="4J">4J</div>
+              <div class="casilla mesa">J</div>
+              <div class="casilla silla" id="5J">5J</div>
+              <div class="casilla silla" id="6J">6J</div>
+              <div class="casilla silla" id="7J">7J</div>
+              <div class="casilla silla" id="8J">8J</div>
+            </div>
+            <!-- Mesa K -->
+            <div class="contenedor_mesa">
+              <div class="casilla silla" id="1K">1K</div>
+              <div class="casilla silla" id="2K">2K</div>
+              <div class="casilla silla" id="3K">3K</div>
+              <div class="casilla silla" id="4K">4K</div>
+              <div class="casilla mesa">K</div>
+              <div class="casilla silla" id="5K">5K</div>
+              <div class="casilla silla" id="6K">6K</div>
+              <div class="casilla silla" id="7K">7K</div>
+              <div class="casilla silla" id="8K">8K</div>
+            </div>
+            <!-- Mesa L -->
+            <div class="contenedor_mesa">
+              <div class="casilla silla" id="1L">1L</div>
+              <div class="casilla silla" id="2L">2L</div>
+              <div class="casilla silla" id="3L">3L</div>
+              <div class="casilla silla" id="4L">4L</div>
+              <div class="casilla mesa">L</div>
+              <div class="casilla silla" id="5L">5L</div>
+              <div class="casilla silla" id="6L">6L</div>
+              <div class="casilla silla" id="7L">7L</div>
+              <div class="casilla silla" id="8L">8L</div>
+            </div>
+            <!-- Mesa M -->
+            <div class="contenedor_mesa">
+              <div class="casilla silla" id="1M">1M</div>
+              <div class="casilla silla" id="2M">2M</div>
+              <div class="casilla silla" id="3M">3M</div>
+              <div class="casilla silla" id="4M">4M</div>
+              <div class="casilla mesa">M</div>
+              <div class="casilla silla" id="5M">5M</div>
+              <div class="casilla silla" id="6M">6M</div>
+              <div class="casilla silla" id="7M">7M</div>
+              <div class="casilla silla" id="8M">8M</div>
+            </div>
+          </div>
+
+          <div class="contenedor_valores">
+            <!-- Campo para NUMERO DE ASISTENTES -->
+            <p class="valor">
+              <i class='bx bx-male-female'></i>
+              <span class="nombre_valor">Número estimado de asistentes: </span>
+              <input type="number" name="numeroAsistentes" id="numeroAsistentes" autocomplete="off" value=""
+                oninput="actualizarValoresAsistentes()">
+            </p>
+
+            <div class="datos_asistentes" id="datosAsistentes">
+            </div>
+          </div>
+        </div>
+        <!-- Botones del formulario -->
+        <div class="botones_formulario">
+          <!-- <a href="#"  onclick="siguientePaso(); return false;"> -->
+          <button class="yes">Confirmar</button>
+          <!-- </a> -->
+        </div>
+      </form>
+
+    </section>
+
+    <!-- Pie de la pagina -->
+    <footer class="footer">
+      <!-- Texto del Copyright -->
+      <p class="derechos">
+        <i class='bx bx-copyright'></i>Todos los derechos reservados.
+      </p>
+      <!-- Redes sociales -->
+      <p class="redes">
+        <a href="https://www.facebook.com/" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class='bx bxl-twitter'></i></a>
+        <a href="https://outlook.office.com/" target="_blank"><i class='bx bxs-envelope'></i></a>
+      </p>
+    </footer>
+  </main>
+
+  <!-- Pie de la pagina -->
+  <footer class="footer">
+    <!-- Texto del Copyright -->
+    <p class="derechos">
+      <i class='bx bx-copyright'></i>Todos los derechos reservados.
+    </p>
+    <!-- Redes sociales -->
+    <p class="redes">
+      <a href="https://www.facebook.com/" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+      <a href="https://www.instagram.com/" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+      <a href="https://twitter.com/" target="_blank"><i class='bx bxl-twitter'></i></a>
+      <a href="https://outlook.office.com/" target="_blank"><i class='bx bxs-envelope'></i></a>
+    </p>
+  </footer>
+  </main>
+
+  <!-- Scripts -->
+  <script src="../static/js/barraLateral.js"></script>
+  <script src="../static/js/actualizarDatosAsistentes.js"></script>
+
+</body>
+
+</html>
