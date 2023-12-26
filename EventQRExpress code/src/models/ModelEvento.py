@@ -1,13 +1,26 @@
-from .entities.Evento import Envio
-class ModelEnvio():
-
+from .entities.Evento import Evento
+class ModelEvento():
     @classmethod
-    def register(self, db, ubicacion, direccion, cantidadS, cantidadM, cantidadL, disponibilidad, latitud, longitud):
+    def register(self, db, nombre, fecha, hora_inicio, hora_fin, asistentes, tipo, lugar, id_usuario, id_salon, invitacion):
         try:
             cursor = db.connection.cursor()
-            sql = f"INSERT INTO lockers (ubicacion, direccion, cantidadS, cantidadM, cantidadL, disponibilidad, latitud, longitud, enviados, recibidos, registrado) VALUES ('{ubicacion}','{direccion}',{cantidadS}, {cantidadM}, {cantidadL},{disponibilidad}, {latitud}, {longitud}, 0, 0, CURDATE())" #Cantidad va dos veces ya que en un inicio la disponibilidad es la misma
+            sql = f"INSERT INTO evento (nombre, fecha, hora_inicio, hora_fin, asistentes, tipo, lugar, id_usuario, id_salon, invitacion) VALUES ('{nombre}','{fecha}',{hora_inicio}, {hora_fin}, {asistentes},{tipo}, {lugar}, {id_usuario}, {id_salon}, {invitacion})" #Cantidad va dos veces ya que en un inicio la disponibilidad es la misma
             cursor.execute(sql)
             db.connection.commit()
+        except Exception as ex:
+            raise Exception(ex)
+            
+    @classmethod
+    def invitacion(self, db, id):
+        try:
+            cursor = db.connection.cursor()
+            sql = f"select invitacion from evento where id_usuario = 'id';" #Tipo de invitacion
+            cursor.execute(sql)
+            row = cursor.fetchone()
+            if row != None:
+                return row[0]
+            else:
+                return None
         except Exception as ex:
             raise Exception(ex)
 

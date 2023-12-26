@@ -14,6 +14,7 @@ from datetime import datetime
 # Clases
 # Models:
 from models.ModelUser import ModelUser
+from models.ModelSalon import ModelSalon
 
 # Entities:
 from models.entities.User import User
@@ -52,7 +53,18 @@ def index():
     return render_template('landingPage.html')
 
 #########################################################################################
-##################################### Usuario cliente ###################################
+############################ Funciones de consulta  #####################################
+######################################################################################### 
+@app.route('/capacidadSalones/<capacidad>')
+def jsonroutedestino(capacidad):
+    return jsonify(ModelSalon.consultarSalon(db, capacidad))
+
+@app.route('/direccion/<ciudad>')
+def consultarDireccion(ciudad):
+    return jsonify(ModelSalon.consultarDireccion(db, ciudad))
+
+#########################################################################################
+##################################### Usuario Anfitrion ###################################
 #########################################################################################
 
 # Inicio de sesion
@@ -320,6 +332,50 @@ def contrasenaRestablecido():
     except:
         flash('Algo salió mal. Por favor intenta de nuevo')
         return redirect(url_for('login'))
+######################################################################################################################
+#Registrar Evento
+# @app.route('/registrarEvento', methods=['POST'])
+# def register():
+#     if request.method == 'POST':
+#         if current_user.is_active == True:
+#             logout_user()
+#         # ¿El correo no esta registrado?
+#         if ModelUser.check_email(db, request.form['email']) == False:
+#             user = User(1, email= request.form['email'],
+#                         password = request.form['password'],
+#                         nombre = request.form['nombre'],
+#                         telefono = request.form['telefono']
+#                         )
+#             execution = ModelUser.register(db, user)  # Registralo en la BD
+#             # print("Registrado")
+#             if execution != None:  # Se registro con exito entonces tengo sus datos
+#                 token = generate_confirmation_token(user.email)
+#                 # Envio de correo
+#                 confirm_url = url_for(
+#                     'confirm_email', token=token, _external=True)
+#                 template = render_template(
+#                     'correoValidaciones.html', confirm_url=confirm_url)
+#                 subject = "Activación de cuenta - Eventqrxpress"
+
+#                 msg = Message(
+#                     subject,
+#                     recipients=[''+request.form['email']],
+#                     html=template,
+#                     sender="eventqrxpress@gmail.com"
+#                 )
+#                 mail.send(msg)
+#                 # login_user(execution) # Marco sus datos como logeado para que vea verificacion
+#                 logout_user()
+#                 # return render_template('validacionCorreo.html', nombre=user.nombre, email=user.email)##########Cambiar
+#                 return redirect(url_for('login'))
+#             else:
+#                 flash("Algo salió mal, intenta de nuevo")
+#                 # return render_template('formularioLoginRegister.html')
+#                 return redirect(url_for('login'))
+#         else:
+#             flash("El correo ingresado ya ha sido registrado")
+#             # return render_template('formularioLoginRegister.html')
+#             return redirect(url_for('login'))
 
 # Reenvío de correo
 @app.route('/resendRepartidor/<email>')

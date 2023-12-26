@@ -99,7 +99,7 @@
             <span>Nombre del eveto:</span>
           </div>
           <div class="input-campo">
-            <input type="text" name="nombreEvento" id="nombreEvento" autocomplete="off" value="" oninput="actualizarInvitacion()">
+            <input type="text" name="nombreEvento" id="nombreEvento" autocomplete="off" value="" onchange="actualizarInvitacion()">
             <!-- <small>Error</small> -->
           </div>
         </div>
@@ -110,7 +110,7 @@
             <span>Fecha:</span>
           </div>
           <div class="input-campo">
-            <input type="date" name="fecha" id="fecha" autocomplete="off" value="" oninput="actualizarInvitacion()">
+            <input type="date" name="fecha" id="fecha" autocomplete="off" value="" onchange="actualizarInvitacion()">
             <!-- <small>Error</small> -->
           </div>
         </div>
@@ -121,7 +121,7 @@
             <span>Hora de inicio:</span>
           </div>
           <div class="input-campo">
-            <input type="time" name="horaInicio" id="horaInicio" autocomplete="off"  value="" oninput="actualizarInvitacion()">
+            <input type="time" name="horaInicio" id="horaInicio" autocomplete="off"  value="" onchange="actualizarInvitacion()">
             <!-- <small>Error</small> -->
           </div>
         </div>
@@ -132,7 +132,7 @@
             <span>Hora de termino:</span>
           </div>
           <div class="input-campo">
-            <input type="time" name="horaFin" id="horaFin" autocomplete="off"  value="" oninput="actualizarInvitacion()">
+            <input type="time" name="horaFin" id="horaFin" autocomplete="off"  value="" onchange="actualizarInvitacion()">
             <!-- <small>Error</small> -->
           </div>
         </div>
@@ -143,7 +143,7 @@
             <span>Número estimado de asistentes:</span>
           </div>
           <div class="input-campo">
-            <input type="number" name="numeroAsistentes" id="numeroAsistentes" autocomplete="off"  value="" oninput="actualizarInvitacion()">
+            <input type="number" name="numeroAsistentes" id="numeroAsistentes" autocomplete="off"  value="" onchange="selecciones(); actualizarInvitacion()">
             <!-- <small>Error</small> -->
           </div>
         </div>
@@ -154,7 +154,7 @@
             <span>Tipo de evento:</span>
           </div>
           <div class="input-campo">
-            <select name="tipoEvento" id="tipoEvento" autocomplete="off"  value="" oninput="actualizarInvitacion()">
+            <select name="tipoEvento" id="tipoEvento" autocomplete="off"  value="" onchange="actualizarInvitacion()">
               <option value="">Seleccionar una opción</option>
               <option value="XV Años">XV Años</option>
               <option value="Boda">Boda</option>
@@ -170,12 +170,12 @@
             <span>Lugar del eveto:</span>
           </div>
           <div class="input-campo">
-            <select name="lugarEvento" id="lugarEvento" autocomplete="off" value="" oninput="actualizarInvitacion()">
+            <select name="lugarEvento" id="lugarEvento" autocomplete="off" value="" onchange="actualizarInvitacion()">
               <option value="">Seleccionar una opción</option>
-              <option value="salon1">Salon 1</option>
+              <!-- <option value="salon1">Salon 1</option>
               <option value="salon2">Salon 2</option>
               <option value="salon3">Salon 3</option>
-              <option value="salon4">Salon 4</option>
+              <option value="salon4">Salon 4</option> -->
             </select>
             <!-- <small>Error</small> -->
           </div>

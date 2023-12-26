@@ -19,6 +19,30 @@ function actualizarInterfaz() {
     document.getElementById('siguiente').disabled = pasoActual === 3;
 }
 
+
+//Funcion para actualizar salones disponibles
+function selecciones() {
+	let capacidad = document.getElementById("numeroAsistentes").value;
+    let destino =  document.getElementById("lugarEvento");
+    // console.log(capacidad);
+	const url = "http://127.0.0.1:5000/capacidadSalones/" + capacidad;
+	fetch(url)
+		.then((response) => response.json())
+		.then((data) => {
+			// sucursales = data.ubicaciones
+			var opciones = document.querySelectorAll("#lugarEvento option");
+			opciones.forEach((o) => o.remove());
+			let option0 = document.createElement("option");
+			option0.text = "Seleccionar";
+			destino.add(option0);
+			data.salones.forEach((dato) => {
+				let option = document.createElement("option");
+				option.text = dato;
+				destino.add(option);
+			});
+		});
+}
+
 // Función para ir al siguiente paso
 function siguientePaso() {
     if (pasoActual < 3) {
