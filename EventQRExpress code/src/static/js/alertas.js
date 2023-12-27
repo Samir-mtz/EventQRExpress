@@ -38,6 +38,20 @@ function passwordActualizado(event) {
     }
   });
 }
+// Alerta con mensaje de confirmacion al cambiar contraseña
+function eventoCreado(event) {
+  event.preventDefault();
+  Swal.fire({
+    icon: "success",
+    title: "Evento Creado",
+    text: "Tu evento se ha creado con exito, puedes modificarlo en la seccion de gestionar evento.",
+    confirmButtonText: "¡Genial!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      event.target.submit();
+    }
+  });
+}
 
 // Alerta para preguntar si desea cerrar sesion, en caso de confirmar sale alerta de confirmacion
 function preguntaCerrarSesion() {

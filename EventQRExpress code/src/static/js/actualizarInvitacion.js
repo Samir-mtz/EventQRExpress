@@ -16,6 +16,7 @@ function actualizarInvitacion() {
     .then((response) => response.json())
     .then((data) => {
       document.getElementById("valor_lugarEvento").innerText = data.direccion[0];
+      document.getElementById("input_lugar").value = data.direccion[0];
     });
   //Fin de la condsulta
   
@@ -26,6 +27,13 @@ function actualizarInvitacion() {
   document.getElementById("valor_horario").innerText = horario;
   document.getElementById("valor_numeroAsistentes").innerText = numeroAsistentes;
   document.getElementById("valor_tipoEvento").innerText = tipoEvento;
+
+  document.getElementById("input_nombre").value = nombreEvento;
+  document.getElementById("input_fecha").value = formatearFecha(fecha);
+  document.getElementById("input_horario").value = horario;
+  document.getElementById("input_asistentes").value = numeroAsistentes;
+  document.getElementById("input_tipo").value = tipoEvento;
+  document.getElementById("input_ciudad").value = lugarEvento;
   // document.getElementById("valor_lugarEvento").innerText = lugarEvento;
 }
 

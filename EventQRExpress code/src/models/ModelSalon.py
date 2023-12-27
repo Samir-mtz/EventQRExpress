@@ -10,7 +10,27 @@ class ModelSalon():
             db.connection.commit()
         except Exception as ex:
             raise Exception(ex)
+    @classmethod
+    def consultarId(self, db, ciudad):
+        try:
+            cursor = db.connection.cursor()
+            sql = f"SELECT id FROM salon where ciudad ='{ciudad}'";
+            cursor.execute(sql)
+            list_lockers=[]
+            while True:
+                row = cursor.fetchone()
+                if row == None:
+                    break
+                list_lockers.append(row[0])
             
+            # print(dict_lockers)
+            if len(list_lockers)>0:
+                return list_lockers[0]
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
+
     @classmethod
     def consultarSalon(self, db, capacidad): #Nota esta consulta es para obtener el registro que contengan la ubicacion que enviamos retorna un objeto de tipo locker
         try:

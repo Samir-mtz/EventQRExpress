@@ -15,6 +15,7 @@ from datetime import datetime
 # Models:
 from models.ModelUser import ModelUser
 from models.ModelSalon import ModelSalon
+from models.ModelEvento import ModelEvento
 
 # Entities:
 from models.entities.User import User
@@ -333,49 +334,30 @@ def contrasenaRestablecido():
         flash('Algo salió mal. Por favor intenta de nuevo')
         return redirect(url_for('login'))
 ######################################################################################################################
+# @app.route('/id', methods=['GET'])
+# def idUsurario():
+#     id_deSalon= ModelSalon.consultarId(db, "Coyoacán")
+#     return f"{id_deSalon}"
 #Registrar Evento
-# @app.route('/registrarEvento', methods=['POST'])
-# def register():
-#     if request.method == 'POST':
-#         if current_user.is_active == True:
-#             logout_user()
-#         # ¿El correo no esta registrado?
-#         if ModelUser.check_email(db, request.form['email']) == False:
-#             user = User(1, email= request.form['email'],
-#                         password = request.form['password'],
-#                         nombre = request.form['nombre'],
-#                         telefono = request.form['telefono']
-#                         )
-#             execution = ModelUser.register(db, user)  # Registralo en la BD
-#             # print("Registrado")
-#             if execution != None:  # Se registro con exito entonces tengo sus datos
-#                 token = generate_confirmation_token(user.email)
-#                 # Envio de correo
-#                 confirm_url = url_for(
-#                     'confirm_email', token=token, _external=True)
-#                 template = render_template(
-#                     'correoValidaciones.html', confirm_url=confirm_url)
-#                 subject = "Activación de cuenta - Eventqrxpress"
-
-#                 msg = Message(
-#                     subject,
-#                     recipients=[''+request.form['email']],
-#                     html=template,
-#                     sender="eventqrxpress@gmail.com"
-#                 )
-#                 mail.send(msg)
-#                 # login_user(execution) # Marco sus datos como logeado para que vea verificacion
-#                 logout_user()
-#                 # return render_template('validacionCorreo.html', nombre=user.nombre, email=user.email)##########Cambiar
-#                 return redirect(url_for('login'))
-#             else:
-#                 flash("Algo salió mal, intenta de nuevo")
-#                 # return render_template('formularioLoginRegister.html')
-#                 return redirect(url_for('login'))
-#         else:
-#             flash("El correo ingresado ya ha sido registrado")
-#             # return render_template('formularioLoginRegister.html')
-#             return redirect(url_for('login'))
+@app.route('/registrarEvento', methods=['POST'])
+def registrarEvento():
+    if request.method == 'POST':
+        #consulta id_usuario:
+        usuario = ModelUser.consulta_email(db, current_user.email)
+        #consulta id_salon:
+        ciudad = request.form['ciudad']
+        id_deSalon= ModelSalon.consultarId(db, ciudad)
+        #ruta
+        execution = ModelEvento.register(db, nombre = request.form['nombre'], fecha = request.form['fecha'], horario = request.form['horario'],
+        asistentes=request.form['asistentes'], tipo=request.form['tipo'], lugar=request.form['lugar'],
+        id_usuario=usuario.id, id_salon=id_deSalon)  # Registralo en la BD
+        # print("Registrado")
+        if execution != None:  # Se registro con exito entonces tengo sus datos
+            return redirect(url_for('homeCliente'))
+        else:
+            # flash("Algo salió mal, intenta de nuevo")
+            # return render_template('formularioLoginRegister.html')
+            return redirect(url_for('homeCliente'))
 
 # Reenvío de correo
 @app.route('/resendRepartidor/<email>')

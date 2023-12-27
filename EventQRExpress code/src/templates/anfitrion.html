@@ -232,7 +232,8 @@
       </form>
 
       <!-- Formulario Paso #3 - Confirmar datos del evento -->
-      <form action="" class="formulario_crear paso" id="paso3">
+      <form action="/registrarEvento" method="post" class="formulario_crear paso" id="paso3" onsubmit="eventoCreado(event)">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <!-- Titulo del formulario -->
         <h3>Confirme los datos de su evento</h3>
         <!-- Campo para el nombre del evento -->
@@ -243,36 +244,43 @@
               <i class='bx bxs-calendar-event'></i>
               <span class="nombre_valor">Nombre del evento: </span>
               <span class="texto_valor" id="valor_nombreEvento"></span>
+              <input type="hidden" id="input_nombre" name="nombre">
             </p>
             <!-- Campo para FECHA -->
             <p class="valor">
               <i class='bx bx-calendar'></i>
               <span class="nombre_valor">Fecha: </span>
               <span class="texto_valor" id="valor_fecha"></span>
+              <input type="hidden" id="input_fecha" name="fecha">
             </p>
             <!-- Campo para HORARIO -->
             <p class="valor">
               <i class='bx bxs-watch'></i>
               <span class="nombre_valor">Horario: </span>
               <span class="texto_valor" id="valor_horario"></span>
+              <input type="hidden" id="input_horario" name="horario">
             </p>
             <!-- Campo para NUMERO DE ASISTENTES -->
             <p class="valor">
               <i class='bx bx-male-female'></i>
               <span class="nombre_valor">Número estimado de asistentes: </span>
               <span class="texto_valor" id="valor_numeroAsistentes"></span>
+              <input type="hidden" id="input_asistentes" name="asistentes">
             </p>
             <!-- Campo para TIPO DE EVENTO -->
             <p class="valor">
               <i class='bx bxs-balloon'></i>
               <span class="nombre_valor">Tipo de evento: </span>
               <span class="texto_valor" id="valor_tipoEvento"></span>
+              <input type="hidden" id="input_tipo" name="tipo">
             </p>
             <!-- Campo para LUGAR DEL EVENTO -->
             <p class="valor">
               <i class='bx bxs-map'></i>
               <span class="nombre_valor">Lugar del evento: </span>
               <span class="texto_valor" id="valor_lugarEvento"></span>
+              <input type="hidden" id="input_lugar" name="lugar">
+              <input type="hidden" id="input_ciudad" name="ciudad">
             </p>
           </div>
           <div id="contenedor_invitacion">
@@ -283,9 +291,9 @@
           <a href="#" class="no" onclick="preguntaCancelarRegistroEvento(); return false;">
             <button>Cancelar</button>
           </a>
-          <a href="#" class="yes" onclick="siguientePaso(); return false;">
-            <button>Confirmar</button>
-          </a>
+          <!-- <a href="#" class="yes" onclick="siguientePaso(); return false;"> -->
+          <button type="submit">Confirmar</button>
+          <!-- </a> -->
         </div>
       </form>
     </section>
@@ -398,10 +406,11 @@
   <script src="../static/js/barraLateral.js"></script>
   <script src="../static/js/actualizarBarraLateral.js"></script>
   <script src="../static/js/pasosFormulario.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../static/js/seleccionarInvitacion.js"></script>
   <script src="../static/js/invitacionSeleccionada.js"></script>
   <script src="../static/js/actualizarInvitacion.js"></script>
-
+  <script src="../static/js/alertas.js"></script>
 </body>
 
 </html>
