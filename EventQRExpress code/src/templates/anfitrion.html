@@ -302,7 +302,7 @@
     <section class="eventos" id="eventos">
       <h1>Historial de Eventos</span></h1>
       <div class="campo-historial-eventos">
-        <div class="imagen-container">
+        <!-- <div class="imagen-container">
           <img src="../static/img/invitacion01.webp" alt="Invitacion 01">
           <p class="nombre_evento">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, autem!</p>
         </div>
@@ -325,7 +325,17 @@
         <div class="imagen-container special-image">
           <img src="../static/img/invitacion02.webp" alt="Invitacion 02">
           <p class="nombre_evento">Nombre del evento</p>
+        </div> -->
+        <div class="imagen-container">
+          <img src="../static/img/invitacion01.webp" alt="Invitacion 01">
+          <p class="nombre_evento">Nombre del evento</p>
         </div>
+        {% for imagen in imagenes %}
+            <div class="imagen-container">
+                <img src="{{ imagen['src'] }}" alt="{{ imagen['alt'] }}" onclick="obtenerDatosEvento(this)">
+                <p class="nombre_evento">{{ imagen['nombre_evento'] }}</p>
+            </div>
+        {% endfor %}
       </div>
     </section>
 
@@ -341,44 +351,44 @@
           <p class="valor">
             <i class='bx bxs-calendar-event'></i>
             <span class="nombre_valor">Nombre del evento:</span>
-            <span class="texto_valor">nombreEvento</span>
+            <span class="texto_valor" id="datos_nombre">nombreEvento</span>
           </p>
           <!-- Campo para FECHA -->
           <p class="valor">
             <i class='bx bx-calendar'></i>
             <span class="nombre_valor">Fecha:</span>
-            <span class="texto_valor">DD / MM / AAAA</span>
+            <span class="texto_valor"id="datos_fecha">DD / MM / AAAA</span>
           </p>
           <!-- Campo para HORARIO -->
           <p class="valor">
             <i class='bx bxs-watch'></i>
             <span class="nombre_valor">"Horario:"</span>
-            <span class="texto_valor">HH:MM x.m.</span>
+            <span class="texto_valor"id="datos_horario">HH:MM x.m.</span>
           </p>
           <!-- Campo para NUMERO DE ASISTENTES -->
           <p class="valor">
             <i class='bx bx-male-female'></i>
             <span class="nombre_valor">Número estimado de asistentes:</span>
-            <span class="texto_valor">###</span>
+            <span class="texto_valor"id="datos_asistentes">###</span>
           </p>
           <!-- Campo para TIPO DE EVENTO -->
           <p class="valor">
             <i class='bx bxs-balloon'></i>
             <span class="nombre_valor">Tipo de evento:</span>
-            <span class="texto_valor">(XV años / Boda / Reunión)</span>
+            <span class="texto_valor"id="datos_tipo">(XV años / Boda / Reunión)</span>
           </p>
           <!-- Campo para LUGAR DEL EVENTO -->
           <p class="valor">
             <i class='bx bxs-map'></i>
             <span class="nombre_valor">Lugar del evento:</span>
-            <span class="texto_valor">Salon de eventos NOMBRE <small><br>Nombre de la calle, Numelo
+            <span class="texto_valor"id="datos_lugar">Salon de eventos NOMBRE <small><br>Nombre de la calle, Numelo
                 Colonia/Distrito/Region, Ciudad.</small></span>
           </p>
           <!-- Campo para LINK DE INVITACION -->
           <p class="valor">
             <i class='bx bx-link-alt'></i>
             <span class="nombre_valor">Link de invitación:</span>
-            <span class="texto_valor">https://eventqrxpress.com/ABC123/</span>
+            <span class="texto_valor"id="datos_">https://eventqrxpress.com/ABC123/</span>
             <!-- <button class="copiar"><i class='bx bx-copy' ></i></button> -->
           </p>
         </div>

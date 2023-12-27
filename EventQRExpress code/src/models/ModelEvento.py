@@ -24,3 +24,18 @@ class ModelEvento():
                 return None
         except Exception as ex:
             raise Exception(ex)
+
+    @classmethod
+    def datosEvento(self, db, id):
+        try:
+            cursor = db.connection.cursor()
+            sql = f"select nombre, fecha, horario, asistentes, tipo, lugar from evento where id = '{id}';" #Tipo de invitacion
+            cursor.execute(sql)
+            row = cursor.fetchone()
+            if row != None:
+                evento = Evento(id=None, nombre=row[0], fecha=row[1], horario=row[2], asistentes=row[3], tipo=row[4], lugar=row[5], id_usuario=None, id_salon=None)
+                return evento.to_dict()
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)

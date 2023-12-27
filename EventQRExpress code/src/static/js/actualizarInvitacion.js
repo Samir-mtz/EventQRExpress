@@ -43,3 +43,30 @@ function formatearFecha(fecha) {
   var fechaFormateada = partesFecha[2] + "/" + partesFecha[1] + "/" + partesFecha[0];
   return fechaFormateada;
 }
+
+
+//Funcion para actualizar datos de Gestionar evento
+function obtenerDatosEvento(elemento) {
+  // Obtener el valor del atributo 'alt'
+  var alt = elemento.getAttribute('alt');
+  // Dividir el valor en dos partes usando el carácter de subrayado como separador
+  var partes = alt.split('_');
+  // Obtener el segundo número (si existe)
+  var segundoNumero = partes.length > 1 ? partes[1] : null;
+
+  const url = "http://127.0.0.1:5000/datosEvento/" + segundoNumero;
+  console.log( url);
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      document.getElementById("datos_nombre").innerHTML = data.nombre;
+      document.getElementById("datos_fecha").innerHTML = data.fecha;
+      document.getElementById("datos_horario").innerHTML = data.horario;
+      document.getElementById("datos_asistentes").innerHTML = data.asistentes;
+      document.getElementById("datos_tipo").innerHTML = data.tipo;
+      document.getElementById("datos_lugar").innerHTML = data.lugar;
+    });
+
+  // Mostrar el valor en la consola (puedes hacer lo que quieras con el valor)
+}

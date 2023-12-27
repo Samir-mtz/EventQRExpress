@@ -10,6 +10,7 @@ from flask_mail import Mail, Message
 from models.token import generate_confirmation_token, confirm_token
 from flask import jsonify
 import shutil
+import os
 from datetime import datetime
 # Clases
 # Models:
@@ -59,6 +60,10 @@ def index():
 @app.route('/capacidadSalones/<capacidad>')
 def jsonroutedestino(capacidad):
     return jsonify(ModelSalon.consultarSalon(db, capacidad))
+
+@app.route('/datosEvento/<id>')
+def jsondatos(id):
+    return jsonify(ModelEvento.datosEvento(db, id))
 
 @app.route('/direccion/<ciudad>')
 def consultarDireccion(ciudad):
@@ -122,9 +127,21 @@ def logout():
 @login_required
 def homeCliente():
     user = ModelUser.consulta_email(db, current_user.email)
+    nombre_carpeta = str(user.id)
     # print(user.tipo)
     if user.tipo == 'usuario':
-        return render_template('anfitrion.html')
+        ruta_carpeta = os.path.join('src\static', 'img', 'eventos', nombre_carpeta)
+        imagenes = []
+        # Verificar si la carpeta existe
+        if os.path.exists(ruta_carpeta):
+            for archivo in os.listdir(ruta_carpeta):
+                if archivo.endswith(('.jpg', '.jpeg', '.png', '.gif', '.webp')):
+                    ruta_imagen = os.path.join('..\static', 'img', 'eventos', nombre_carpeta, archivo)
+                    print(ruta_imagen)
+
+                    nombre_evento = os.path.splitext(archivo)[0]  # Nombre del archivo sin extensión
+                    imagenes.append({"src": ruta_imagen, "alt": nombre_evento, "nombre_evento": nombre_evento})
+        return render_template('anfitrion.html', imagenes=imagenes)
     elif user.tipo == 'admin':
         return redirect(url_for('admin'))
     else:
@@ -334,11 +351,7 @@ def contrasenaRestablecido():
         flash('Algo salió mal. Por favor intenta de nuevo')
         return redirect(url_for('login'))
 ######################################################################################################################
-# @app.route('/id', methods=['GET'])
-# def idUsurario():
-#     id_deSalon= ModelSalon.consultarId(db, "Coyoacán")
-#     return f"{id_deSalon}"
-#Registrar Evento
+
 @app.route('/registrarEvento', methods=['POST'])
 def registrarEvento():
     if request.method == 'POST':
@@ -358,6 +371,7 @@ def registrarEvento():
             # flash("Algo salió mal, intenta de nuevo")
             # return render_template('formularioLoginRegister.html')
             return redirect(url_for('homeCliente'))
+
 
 # Reenvío de correo
 @app.route('/resendRepartidor/<email>')
