@@ -356,3 +356,25 @@ function preguntaCancelarSeleccionAsientos() {
     cancelButtonText: "No",
   });
 }
+
+// Alerta al copiar el linkd e invitacion
+function copiarTexto() {
+  // Contenido del contenedor
+  const textoParaCopiar = document.getElementById('link_invitacion');
+  const texto = textoParaCopiar.textContent.trim();
+  const inputTemporal = document.createElement('input');
+  // Asignacion del contenedor
+  inputTemporal.setAttribute('value', texto);
+  document.body.appendChild(inputTemporal);
+  // Selecciona y copia el texto del campo de entrada
+  inputTemporal.select();
+  document.execCommand('copy');
+  document.body.removeChild(inputTemporal);
+  // Alerta de link copiado
+  Swal.fire({
+    icon: "success",
+    title: "Link copiado",
+    text: "Se ha copiado el link de invitación con éxito.",
+    confirmButtonText: "¡Genial!",
+  });
+}
