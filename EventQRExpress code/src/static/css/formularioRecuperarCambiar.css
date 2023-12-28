@@ -134,8 +134,19 @@ body {
   padding: 20px 0;
 }
 
+/* Contenedor de los campos del formulario */
+.input-boxes{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
 /* Contenedor de cada campo del formulario */
-.forms .form-content .input-box {
+.input-box {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -147,45 +158,47 @@ body {
 }
 
 /* Contenedor de cada campo del formulario */
-.forms .form-content .input-box span{
+.input-box span{
   color: red;
   font-weight: 600;
   font-size: 1rem;
   text-align: justify;
+  margin-left: 40px;
 }
 
 /* Input de cada campo del formulario */
-.form-content .input-box .contenido_campo {
+.input-box .contenido_campo {
   height: 100%;
   width: 100%;
   border: none;
-  padding: 10px 0;
   font-size: 1rem;
   font-weight: 500;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   background: none;
+  display: flex;
 }
 
 /* Icono del campo */
-.form-content .input-box .contenido_campo i {
-  position: absolute;
+.input-box i {
   color: var(--main-color);
-  font-size: 1.5rem;
-  padding-left: 5px;
+  font-size: 2rem;
+  display: block;
+  text-align: center;
+  width: 10%;
 }
 
 /* Input de cada campo del formulario */
-.form-content .input-box .contenido_campo input {
+.input-box input {
   height: 100%;
   width: 100%;
-  outline: none;
-  border: none;
-  padding: 0 15px 0 40px;
   font-size: 16px;
   font-weight: 500;
   transition: all 0.3s ease;
   background: none;
+  padding: 5px;
+  border: none;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
 }
 
 /* Contenedor de los botones */

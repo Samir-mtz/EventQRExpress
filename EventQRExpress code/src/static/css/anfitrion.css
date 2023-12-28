@@ -208,11 +208,13 @@ input[type="number"] {
   border: none;
   background: none;
   box-shadow: none;
-  border-bottom: 1px solid var(--border-form);
+  border: 2px solid var(--border-form);
   color: var(--text-color-form);
   font-weight: 500;
   font-size: 14px;
   text-align: center;
+  border-radius: 5px;
+  padding: 3px;
 }
 
 /* Estilos para input de tipo date */
@@ -715,23 +717,31 @@ select:focus {
 }
 
 /* Estilos del ancla */
-.formulario_crear .botones_formulario a {
+.formulario_crear .botones_formulario a,
+.formulario_crear .botones_formulario button.btn-a {
   padding: 5px 20px;
   border-radius: 8px;
+  height: 30px;
+
 }
 
+.botones_formulario button.btn-a{
+  height: 30px;
+}
 /* Estilos del boton para cancelar */
 .formulario_crear .botones_formulario a.no {
   background-color: var(--button-no-color);
 }
 
 /* Estilos del boton para confirmar */
-.formulario_crear .botones_formulario a.yes {
+.formulario_crear .botones_formulario a.yes,
+.formulario_crear .botones_formulario button.btn-a {
   background-color: var(--button-yes-color);
 }
 
 /* Animacion al pasar el cursor por encima de las anclas */
-.formulario_crear .botones_formulario a:hover {
+.formulario_crear .botones_formulario a:hover, 
+.formulario_crear .botones_formulario button.btn-a:hover {
   cursor: pointer;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
 }
