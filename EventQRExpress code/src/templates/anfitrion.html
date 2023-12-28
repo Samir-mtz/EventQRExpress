@@ -326,15 +326,27 @@
           <img src="../static/img/invitacion02.webp" alt="Invitacion 02">
           <p class="nombre_evento">Nombre del evento</p>
         </div> -->
-        <div class="imagen-container">
+        <!-- <div class="imagen-container">
           <img src="../static/img/invitacion01.webp" alt="Invitacion 01">
           <p class="nombre_evento">Nombre del evento</p>
-        </div>
+        </div> -->
+
+        <a href="#gestionar" class="contenedor_imagen" onclick="cambiarImagen('../static/img/invitacion01.webp')">
+          <img src="../static/img/invitacion01.webp" alt="Invitacion 01">
+          <p>Nombre del evento</p>
+        </a>
+
+       
+
         {% for imagen in imagenes %}
-            <div class="imagen-container">
+            <!-- <div class="imagen-container">
                 <img src="{{ imagen['src'] }}" alt="{{ imagen['alt'] }}" onclick="obtenerDatosEvento(this)">
                 <p class="nombre_evento">{{ imagen['nombre_evento'] }}</p>
-            </div>
+            </div> -->
+            <a href="#gestionar" class="contenedor_imagen" onclick="obtenerDatosEvento(this)">
+              <img src="{{ imagen['src'] }}" alt="{{ imagen['alt'] }}">
+              <p>{{ imagen['nombre_evento'] }}</p>
+            </a>
         {% endfor %}
       </div>
     </section>
@@ -345,54 +357,477 @@
       <h1>Gestionar Evento</h1>
       <!-- Contenedor de resumen del evento -->
       <div class="valores_evento">
-        <img src="../static/img/invitacion01.webp" alt="">
+        <div class="contenedor_invitacion" id="contenedorInvitacion">
+          <img src="../static/img/invitacion01.webp" alt="">
+        </div>
         <div class="contenedor_valores">
           <!-- Campo para NOMBRE DEL EVENTO -->
           <p class="valor">
             <i class='bx bxs-calendar-event'></i>
             <span class="nombre_valor">Nombre del evento:</span>
-            <span class="texto_valor" id="datos_nombre">nombreEvento</span>
+            <span class="texto_valor">nombreEvento</span>
           </p>
           <!-- Campo para FECHA -->
           <p class="valor">
             <i class='bx bx-calendar'></i>
             <span class="nombre_valor">Fecha:</span>
-            <span class="texto_valor"id="datos_fecha">DD / MM / AAAA</span>
+            <span class="texto_valor">DD / MM / AAAA</span>
           </p>
           <!-- Campo para HORARIO -->
           <p class="valor">
             <i class='bx bxs-watch'></i>
             <span class="nombre_valor">"Horario:"</span>
-            <span class="texto_valor"id="datos_horario">HH:MM x.m.</span>
+            <span class="texto_valor">HH:MM x.m.</span>
           </p>
           <!-- Campo para NUMERO DE ASISTENTES -->
           <p class="valor">
             <i class='bx bx-male-female'></i>
             <span class="nombre_valor">Número estimado de asistentes:</span>
-            <span class="texto_valor"id="datos_asistentes">###</span>
+            <span class="texto_valor">###</span>
           </p>
           <!-- Campo para TIPO DE EVENTO -->
           <p class="valor">
             <i class='bx bxs-balloon'></i>
             <span class="nombre_valor">Tipo de evento:</span>
-            <span class="texto_valor"id="datos_tipo">(XV años / Boda / Reunión)</span>
+            <span class="texto_valor">(XV años / Boda / Reunión)</span>
           </p>
           <!-- Campo para LUGAR DEL EVENTO -->
           <p class="valor">
             <i class='bx bxs-map'></i>
             <span class="nombre_valor">Lugar del evento:</span>
-            <span class="texto_valor"id="datos_lugar">Salon de eventos NOMBRE <small><br>Nombre de la calle, Numelo
+            <span class="texto_valor">Salon de eventos NOMBRE <small><br>Nombre de la calle, Numelo
                 Colonia/Distrito/Region, Ciudad.</small></span>
           </p>
           <!-- Campo para LINK DE INVITACION -->
-          <p class="valor">
+          <p class="valor link">
             <i class='bx bx-link-alt'></i>
             <span class="nombre_valor">Link de invitación:</span>
-            <span class="texto_valor"id="datos_">https://eventqrxpress.com/ABC123/</span>
-            <!-- <button class="copiar"><i class='bx bx-copy' ></i></button> -->
+            <span class="texto_valor" id="link_invitacion">https://eventqrxpress.com/ABC123/</span>
+            <button class="copiar" onclick="copiarTexto()"><i class='bx bx-copy'></i></button>
           </p>
         </div>
       </div>
+      <!-- Contenedor de las tablas -->
+      <div class="contenedor_tablas">
+        <!-- Tabla #1 -->
+        <div class="contenedor_tabla">
+          <table class="tabla1">
+            <!-- Titulo tabla -->
+            <tr class="titulo_tabla">
+              <th colspan="9">Tabla #1 - Registro de Confirmaciones</th>
+            </tr>
+            <!-- Subtitulos tabla -->
+            <tr class="subtitulos_tabla">
+              <th>No. Invitado</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Confirmación</th>
+              <th>No. de Asistentes</th>
+              <th>Rol</th>
+              <th colspan="3">Acciones</th>
+            </tr>
+            <!-- Registro Tabla 1 -->
+            <tr class="valores_tabla">
+              <td>0001</td>
+              <td>Juan Perez</td>
+              <td>jp@mail.com</td>
+              <td>Si</td>
+              <td>4</td>
+              <td>Anfitrión</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroAsistente()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroInvitado()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="enviar" onclick="enviarLinkConfirmacion()">Enviar <i class='bx bx-send'></i></button>
+              </td>
+            </tr>
+            <!-- Registro Tabla 1 -->
+            <tr class="valores_tabla">
+              <td>0002</td>
+              <td>maria Jimenez</td>
+              <td>mj@mail.com</td>
+              <td>Si</td>
+              <td>3</td>
+              <td>Invitado</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroInvitado()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroInvitado()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="enviar" onclick="enviarLinkConfirmacion()">Enviar <i class='bx bx-send'></i></button>
+              </td>
+            </tr>
+            <!-- Registro Tabla 1 -->
+            <tr class="valores_tabla">
+              <td>0003</td>
+              <td>maria Rojas</td>
+              <td>jp@mail.com</td>
+              <td>No</td>
+              <td>-</td>
+              <td>Invitado</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroInvitado()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroInvitado()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="no_enviar" onclick="enviarLinkConfirmacion()">Enviar <i
+                    class='bx bx-send'></i></button></td>
+            </tr>
+            <!-- Registro Tabla 1 -->
+            <tr class="valores_tabla">
+              <td>0002</td>
+              <td>maria Jimenez</td>
+              <td>mj@mail.com</td>
+              <td>Si</td>
+              <td>3</td>
+              <td>Invitado</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroInvitado()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroInvitado()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="enviar" onclick="enviarLinkConfirmacion()">Enviar <i class='bx bx-send'></i></button>
+              </td>
+            </tr>
+            <!-- Registro Tabla 1 -->
+            <tr class="valores_tabla">
+              <td>0003</td>
+              <td>maria Rojas</td>
+              <td>jp@mail.com</td>
+              <td>No</td>
+              <td>-</td>
+              <td>Invitado</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroInvitado()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroInvitado()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="no_enviar" onclick="enviarLinkConfirmacion()">Enviar <i
+                    class='bx bx-send'></i></button></td>
+            </tr>
+            <!-- Registro Tabla 1 -->
+            <tr class="valores_tabla">
+              <td>0002</td>
+              <td>maria Jimenez</td>
+              <td>mj@mail.com</td>
+              <td>Si</td>
+              <td>3</td>
+              <td>Invitado</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroInvitado()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroInvitado()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="enviar" onclick="enviarLinkConfirmacion()">Enviar <i class='bx bx-send'></i></button>
+              </td>
+            </tr>
+            <!-- Registro Tabla 1 -->
+            <tr class="valores_tabla">
+              <td>0003</td>
+              <td>maria Rojas</td>
+              <td>jp@mail.com</td>
+              <td>No</td>
+              <td>-</td>
+              <td>Invitado</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroInvitado()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroInvitado()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="no_enviar" onclick="enviarLinkConfirmacion()">Enviar <i
+                    class='bx bx-send'></i></button></td>
+            </tr>
+            <!-- Registro Tabla 1 -->
+            <tr class="valores_tabla">
+              <td>0002</td>
+              <td>maria Jimenez</td>
+              <td>mj@mail.com</td>
+              <td>Si</td>
+              <td>3</td>
+              <td>Invitado</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroInvitado()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroInvitado()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="enviar" onclick="enviarLinkConfirmacion()">Enviar <i class='bx bx-send'></i></button>
+              </td>
+            </tr>
+            <!-- Registro Tabla 1 -->
+            <tr class="valores_tabla">
+              <td>0003</td>
+              <td>maria Rojas</td>
+              <td>jp@mail.com</td>
+              <td>No</td>
+              <td>-</td>
+              <td>Invitado</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroInvitado()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroInvitado()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="no_enviar" onclick="enviarLinkConfirmacion()">Enviar <i
+                    class='bx bx-send'></i></button></td>
+            </tr>
+            <!-- Registro Tabla 1 -->
+            <tr class="valores_tabla">
+              <td>0003</td>
+              <td>maria Rojas</td>
+              <td>jp@mail.com</td>
+              <td>No</td>
+              <td>-</td>
+              <td>Invitado</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroInvitado()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroInvitado()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="no_enviar" onclick="enviarLinkConfirmacion()">Enviar <i
+                    class='bx bx-send'></i></button></td>
+            </tr>
+            <!-- Registro Tabla 1 -->
+            <tr class="valores_tabla">
+              <td>0003</td>
+              <td>maria Rojas</td>
+              <td>jp@mail.com</td>
+              <td>No</td>
+              <td>-</td>
+              <td>Invitado</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroInvitado()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroInvitado()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="no_enviar" onclick="enviarLinkConfirmacion()">Enviar <i
+                    class='bx bx-send'></i></button></td>
+            </tr>
+            <!-- Registro Tabla 1 -->
+            <tr class="valores_tabla">
+              <td>0003</td>
+              <td>maria Rojas</td>
+              <td>jp@mail.com</td>
+              <td>No</td>
+              <td>-</td>
+              <td>Invitado</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroInvitado()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroInvitado()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="no_enviar" onclick="enviarLinkConfirmacion()">Enviar <i
+                    class='bx bx-send'></i></button></td>
+            </tr>
+            <!-- Registro Tabla 1 -->
+            <tr class="valores_tabla">
+              <td>0003</td>
+              <td>maria Rojas</td>
+              <td>jp@mail.com</td>
+              <td>No</td>
+              <td>-</td>
+              <td>Invitado</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroInvitado()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroInvitado()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="no_enviar" onclick="enviarLinkConfirmacion()">Enviar <i
+                    class='bx bx-send'></i></button></td>
+            </tr>
+          </table>
+        </div>
+        <div class="boton_todos">
+          <button onclick="enviarLinksConfirmacion()">Enviar a todos <i class='bx bx-send'></i></button>
+        </div>
+        <!-- Tabla #2 -->
+        <div class="contenedor_tabla">
+          <table class="tabla2">
+            <div class="header_tabla">
+              <!-- Titulo tabla -->
+              <tr class="titulo_tabla">
+                <th colspan="8">Tabla #2 - Registro de Asistentes</th>
+              </tr>
+              <!-- Subtitulos tabla -->
+              <tr class="subtitulos_tabla">
+                <th>No. Asistente</th>
+                <th>Nombre Invitado</th>
+                <th>Nombre Asistente</th>
+                <th>Asiento</th>
+                <th>Rol</th>
+                <th colspan="3">Acciones</th>
+              </tr>
+            </div>
+            <!-- Registro Tabla 2 -->
+            <tr class="valores_tabla">
+              <td>0001</td>
+              <td>Juan Perez (1/4)</td>
+              <td>Juan Perez</td>
+              <td>A01</td>
+              <td>Anfitrión</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroAsistente()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroAsistente()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="enviar" onclick="enviarInvitacion()">Enviar <i class='bx bx-send'></i></button>
+              </td>
+            </tr>
+            <!-- Registro Tabla 2 -->
+            <tr class="valores_tabla">
+              <td>0002</td>
+              <td>Juan Perez (2/4)</td>
+              <td>Luis Perez</td>
+              <td>A02</td>
+              <td>Anfitrión</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroAsistente()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroAsistente()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="enviar" onclick="enviarInvitacion()">Enviar <i class='bx bx-send'></i></button>
+              </td>
+            </tr>
+            <!-- Registro Tabla 2 -->
+            <tr class="valores_tabla">
+              <td>0003</td>
+              <td>Juan Perez (3/4)</td>
+              <td>Oscar Perez</td>
+              <td>A03</td>
+              <td>Anfitrión</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroAsistente()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroAsistente()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="no_enviar" onclick="enviarInvitacion()">Enviar <i
+                    class='bx bx-send'></i></button></td>
+            </tr>
+            <!-- Registro Tabla 2 -->
+            <tr class="valores_tabla">
+              <td>0004</td>
+              <td>Juan Perez (4/4)</td>
+              <td>Fatima Perez</td>
+              <td>A04</td>
+              <td>Anfitrión</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroAsistente()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroAsistente()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="enviar" onclick="enviarInvitacion()">Enviar <i class='bx bx-send'></i></button>
+              </td>
+            </tr>
+            <!-- Registro Tabla 2 -->
+            <tr class="valores_tabla">
+              <td>0005</td>
+              <td>Maria Jimenez (1/3)</td>
+              <td>Maria Jimenez</td>
+              <td>A05</td>
+              <td>Anfitrión</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroAsistente()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroAsistente()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="no_enviar" onclick="enviarInvitacion()">Enviar <i
+                    class='bx bx-send'></i></button></td>
+            </tr>
+            <!-- Registro Tabla 2 -->
+            <tr class="valores_tabla">
+              <td>0006</td>
+              <td>Maria Jimenez (2/3)</td>
+              <td>Karla Jimenez</td>
+              <td>A06</td>
+              <td>Anfitrión</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroAsistente()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroAsistente()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="enviar" onclick="enviarInvitacion()">Enviar <i class='bx bx-send'></i></button>
+              </td>
+            </tr>
+            <!-- Registro Tabla 2 -->
+            <tr class="valores_tabla">
+              <td>0007</td>
+              <td>Maria Jimenez (3/3)</td>
+              <td>Noemi Jimenez</td>
+              <td>A07</td>
+              <td>Anfitrión</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroAsistente()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroAsistente()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="no_enviar" onclick="enviarInvitacion()">Enviar <i
+                    class='bx bx-send'></i></button></td>
+            </tr>
+            <!-- Registro Tabla 2 -->
+            <tr class="valores_tabla">
+              <td>0008</td>
+              <td>Ana Aguilar (1/3)</td>
+              <td>Ana Aguilar</td>
+              <td>A08</td>
+              <td>Anfitrión</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroAsistente()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroAsistente()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="enviar" onclick="enviarInvitacion()">Enviar <i class='bx bx-send'></i></button>
+              </td>
+            </tr>
+            <!-- Registro Tabla 2 -->
+            <tr class="valores_tabla">
+              <td>0009</td>
+              <td>Ana Aguilar (2/3)</td>
+              <td>Raul Aguilar</td>
+              <td>A09</td>
+              <td>Anfitrión</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroAsistente()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroAsistente()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="no_enviar" onclick="enviarInvitacion()">Enviar <i
+                    class='bx bx-send'></i></button></td>
+            </tr>
+            <!-- Registro Tabla 2 -->
+            <tr class="valores_tabla">
+              <td>0009</td>
+              <td>Ana Aguilar (2/3)</td>
+              <td>Raul Aguilar</td>
+              <td>A09</td>
+              <td>Anfitrión</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroAsistente()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroAsistente()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="no_enviar" onclick="enviarInvitacion()">Enviar <i
+                    class='bx bx-send'></i></button></td>
+            </tr>
+            <!-- Registro Tabla 2 -->
+            <tr class="valores_tabla">
+              <td>0009</td>
+              <td>Ana Aguilar (2/3)</td>
+              <td>Raul Aguilar</td>
+              <td>A09</td>
+              <td>Anfitrión</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroAsistente()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroAsistente()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="no_enviar" onclick="enviarInvitacion()">Enviar <i
+                    class='bx bx-send'></i></button></td>
+            </tr>
+            <!-- Registro Tabla 2 -->
+            <tr class="valores_tabla">
+              <td>0009</td>
+              <td>Ana Aguilar (2/3)</td>
+              <td>Raul Aguilar</td>
+              <td>A09</td>
+              <td>Anfitrión</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroAsistente()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroAsistente()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="no_enviar" onclick="enviarInvitacion()">Enviar <i
+                    class='bx bx-send'></i></button></td>
+            </tr>
+            <!-- Registro Tabla 2 -->
+            <tr class="valores_tabla">
+              <td>0009</td>
+              <td>Ana Aguilar (2/3)</td>
+              <td>Raul Aguilar</td>
+              <td>A09</td>
+              <td>Anfitrión</td>
+              <td><button class="editar" onclick="preguntaEditarRegistroAsistente()">Editar <i
+                    class='bx bxs-edit-alt'></i></button></td>
+              <td><button class="eliminar" onclick="preguntaEliminarRegistroAsistente()">Eliminar <i
+                    class='bx bxs-x-circle'></i></button></td>
+              <td><button class="no_enviar" onclick="enviarInvitacion()">Enviar <i
+                    class='bx bx-send'></i></button></td>
+            </tr>
+          </table>
+        </div>
       </div>
     </section>
 
@@ -421,6 +856,8 @@
   <script src="../static/js/invitacionSeleccionada.js"></script>
   <script src="../static/js/actualizarInvitacion.js"></script>
   <script src="../static/js/alertas.js"></script>
+  <script src="../static/js/gestionarEvento.js"></script>
+
 </body>
 
 </html>

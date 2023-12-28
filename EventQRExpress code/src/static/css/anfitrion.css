@@ -774,7 +774,40 @@ select:focus {
   justify-content: space-around; 
   align-items: center;
   margin-top: 20px;
-  width: 75%;
+  margin-bottom: 30px;
+  width: 70%;
+}
+
+.campo-historial-eventos a{
+  text-decoration: none;
+  color: var(--third-text-color);
+}
+
+.campo-historial-eventos a:hover{
+  cursor: pointer;
+}
+
+.contenedor_imagen{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 300px;
+  width: 300px;
+}
+
+.contenedor_imagen img{
+    max-width: 90%;
+    max-height: 80%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.contenedor_imagen p{
+  font-size: 16px;
+  max-width: 100%;
+  font-weight: 900;
+  margin-top: 10px;
 }
 
 /* Contenedor de cada una de las imagenes */
@@ -787,40 +820,14 @@ select:focus {
   align-items: center;
 }
 
-/* Estilo específico para todas las imágenes */
-.campo-historial-eventos img {
-  width: 300px;
-  height: 450px;
-}
-
-/* Estilo para el borde al hacer clic */
-.campo-historial-eventos .imagen-container.clicked {
-  border: 3px solid red;
-  border-radius: 12px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Estilo para el icono */
-.campo-historial-eventos .imagen-container p {
-  font-size: 1.2rem;
-  color: var(--third-text-color);
-  font-weight: 700;
-  margin-top: 10px;
-  text-align: center;
-  max-width: 350px;
-}
-
-/* Estilo específico para la segunda imagen */
-.campo-historial-eventos .imagen-container.special-image img {
-  width: 400px;
-  height: 300px;
-}
-
 /***********************************************************************************************************************************
                                                       Seccion  GESTIONAR EVENTO
 ***********************************************************************************************************************************/
+
+/* Oculta la sección por defecto */
+#gestionar {
+  display: none;
+}
 
 /* Contenedor de gestionar */
 .gestionar {
@@ -847,15 +854,26 @@ select:focus {
 /************************ Formulario para el paso 3 ************************/
 
 .gestionar .valores_evento{
-  /* border: 1px solid green; */
   display: flex;
   justify-content: space-evenly;
+  width: 50%;
 }
 
-.gestionar .valores_evento img{
-  height: 300px;
-  margin: auto;
+.gestionar .valores_evento .contenedor_invitacion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 250px;
 }
+
+.gestionar .valores_evento .contenedor_invitacion img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
 
 .gestionar .valores_evento .contenedor_valores{
   width: 100%;
@@ -863,9 +881,11 @@ select:focus {
 
 .gestionar .valores_evento .contenedor_valores .valor {
   display: flex;
-  justify-content: left;
-  margin: 25px 0;
-  /* border: 1px solid red; */
+  margin: 10px 0;
+}
+
+.gestionar .valores_evento .contenedor_valores .link{
+  align-items: center;
 }
 
 .gestionar .valores_evento .contenedor_valores .valor i{
@@ -873,6 +893,16 @@ select:focus {
   color: var(--main-color);
   width: 10%;
   text-align: center;
+}
+
+.gestionar .valores_evento .contenedor_valores .valor button{
+  background: none;
+  border: none;
+  text-align: justify;  
+}
+
+.gestionar .valores_evento .contenedor_valores .valor button:hover{
+  cursor: pointer;
 }
 
 .gestionar .valores_evento .contenedor_valores .valor span.nombre_valor {
@@ -888,11 +918,167 @@ select:focus {
   font-style: italic;
   text-align: justify;  
   flex: 1;
+  margin-left: 20px;
 }
 
-.gestionar .valores_evento .contenedor_valores .valor button {
-  right: 30px;
+.contenedor_tablas{
+  margin: 20px 0px;
+  width: 60%; 
 }
 
+.contenedor_tablas .tabla1,
+.contenedor_tablas .tabla2{
+  border-collapse: collapse;
+}
 
+td, th {
+  border: 1px solid #2d2d2d;
+  padding: 1px;
+}
 
+.titulo_tabla {
+  background-color: var(--main-color);
+  color: var(--text-color); 
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+  border: 1.5px solid #2d2d2d;
+}
+
+.subtitulos_tabla {
+  background-color: var(--second-main-color);
+  font-size: 12px;
+  color: var(--text-color); 
+  border: 1px solid #2d2d2d;
+  padding: 1px;
+}
+
+.tabla1 tr:nth-child(2),
+.tabla2 tr:nth-child(2) {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/**********  Dimensiones de la tabla 1 ***********/
+
+/* Columna de NUMERO DE INVITADO */
+.tabla1 .subtitulos_tabla th:nth-child(1) {
+  width: 60px;
+}
+/* Columna de NOMBRE */
+.tabla1 .subtitulos_tabla th:nth-child(2) {
+  width: 200px;
+}
+/* Columna de CORREO */
+.tabla1 .subtitulos_tabla th:nth-child(3) {
+  width: 200px;
+}
+/* Columna de CONFIRMACION */
+.tabla1 .subtitulos_tabla th:nth-child(4) {
+  width: 90px;
+}
+/* Columna de ASISTENTES */
+.tabla1 .subtitulos_tabla th:nth-child(5) {
+  width: 70px;
+}
+/* Columna de ROL */
+.tabla1 .subtitulos_tabla th:nth-child(6) {
+  width: 50px;
+}
+/* Columna de ACCIONES */
+.tabla1 .subtitulos_tabla th:nth-child(7) {
+  width: 500px;
+}
+
+/**********  Dimensiones de la tabla 2 ***********/
+
+/* Columna de NUMERO DE INVITADO */
+.tabla2 .subtitulos_tabla th:nth-child(1) {
+  width: 60px;
+}
+/* Columna de NOMBRE */
+.tabla2 .subtitulos_tabla th:nth-child(2) {
+  width: 200px;
+}
+/* Columna de CORREO */
+.tabla2 .subtitulos_tabla th:nth-child(3) {
+  width: 200px;
+}
+/* Columna de CONFIRMACION */
+.tabla2 .subtitulos_tabla th:nth-child(4) {
+  width: 80px;
+}
+/* Columna de ASISTENTES */
+.tabla2 .subtitulos_tabla th:nth-child(5) {
+  width: 130px;
+}
+/* Columna de ROL */
+.tabla2 .subtitulos_tabla th:nth-child(6) {
+  width: 300px;
+}
+/* Columna de ACCIONES */
+.tabla2 .subtitulos_tabla th:nth-child(7) {
+  width: 300px;
+}
+
+.valores_tabla {
+  font-size: 12px;
+  text-align: center;
+}
+
+.valores_tabla button,
+.contenedor_tablas button{
+  border: none;
+  background: none;
+  font-weight: 900;
+  font-size: 14px;
+}
+
+.valores_tabla button:hover,
+.contenedor_tablas button:hover{
+  cursor: pointer;
+}
+
+.valores_tabla .editar{
+  color: rgb(255, 225, 0);
+}
+
+.valores_tabla .eliminar {
+  color: rgb(255, 0, 0);
+}
+
+.valores_tabla .enviar,
+.contenedor_tablas .boton_todos button{
+  color: rgb(3, 169, 3);
+}
+
+.valores_tabla .no_enviar{
+  color: rgb(143, 143, 143);
+}
+
+.contenedor_tablas .boton_todos{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 5px;
+  font-weight: 900;
+}
+
+/* Scroll de la tabla */
+.contenedor_tabla {
+  max-height: 300px;  
+  overflow-y: auto;  
+}
+.contenedor_tabla::-webkit-scrollbar {
+  width: 5px;
+}
+.contenedor_tabla::-webkit-scrollbar-track {
+  background-color: var(--third-bg-color);
+}
+.contenedor_tabla::-webkit-scrollbar-thumb {
+  background-color: var(--second-bg-color);
+  border-radius: 5px;
+}
