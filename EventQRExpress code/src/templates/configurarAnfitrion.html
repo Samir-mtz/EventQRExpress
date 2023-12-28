@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <!-- Metadatos -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../static/img/logo.png">
+  <!-- Titulo de la pagina en la pestaña -->
+  <title>EventQRXpress | Anfitrión</title>
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="../static/css/general.css">
+  <link rel="stylesheet" href="../static/css/menuUsuario.css">
+  <link rel="stylesheet" href="../static/css/configurarUsuario.css">
+  <link rel="stylesheet" href="../static/css/footerUsuario.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+  <!-- Menu Lateral -->
+  <nav class="menuLateral">
+
+    <!-- Seccion para el logo del usuario -->
+    <div class="detalles_usuario">
+      <div class="datos_usuario">
+        <i class='bx bxs-user-circle'></i>
+        <p class="nombre">{{ current_user.nombre }}</p>
+        <!-- Boton para ir a CONFIGURACION DEL PERFIL -->
+        <a href="#configuracion" class="configuracion">
+          <p class="configuracion">Configurar Perfil</p>
+        </a>
+      </div>
+      <i class='bx bx-menu' id="btn"></i>
+    </div>
+
+    <!-- Contenido del menu -->
+    <ul class="navBar">
+      <!-- Boton para ir a INICIO -->
+      <li>
+        <a href="#inicio">
+          <i class='bx bxs-home'></i>
+          <span class="nombre_link">Inicio</span>
+        </a>
+      </li>
+      <!-- Boton para ir a CREAR EVENTO -->
+      <li>
+        <a href="#crear">
+          <i class='bx bxs-calendar-event'></i>
+          <span class="nombre_link">Crear Evento</span>
+        </a>
+      </li>
+      <!-- Boton para ir a EVENTOS -->
+      <li>
+        <a href="#eventos">
+          <i class='bx bx-history'></i>
+          <span class="nombre_link">Eventos</span>
+        </a>
+      </li>
+      <!-- Boton para ir a CERRAR SESION -->
+      <li class="logout fondo">
+        <a href="{{url_for('logout')}}">
+          <i class='bx bx-log-out'></i>
+          <span class="nombre_link">Cerrar Sesión</span>
+        </a>
+      </li>
+    </ul>
+
+  </nav>
+
+  <!-- Contenido de la pagina -->
+  <main class="contenido">
+
+    <!-- Seccion CONFIGURAR PERFIL -->
+    <section class="configurar" id="configurar">
+      <h1>Configurar <span>Perfil</span></h1>
+
+      <!-- Formulario Configurar Usuario -->
+      <form action="" method="" class="formulario_configurar">
+        <div class="contenedor_superior">
+          <div class="input-boxes">
+            <!-- Campo para NOMBRE COMPLETO -->
+            <div class="input-box">
+              <div class="contenido_campo">
+                <i class='bx bxs-user'></i>
+                <input type="text" name="nombre" placeholder="Nombre Completo" id="nombre_configurar" required>
+              </div>
+              <span id="nombre_configurar_msg" class="error-msg"></span>
+            </div>
+            <!-- Campo para CORREO ELECTRONICO-->
+            <div class="input-box">
+              <div class="contenido_campo">
+                <i class='bx bxs-envelope'></i>
+                <input type="text" name="email" placeholder="Correo electrónico" id="email_configurar" required>
+              </div>
+              <span id="email_configurar_msg" class="error-msg"></span>
+            </div>
+            <!-- Campo para CORREO TELEFONO -->
+            <div class="input-box">
+              <div class="contenido_campo">
+                <i class='bx bxs-phone'></i>
+                <input type="text" name="telefono" placeholder="Telefóno" id="telefono_configurar" required>
+              </div>
+              <span id="email_configurar_msg" class="error-msg"></span>
+            </div>
+            <!-- Campo para CONTRASEÑA -->
+            <div class="input-box">
+              <div class="contenido_campo">
+                <i class='bx bxs-lock-alt'></i>
+                <input type="password" name="password" placeholder="Contraseña" id="password_configurar" required>
+              </div>
+              <span id="password_configurar_msg" class="error-msg"></span>
+            </div>
+            <!-- Campo para CONFIRMAR CONTRASEÑA -->
+            <div class="input-box">
+              <div class="contenido_campo">
+                <i class='bx bxs-lock-alt'></i>
+                <input type="password" placeholder="Confirmar contraseña" id="password2_configurar" required>
+              </div>
+              <span id="password2_configurar_msg" class="error-msg"></span>
+            </div>
+
+          </div>
+          <!-- Imagen -->
+          <div class="imagen_configurar">
+            <img src="../static/img/configurarUsuario.svg" alt="">
+          </div>
+        </div>
+        <!-- Botones del formulario -->
+        <div class="botones_formulario">
+          <button class="no">Cancelar</button>
+          <button class="yes" type="submit">Confirmar</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Pie de la pagina -->
+    <footer class="footer">
+      <!-- Texto del Copyright -->
+      <p class="derechos">
+        <i class='bx bx-copyright'></i>Todos los derechos reservados.
+      </p>
+      <!-- Redes sociales -->
+      <p class="redes">
+        <a href="https://www.facebook.com/" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class='bx bxl-twitter'></i></a>
+        <a href="https://outlook.office.com/" target="_blank"><i class='bx bxs-envelope'></i></a>
+      </p>
+    </footer>
+  </main>
+
+  <!-- Scripts -->
+  <script src="../static/js/barraLateral.js"></script>
+  <script src="../static/js/actualizarBarraLateral.js"></script>
+  <script src="../static/js/pasosFormulario.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../static/js/seleccionarInvitacion.js"></script>
+  <script src="../static/js/invitacionSeleccionada.js"></script>
+  <script src="../static/js/actualizarInvitacion.js"></script>
+  <script src="../static/js/alertas.js"></script>
+  <script src="../static/js/gestionarEvento.js"></script>
+
+</body>
+
+</html>
