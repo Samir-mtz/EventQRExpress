@@ -12,7 +12,7 @@
   <!-- Estilos CSS -->
   <link rel="stylesheet" href="../static/css/general.css">
   <link rel="stylesheet" href="../static/css/menuInvitado.css">
-  <link rel="stylesheet" href="../static/css/registroAsistentes.css">
+  <link rel="stylesheet" href="../static/css/registroInvitado.css">
   <link rel="stylesheet" href="../static/css/footerUsuario.css">
   <!-- Box-Icons -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -62,9 +62,9 @@
     <section class="crear" id="crear">
       <h1>Nombre del Evento</h1>
 
-      
-      <!-- Formulario Paso #4 - Registro de asistentes -->
-      <form action="" class="formulario_crear paso" id="">
+
+      <!-- Formulario Paso #1 - Registro de asistentes -->
+      <form action="" class="formulario_seleccionar paso" id="paso1">
         <!-- Titulo del formulario -->
         <h3>Registro de asistentes</h3>
         <h3>Agregue los datos de los asistentes del eveto</h3>
@@ -247,28 +247,57 @@
         </div>
         <!-- Botones del formulario -->
         <div class="botones_formulario">
-          <!-- <a href="#"  onclick="siguientePaso(); return false;"> -->
-          <button class="yes">Confirmar</button>
-          <!-- </a> -->
+          <button type="button" class="no" onclick="preguntaCancelarSeleccionAsientos();">Cancelar</button>
+          <button type="button" class="yes" onclick="siguientePaso();">Guardar</button>
         </div>
       </form>
 
+      <!-- Formulario Paso #2 - Confirmar seleccion de asientos -->
+      <form action="" class="formulario_seleccionar paso" id="paso2">
+        <!-- Titulo del formulario -->
+        <h3>Confirme los datos de sus asientos</h3>
+        <!-- Campo para el nombre del evento -->
+        <div class="contenedor_confirmacion" id="contenedor_confirmacion">
+          <div class="contenedor_tabla">
+            <table class="tabla" id="tablaAsistentes">
+              <thead>
+                <tr>
+                  <th>No. Asistente</th>
+                  <th>Nombre</th>
+                  <th>Mesa</th>
+                  <th>Asiento</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div id="contenedor_invitacion" class="contenedor_invitacion">
+            <img src="../static/img/invitacion02.webp" alt="">
+          </div>
+        </div>
+        <!-- Botones del formulario -->
+        <div class="botones_formulario">
+          <button type="button" class="no" onclick="anteriorPaso();">Corregir</button>
+          <button type="button" class="yes"">Confirmar</button>
+        </div>
+      </form>
     </section>
 
     <!-- Pie de la pagina -->
-    <footer class="footer">
-      <!-- Texto del Copyright -->
-      <p class="derechos">
-        <i class='bx bx-copyright'></i>Todos los derechos reservados.
-      </p>
-      <!-- Redes sociales -->
-      <p class="redes">
-        <a href="https://www.facebook.com/" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
-        <a href="https://www.instagram.com/" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
-        <a href="https://twitter.com/" target="_blank"><i class='bx bxl-twitter'></i></a>
-        <a href="https://outlook.office.com/" target="_blank"><i class='bx bxs-envelope'></i></a>
-      </p>
-    </footer>
+    <footer class=" footer">
+            <!-- Texto del Copyright -->
+            <p class="derechos">
+              <i class='bx bx-copyright'></i>Todos los derechos reservados.
+            </p>
+            <!-- Redes sociales -->
+            <p class="redes">
+              <a href="https://www.facebook.com/" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+              <a href="https://www.instagram.com/" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+              <a href="https://twitter.com/" target="_blank"><i class='bx bxl-twitter'></i></a>
+              <a href="https://outlook.office.com/" target="_blank"><i class='bx bxs-envelope'></i></a>
+            </p>
+            </footer>
   </main>
 
   <!-- Pie de la pagina -->
@@ -290,6 +319,9 @@
   <!-- Scripts -->
   <script src="../static/js/barraLateral.js"></script>
   <script src="../static/js/actualizarDatosAsistentes.js"></script>
+  <script src="../static/js/alertas.js"></script>
+  <script src="../static/js/invitado.js"></script>
+
 
 </body>
 

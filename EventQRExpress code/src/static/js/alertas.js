@@ -342,3 +342,17 @@ function error() {
     text: "Algo salió mal, intentalo de nuevo.",
   });
 }
+
+// Alerta para preguntar si ya no se quiere continuar con la seleccion de asientos
+function preguntaCancelarSeleccionAsientos() {
+  Swal.fire({
+    icon: "question",
+    title: "Cancelar Selección de Asientos",
+    text: "¿Está seguro de que desea cancelar la selección de asientos?",
+    showCancelButton: true,
+    confirmButtonColor: "#009a06",
+    cancelButtonColor: "#f90c0c",
+    confirmButtonText: "Sí",
+    cancelButtonText: "No",
+  });
+}
