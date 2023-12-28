@@ -1,0 +1,172 @@
+/* Importaciones */
+@import url("https://fonts.googleapis.com/css2?family=Agbalumo&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,600&family=Kaushan+Script&family=Vina+Sans&display=swap");
+
+/* **********************************************************************************************************************************
+                                                        Main / Contenido pagina
+***********************************************************************************************************************************/
+
+/* Dimension y posicionamiento del contenido al abrir el menu lateral */
+.menuLateral.open ~ main {
+  left: 250px;
+  width: calc(100% - 250px);
+  max-height: calc(100vh);
+}
+
+/* Seccion para el contenido */
+.contenido {
+  position: relative;
+  height: 100vh;
+  top: 0;
+  left: 78px;
+  width: calc(100% - 78px);
+  transition: all 0.5s ease;
+  z-index: 2;
+}
+
+/***********************************************************************************************************************************
+                                                      Seccion REGISTRO INVITADO 
+***********************************************************************************************************************************/
+
+/* Contenedor de registro */
+.registro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--fourth-bg-color);
+}
+
+/* Titulo de la seccion */
+.registro h1 {
+  border-bottom: 1px solid gray;
+  text-align: center;
+  width: 50%;
+  margin: 25px auto 15px;
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-wrap: balance;
+}
+
+/* Titulo del formulario */
+.registro h3 {
+  font-size: 25px;
+  text-align: center;
+  font-weight: 700;
+  text-wrap: balance;
+  margin: 5px;
+}
+
+/* Contendor del formulario */
+.registro form {
+  width: 60%;
+  margin: 20px 0px 0px;
+  display: flex;
+}
+
+/* Contenedor de la invitacion */
+.invitacion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 450px;
+  height: 500px;
+  padding-right: 20px;
+}
+
+/* Imagen de la invitacion */
+.invitacion img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+}
+
+/* Contenedor de los campos del formulario */
+.input-boxes{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+/* Contenedor de cada campo del formulario */
+.input-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 40px;
+  width: 100%;
+  margin: 10px 0;
+  position: relative;
+}
+
+/* Contenedor de cada campo del formulario */
+.input-box span{
+  color: red;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: justify;
+  margin-left: 40px;
+}
+
+/* Input de cada campo del formulario */
+.input-box .contenido_campo {
+  height: 100%;
+  width: 100%;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: none;
+  display: flex;
+}
+
+/* Icono del campo */
+.input-box i {
+  color: var(--main-color);
+  font-size: 2rem;
+  display: block;
+  text-align: center;
+  width: 15%;
+}
+
+/* Input de cada campo del formulario */
+.input-box input {
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: none;
+  padding: 5px;
+  border: none;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.input-boxes button{
+  background: var(--bg-color-button);
+  text-transform: uppercase;
+  border: none;
+  color: var(--text-color);
+  font-weight: 700;
+  font-size: 1.0rem;
+  letter-spacing: 5px;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Animacion al pasar el cursor por encima del los boton */
+.input-boxes button:hover {
+  background: var(--main-color);
+  cursor: pointer;
+}

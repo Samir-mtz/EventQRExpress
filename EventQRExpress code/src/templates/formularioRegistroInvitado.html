@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <!-- Metadatos -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../static/img/logo.png">
+  <!-- Titulo de la pagina en la pestaña -->
+  <title>EventQRXpress | Invitado</title>
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="../static/css/general.css">
+  <link rel="stylesheet" href="../static/css/menuInvitado.css">
+  <link rel="stylesheet" href="../static/css/formularioRegistroInvitado.css">
+  <link rel="stylesheet" href="../static/css/footerUsuario.css">
+  <!-- Box-Icons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- Libreria de alertas -->
+  <link rel="stylesheet" href="sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+  <!-- Menu Lateral -->
+  <nav class="menuLateral">
+
+    <!-- Seccion para el logo del usuario -->
+    <div class="detalles_usuario">
+      <div class="datos_usuario">
+        <i class='bx bxs-user-circle'></i>
+        <p class="nombre">NombreAnfitrion</p>
+        <a href="#configuracion" class="configuracion"></a>
+      </div>
+      <i class='bx bx-menu' id="btn"></i>
+    </div>
+
+    <!-- Contenido del menu -->
+    <ul class="navBar">
+      <!-- Mensaje de anfitrion para invitado -->
+      <div class="mensaje">
+        <p>¡Excelente!</p>
+        <p>Estoy emocionado/a por tu asistencia a mi TIPODEEVENTO.</p>
+        <p>Quiero que disfrutes al máximo. Por favor, registra los datos solicitados para confirmar tu asistencia al
+          evento.</p>
+        <p>¡No puedo esperar para celebrar juntos/as!</p>
+      </div>
+      <!-- Boton para ir a EventQRXpress -->
+      <li class="logout fondo">
+        <a href="./landingPage.html">
+          <i class='bx bxs-home'></i>
+          <span class="nombre_link">Ir a EventQRXpress</span>
+        </a>
+      </li>
+    </ul>
+
+  </nav>
+
+  <!-- Contenido de la pagina -->
+  <main class="contenido">
+
+    <!-- Seccion FORMULARIO DE REGISTRO INVITADO -->
+    <section class="registro" id="registro">
+      <!-- Campo para el nombre del evento -->
+      <h1>Nombre del Evento</h1>
+      <!-- Titulo del formulario -->
+      <h3>Registro de invitado</h3>
+
+      <!-- Formulario REGISTRO DE INVITADOS -->
+      <form action="" method="post" id="formulario_registrar_invitado" autocomplete="off" novalidate>
+
+        <!-- Contenedor con imagen de la invitacion -->
+        <div class="invitacion">
+          <img src="../static/img/invitacion01.webp" alt="">
+        </div>
+
+        <div class="input-boxes">
+          <!-- Campo para NOMBRE COMPLETO -->
+          <div class="input-box">
+            <div class="contenido_campo">
+              <i class='bx bxs-user'></i>
+              <input type="text" name="nombre" placeholder="Nombre Completo" id="nombre_register" required>
+            </div>
+            <span id="nombre_register_msg" class="error-msg"></span>
+          </div>
+          <!-- Campo para CORREO ELECTRONICO-->
+          <div class="input-box">
+            <div class="contenido_campo">
+              <i class='bx bxs-envelope'></i>
+              <input type="text" name="email" placeholder="Correo electrónico" id="email_register" required>
+            </div>
+            <span id="email_register_msg" class="error-msg"></span>
+          </div>
+          <!-- Campo para CONTRASEÑA -->
+          <div class="input-box">
+            <div class="contenido_campo">
+              <i class='bx bxs-lock-alt'></i>
+              <input type="password" name="password" placeholder="Contraseña" id="password_register" required>
+            </div>
+            <span id="password_register_msg" class="error-msg"></span>
+          </div>
+          <!-- Campo para CONFIRMAR CONTRASEÑA -->
+          <div class="input-box">
+            <div class="contenido_campo">
+              <i class='bx bxs-lock-alt'></i>
+              <input type="password" placeholder="Confirmar contraseña" id="password2_register" required>
+            </div>
+            <span id="password2_register_msg" class="error-msg"></span>
+          </div>
+          <!-- Campo para NUMERO DE ASISTENTES -->
+          <div class="input-box">
+            <div class="contenido_campo">
+              <i class='bx bx-male-female'></i>
+              <input type="password" placeholder="Número de asistentes (incluyendote)" id="numeroAsistentes_register"
+                required>
+            </div>
+            <span id="numeroAsistentes_register_msg" class="error-msg"></span>
+          </div>
+          <!-- Boton del formulario -->
+          <div class="input-box">
+            <button type="submit" class="btn-form input-box" id="submitBtn_register" disabled>Registrar</button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- Pie de la pagina -->
+    <footer class="footer">
+      <!-- Texto del Copyright -->
+      <p class="derechos">
+        <i class='bx bx-copyright'></i>Todos los derechos reservados.
+      </p>
+      <!-- Redes sociales -->
+      <p class="redes">
+        <a href="https://www.facebook.com/" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class='bx bxl-twitter'></i></a>
+        <a href="https://outlook.office.com/" target="_blank"><i class='bx bxs-envelope'></i></a>
+      </p>
+    </footer>
+  </main>
+  <!-- Scripts -->
+  <script src="../static/js/barraLateral.js"></script>
+</body>
+
+</html>
