@@ -12,6 +12,12 @@ from flask import jsonify
 import shutil
 import os
 from datetime import datetime
+
+
+from flask import Flask, render_template, request, jsonify
+import base64
+
+
 # Clases
 # Models:
 from models.ModelUser import ModelUser
@@ -53,6 +59,29 @@ def load_user(id):
 @app.route('/')
 def index():
     return render_template('landingPage.html')
+    # return render_template('test.html')
+
+# Descargar imagen
+@app.route('/guardarImagen', methods=['POST'])
+def guardar_archivo():
+    try:
+        data_url = request.json['imgUrl']
+        base64_data = data_url.split(',')[1]
+        # Obtén el nombre y id del usuario (carpeta donde se almacenara)
+        nombreArchivo = request.json.get('fileName', '')
+        idUsuario = "2407"
+        # Ruta donde se guardará la iamgen
+        carpeta_especifica = os.path.join(app.root_path, 'static', 'img', 'eventos', idUsuario)
+        if not os.path.exists(carpeta_especifica):
+            os.makedirs(carpeta_especifica)
+        # Guardar el archivo en la carpeta específica con el nombre
+        with open(os.path.join(carpeta_especifica, nombreArchivo), 'wb') as f:
+            f.write(base64.b64decode(base64_data))
+        return jsonify({'message': 'Archivo guardado correctamente'})
+    except Exception as e:
+        print(f"Error al guardar el archivo: {e}")
+        return jsonify({'error': f'Error al guardar el archivo: {e}'}), 500
+
 
 #########################################################################################
 ############################ Funciones de consulta  #####################################
