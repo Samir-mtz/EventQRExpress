@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
 <html lang="en" dir="ltr">
 
 <head>
@@ -14,8 +13,16 @@
   <link rel="stylesheet" href="../static/css/general.css">
   <link rel="stylesheet" href="../static/css/menuUsuario.css">
   <link rel="stylesheet" href="../static/css/administrador.css">
+  <link rel="stylesheet" href="../static/css/calendario.css">
   <link rel="stylesheet" href="../static/css/footerUsuario.css">
+  <!-- Box-icons -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- Icons-Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Chart JS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -55,21 +62,21 @@
       <!-- Boton para ir a ESTABLECIMIENTOS -->
       <li>
         <a href="#establecimientos">
-          <i class='bx bxs-buildings' ></i>
+          <i class='bx bxs-buildings'></i>
           <span class="nombre_link">Establecimientos</span>
         </a>
       </li>
       <!-- Boton para ir a INVITACIONES -->
       <li>
         <a href="#invitaciones">
-          <i class='bx bxs-balloon' ></i>
+          <i class='bx bxs-balloon'></i>
           <span class="nombre_link">Invitaciones</span>
         </a>
       </li>
       <!-- Boton para ir a INFORMES Y ESTADISTICAS -->
       <li>
         <a href="#informes">
-          <i class='bx bxs-report' ></i>
+          <i class='bx bxs-report'></i>
           <span class="nombre_link">Informes y Estadisticas</span>
         </a>
       </li>
@@ -96,21 +103,204 @@
     <!-- Seccion GESTIONAR EVENTOS de la pagina -->
     <section class="gestionar" id="gestionar">
       <h1>Gestionar Eventos</span></h1>
+      <div class="contendor_calendario">
+        <!-- Template de calendario -->
+        <div class="container">
+          <div class="left">
+            <div class="calendar">
+              <div class="month">
+                <i class="fas fa-angle-left prev"></i>
+                <div class="date">december 2015</div>
+                <i class="fas fa-angle-right next"></i>
+              </div>
+              <div class="weekdays">
+                <div>Domingo</div>
+                <div>Lunes</div>
+                <div>Martes</div>
+                <div>Miercoles</div>
+                <div>Jueves</div>
+                <div>Viernes</div>
+                <div>Sabado</div>
+              </div>
+              <div class="days"></div>
+              <div class="goto-today">
+                <div class="goto">
+                  <input type="text" placeholder="mm/yyyy" class="date-input" />
+                  <button class="goto-btn">Ir</button>
+                </div>
+                <button class="today-btn">Dia actual</button>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="today-date">
+              <div class="event-day"></div>
+              <div class="event-date"></div>
+            </div>
+            <div class="events"></div>
+            <div class="add-event-wrapper">
+              <div class="add-event-header">
+                <div class="title">Agregar Evento</div>
+                <i class="fas fa-times close"></i>
+              </div>
+              <div class="add-event-body">
+                <div class="add-event-input">
+                  <input type="text" placeholder="Nombre del evento" class="event-name" />
+                </div>
+                <div class="add-event-input">
+                  <input type="text" placeholder="Hora de inicio" class="event-time-from" />
+                </div>
+                <div class="add-event-input">
+                  <input type="text" placeholder="Hora de fin" class="event-time-to" />
+                </div>
+              </div>
+              <div class="add-event-footer">
+                <button class="add-event-btn">Agregar evento</button>
+              </div>
+            </div>
+          </div>
+          <button class="add-event">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
     </section>
 
     <!-- Seccion ESTABLECIMEINTOS de la pagina -->
     <section class="establecimientos" id="establecimientos">
-      <h1>Establecimientos</span></h1>
+      <h1>Establecimientos</h1>
+      <div class="campo-establecimeintos">
+        <!-- Establecimiento 1  -->
+        <a href="#gestionar_establecimientos" class="contenedor_imagen"
+          onclick="cambiarImagenEstablecimiento('../static/img/establecimiento01.webp')">
+          <img src="../static/img/establecimiento01.webp" alt="Establecimeinto 01">
+          <p>Nombre Establecimeinto</p>
+        </a>
+        <!-- Establecimiento 2  -->
+        <a href="#gestionar_establecimientos" class="contenedor_imagen"
+          onclick="cambiarImagenEstablecimiento('../static/img/establecimiento02.webp')">
+          <img src="../static/img/establecimiento02.webp" alt="Establecimeinto 02">
+          <p>Nombre Establecimeinto</p>
+        </a>
+        <!-- Establecimiento 3  -->
+        <a href="#gestionar_establecimientos" class="contenedor_imagen"
+          onclick="cambiarImagenEstablecimiento('../static/img/establecimiento03.webp')">
+          <img src="../static/img/establecimiento03.webp" alt="Establecimeinto 03">
+          <p>Nombre Establecimeinto</p>
+        </a>
+        <!-- Establecimiento 4  -->
+        <a href="#gestionar_establecimientos" class="contenedor_imagen"
+          onclick="cambiarImagenEstablecimiento('../static/img/establecimiento04.webp')">
+          <img src="../static/img/establecimiento04.webp" alt="Establecimeinto 04">
+          <p>Nombre Establecimeinto</p>
+        </a>
+        <!-- Establecimiento 5  -->
+        <a href="#gestionar_establecimientos" class="contenedor_imagen"
+          onclick="cambiarImagenEstablecimiento('../static/img/establecimiento05.webp')">
+          <img src="../static/img/establecimiento05.webp" alt="Establecimeinto 05">
+          <p>Nombre Establecimeinto</p>
+        </a>
+        <!-- Establecimiento 6  -->
+        <a href="#gestionar_establecimientos" class="contenedor_imagen"
+          onclick="cambiarImagenEstablecimiento('../static/img/establecimiento06.webp')">
+          <img src="../static/img/establecimiento06.webp" alt="Establecimeinto 06">
+          <p>Nombre Establecimeinto</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Seccion GESTIONAR ESTABLECIMEINTO de la pagina -->
+    <section class="gestionar_establecimientos" id="gestionar_establecimientos">
+      <!-- Contenedor de resumen del establecimeinto -->
+      <form class="valores_establecimeinto">
+        <div class="contenedor_establecimeinto" id="contenedorEstablecimeiento">
+          <img src="../static/img/establecimiento01.webp" alt="">
+        </div>
+        <div class="contenedor_valores">
+          <!-- Campo para NOMBRE DEL ESTABLECIEMIENTO -->
+          <p class="valor">
+            <i class='bx bxs-calendar-event'></i>
+            <span class="nombre_valor">Nombre del establecimeinto:</span>
+            <input type="text" name="nombreEstablecimiento" id="nombreEstablecimiento" autocomplete="off"
+              value="NombreEstablecimiento">
+          </p>
+          <!-- Campo para TIPO DE ESTABLECIMIENTO -->
+          <p class="valor">
+            <i class='bx bxs-calendar-event'></i>
+            <span class="nombre_valor">Tipo de establecimeinto:</span>
+            <select name="tipoEstablecimeinto" id="tipoEstablecimeinto" autocomplete="off" value="">
+              <option value="">Seleccionar una opción</option>
+              <option value="Restaurante">Restaurante</option>
+              <option value="Salon">Salón de eventos</option>
+              <option value="Auditorio">Auditorio</option>
+            </select>
+          </p>
+          <!-- Campo para DISTRIBUCIÓN DEL ESTABLECIEMIENTO -->
+          <p class="valor">
+            <i class='bx bxs-calendar-event'></i>
+            <span class="nombre_valor">Distribución del establecimeinto:</span>
+            <input type="text" name="distribucionEstablecimiento" id="distribucionEstablecimiento" autocomplete="off"
+              value="50, 100, 150, 200">
+          </p>
+          <!-- Campo para BOTONES DEL FORMULARIO -->
+          <p class="valor botones">
+            <button class="btn eliminar">Eliminar</button>
+            <button class="btn editar">Editar</button>
+            <button class="btn guardar">Guardar</button>
+          </p>
+        </div>
+      </form>
     </section>
 
     <!-- Seccion INVITACIONES de la pagina -->
     <section class="invitaciones" id="invitaciones">
       <h1>Invitaciones</span></h1>
+      <div class="campo-establecimeintos">
+        <!-- Invitacion 1  -->
+        <a href="#gestionar_invitacion" class="contenedor_imagen"
+          onclick="cambiarImagenInvitacion('../static/img/invitacion01.webp')">
+          <img src="../static/img/invitacion01.webp" alt="Invitacion 01">
+          <p>Invitacion #01</p>
+        </a>
+        <!-- Invitacion 2  -->
+        <a href="#gestionar_invitacion" class="contenedor_imagen"
+          onclick="cambiarImagenInvitacion('../static/img/invitacion02.webp')">
+          <img src="../static/img/invitacion02.webp" alt="Invitacion 02">
+          <p>Invitacion #02</p>
+        </a>
+        <!-- Invitacion 3  -->
+        <a href="#gestionar_invitacion" class="contenedor_imagen"
+          onclick="cambiarImagenInvitacion('../static/img/invitacion03.webp')">
+          <img src="../static/img/invitacion03.webp" alt="Invitacion 03">
+          <p>Invitacion #03</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Seccion GESTIONAR INVITACIONES de la pagina -->
+    <section class="gestionar_invitacion" id="gestionar_invitacion">
+      <form class="valores_invitacion">
+        <div class="contenedor_invitacion" id="contenedorInvitacion">
+          <img src="../static/img/invitacion01.webp" alt="">
+        </div>
+        <div class="contenedor_valores">
+          <!-- Campo para BOTONES DEL FORMULARIO -->
+          <p class="valor botones">
+            <button class="btn eliminar">Eliminar</button>
+            <button class="btn guardar">Guardar</button>
+          </p>
+        </div>
+      </form>
     </section>
 
     <!-- Seccion INFORMES Y ESTADISTICAS de la pagina -->
     <section class="informes" id="informes">
-      <h1>Informes y Estadisticas</span></h1>
+      <h1>Informes y Estadisticas</h1>
+      <p class="contador">Contador de eventos: <span id="contadorEventos">0</span></p>
+      <div class="graficas">
+        <canvas id="graficaBarras" class="grafica"></canvas>
+        <canvas id="graficaPastel" class="grafica"></canvas>
+      </div>
     </section>
 
     <!-- Pie de la pagina -->
@@ -132,8 +322,9 @@
   <!-- Scripts -->
   <script src="../static/js/barraLateral.js"></script>
   <script src="../static/js/actualizarBarraLateral.js"></script>
-  <script src="../static/js/pasosFormulario.js"></script>
-  <script src="../static/js/seleccionarInvitacion.js"></script>
+  <script src="../static/js/calendario.js"></script>
+  <script src="../static/js/gestionarAdministrador.js"></script>
+  <script src="../static/js/administrador.js"></script>
 
 </body>
 

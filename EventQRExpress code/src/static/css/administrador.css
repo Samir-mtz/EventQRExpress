@@ -85,6 +85,12 @@
   text-wrap: balance;
 }
 
+.contendor_calendario{
+  width: 70%;
+  height: auto;
+  margin-top: 20px;
+}
+
 /***********************************************************************************************************************************
                                                       Seccion ESTABLECIMIENTOS
 ***********************************************************************************************************************************/
@@ -95,8 +101,6 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  /* height: 100%; */
-  height: calc(100vh);
   background: var(--third-bg-color);
 }
 
@@ -112,6 +116,228 @@
   text-wrap: balance;
 }
 
+/* Estilos generales del contenedor */
+.campo-establecimeintos {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-around; 
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  width: 70%;
+}
+
+.campo-establecimeintos a{
+  text-decoration: none;
+  color: var(--third-text-color);
+}
+
+.campo-establecimeintos a:hover{
+  cursor: pointer;
+}
+
+.contenedor_imagen{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 300px;
+  width: 300px;
+}
+
+.contenedor_imagen img{
+    max-width: 90%;
+    max-height: 80%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.contenedor_imagen p{
+  font-size: 16px;
+  max-width: 100%;
+  font-weight: 900;
+  margin-top: 10px;
+}
+
+/* Contenedor de cada una de las imagenes */
+.campo-establecimeintos .imagen-container {
+  position: relative;
+  margin: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/***********************************************************************************************************************************
+                                                      Seccion  GESTIONAR ESTABLECIMIENTOS
+***********************************************************************************************************************************/
+
+/* Oculta la sección por defecto */
+#gestionar_establecimientos {
+  display: none;
+}
+
+/* Contenedor de gestionar */
+.gestionar_establecimientos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  background: var(--third-bg-color);
+  padding-bottom: 40px;
+}
+
+/* Formulario */
+.gestionar_establecimientos .valores_establecimeinto{
+  display: flex;
+  justify-content: space-evenly;
+  width: 55%;
+  margin-top: 20px;
+}
+
+.gestionar_establecimientos .valores_establecimeinto .contenedor_establecimeinto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 450px;
+  height: 250px;
+  padding-right: 20px;
+}
+
+.gestionar_establecimientos .valores_establecimeinto .contenedor_establecimeinto img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.gestionar_establecimientos .valores_establecimeinto .contenedor_valores{
+  width: 100%;
+}
+
+.gestionar_establecimientos .valores_establecimeinto .contenedor_valores .valor {
+  display: flex;
+  margin: 22px 0;
+  align-items: center;
+}
+
+.gestionar_establecimientos .valores_establecimeinto .contenedor_valores .link{
+  align-items: center;
+}
+
+.gestionar_establecimientos .valores_establecimeinto .contenedor_valores .valor i{
+  font-size: 30px;
+  color: var(--main-color);
+  width: 10%;
+  text-align: center;
+}
+
+/* Etiquetas INPUT */
+.valor input {
+  flex: 1;
+  box-sizing: border-box;
+}
+
+/* Estilos para los select de opciones */
+.valor select {
+  flex: 1;
+  padding: 2px;
+  margin: 1.8px 0;
+  background: none;
+  box-sizing: border-box;
+  border: 2px solid var(--border-form);
+  color: var(--text-color-form);
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Estilos para los inputs de tipo texto */
+input[type="text"]{
+  margin: 4.5px 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  border: 2px solid var(--border-form);
+  color: var(--text-color-form);
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+/* Estilos para el enfoque de los inputs */
+input[type="text"]:focus{
+  outline: none;
+  border-color: var(--main-color);
+}
+
+.gestionar_establecimientos .valores_establecimeinto .contenedor_valores .valor span.nombre_valor {
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.gestionar_establecimientos .valores_establecimeinto .contenedor_valores .valor .texto_valor {
+  font-size: 14px;
+  color: var(--text-color-form);
+  font-weight: 600;
+  font-style: italic;
+  text-align: justify;  
+  flex: 1;
+  margin-left: 20px;
+}
+
+.gestionar_establecimientos .valores_establecimeinto .contenedor_valores .botones{
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Estilos del boton */
+.valores_establecimeinto .valor button {
+  text-transform: uppercase;
+  background: burlywood;
+  border: none;
+  color: var(--text-color);
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 5px 20px;
+  border-radius: 8px;
+  height: 30px;
+}
+
+/* Animacion al pasar el cursor por encima de los botones */
+.valores_establecimeinto .valor button:hover {
+  cursor: pointer;
+}
+
+/* Estilos del boton para eliminar */
+.valores_establecimeinto .valor button.eliminar {
+  background-color: var(--button-no-color);
+}
+
+/* Estilos del boton para editar */
+.valores_establecimeinto .valor button.editar {
+  background-color: var(--button-edit-color);
+}
+
+/* Estilos del boton para guardar */
+.valores_establecimeinto .valor button.guardar {
+  background-color: var(--button-yes-color);
+}
+
+/* Animacion al pasar el cursor por encima de las anclas */
+.valores_establecimeinto .valor button.btn:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
 /***********************************************************************************************************************************
                                                       Seccion INVITACIONES
 ***********************************************************************************************************************************/
@@ -123,7 +349,7 @@
   align-items: center;
   width: 100%;
   /* height: 100%; */
-  height: calc(100vh);
+  /* height: calc(100vh); */
   background: var(--fourth-bg-color);
 }
 
@@ -140,6 +366,105 @@
 }
 
 /***********************************************************************************************************************************
+                                                      Seccion  GESTIONAR INVITACIONES
+***********************************************************************************************************************************/
+
+/* Oculta la sección por defecto */
+#gestionar_invitacion {
+  display: none;
+}
+
+/* Contenedor de gestionar */
+.gestionar_invitacion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  background: var(--fourth-bg-color);
+  padding-bottom: 40px;
+}
+
+/* Formulario */
+.gestionar_invitacion .valores_invitacion{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.gestionar_invitacion .valores_invitacion .contenedor_invitacion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 450px;
+  height: 250px;
+}
+
+.gestionar_invitacion .valores_invitacion .contenedor_invitacion img {
+  max-width: 65%;
+  max-height: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.gestionar_invitacion .valores_invitacion .contenedor_valores{
+  width: 100%;
+}
+
+.gestionar_invitacion .valores_invitacion .contenedor_valores .valor {
+  display: flex;
+  margin: 22px 0;
+  align-items: center;
+}
+
+.gestionar_invitacion .valores_invitacion .contenedor_valores .botones{
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Estilos del boton */
+.valores_invitacion .valor button {
+  text-transform: uppercase;
+  background: burlywood;
+  border: none;
+  color: var(--text-color);
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 5px 20px;
+  border-radius: 8px;
+  height: 30px;
+}
+
+/* Animacion al pasar el cursor por encima de los botones */
+.valores_invitacion .valor button:hover {
+  cursor: pointer;
+}
+
+/* Estilos del boton para eliminar */
+.valores_invitacion .valor button.eliminar {
+  background-color: var(--button-no-color);
+}
+
+/* Estilos del boton para editar */
+.valores_invitacion .valor button.editar {
+  background-color: var(--button-edit-color);
+}
+
+/* Estilos del boton para guardar */
+.valores_invitacion .valor button.guardar {
+  background-color: var(--button-yes-color);
+}
+
+/* Animacion al pasar el cursor por encima de las anclas */
+.valores_invitacion .valor button.btn:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+/***********************************************************************************************************************************
                                                         Seccion INFORMES
 ***********************************************************************************************************************************/
 
@@ -150,7 +475,7 @@
   align-items: center;
   width: 100%;
   /* height: 100%; */
-  height: calc(100vh);
+  /* height: calc(100vh); */
   background: var(--third-bg-color);
 }
 
@@ -164,4 +489,33 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   text-wrap: balance;
+}
+
+.contador{
+  font-size: 30px;
+  font-weight: 900;
+  display: flex;
+  padding: 10px 0;
+}
+
+.contador span{
+  width: 60px;
+  color: var(--main-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.graficas{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 80%;
+  padding: 50px 0;
+}
+
+.graficas .grafica{
+  max-width: 45%;
+  max-height: 100%;
 }
