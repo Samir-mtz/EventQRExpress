@@ -23,9 +23,11 @@ import base64
 from models.ModelUser import ModelUser
 from models.ModelSalon import ModelSalon
 from models.ModelEvento import ModelEvento
+from models.ModelConfirmaciones import ModelConfirmaciones
 
 # Entities:
 from models.entities.User import User
+from models.entities.Confirmaciones import Confirmaciones
 
 app = Flask(__name__)
 csrf = CSRFProtect()
@@ -64,12 +66,13 @@ def index():
 # Descargar imagen
 @app.route('/guardarImagen', methods=['POST'])
 def guardar_archivo():
+    user = ModelUser.consulta_email(db, current_user.email)
     try:
         data_url = request.json['imgUrl']
         base64_data = data_url.split(',')[1]
         # Obtén el nombre y id del usuario (carpeta donde se almacenara)
         nombreArchivo = request.json.get('fileName', '')
-        idUsuario = "2407"
+        idUsuario = str(user.id)
         # Ruta donde se guardará la iamgen
         carpeta_especifica = os.path.join(app.root_path, 'static', 'img', 'eventos', idUsuario)
         if not os.path.exists(carpeta_especifica):
@@ -162,19 +165,83 @@ def homeCliente():
         ruta_carpeta = os.path.join('src\static', 'img', 'eventos', nombre_carpeta)
         imagenes = []
         # Verificar si la carpeta existe
+        # print(os.getcwd())
         if os.path.exists(ruta_carpeta):
+            # print("Entre")
             for archivo in os.listdir(ruta_carpeta):
                 if archivo.endswith(('.jpg', '.jpeg', '.png', '.gif', '.webp')):
                     ruta_imagen = os.path.join('..\static', 'img', 'eventos', nombre_carpeta, archivo)
-                    print(ruta_imagen)
+                    # print(ruta_imagen)
 
                     nombre_evento = os.path.splitext(archivo)[0]  # Nombre del archivo sin extensión
                     imagenes.append({"src": ruta_imagen, "alt": nombre_evento, "nombre_evento": nombre_evento})
-        return render_template('anfitrion.html', imagenes=imagenes)
+        # print(imagenes)
+        evento = ModelEvento.lastId(db) + 1
+        return render_template('anfitrion.html', imagenes=imagenes, id=user.id, idEvento=evento)
     elif user.tipo == 'admin':
         return redirect(url_for('admin'))
     else:
         return redirect(url_for('index'))
+
+@app.route('/ConfirmacionEvento/<id>')
+def confirmacionInvitacion(id):
+    evento = ModelEvento.datosEvento(db, id)
+    user = ModelUser.get_by_id(db, evento['id_usuario'])
+    return render_template('confirmacionInvitado.html', nombre=user.nombre, tipo=evento['tipo'])
+
+@app.route('/RegistroInvitado/<id>')
+def registroInvitado(id):
+    evento = ModelEvento.datosEvento(db, id)
+    user = ModelUser.get_by_id(db, evento['id_usuario'])
+    return render_template('formularioRegistroInvitado.html', nombre=user.nombre, tipo=evento['tipo'], id=id, nombre_evento=evento['nombre'])
+
+# Registro de una nueva cuenta
+@app.route('/registroInvitado', methods=['POST'])
+def registerInvitado():
+    if request.method == 'POST':
+        if current_user.is_active == True:
+            logout_user()
+        # ¿El correo no esta registrado?
+        if ModelConfirmaciones.check_email(db, request.form['email']) == False:
+            user = Confirmaciones(id=1, email= request.form['email'],
+                        password = request.form['password'],
+                        nombre = request.form['nombre'],
+                        asistentes = request.form['asistentes'],
+                        id_evento = request.form['id_evento'],
+                        confirmed=False
+                        )
+            execution = ModelConfirmaciones.register(db, user)# Registralo en la BD
+            # print("Registrado")
+            if execution != None:  # Se registro con exito entonces tengo sus datos
+                token = generate_confirmation_token(user.email)
+                # Envio de correo
+                confirm_url = url_for(
+                    'confirm_email_invitado', token=token, _external=True)
+                template = render_template(
+                    'correoConfirmacionInvitado.html', confirm_url=confirm_url)
+                subject = "Activación de cuenta - Eventqrxpress"
+
+                msg = Message(
+                    subject,
+                    recipients=[''+request.form['email']],
+                    html=template,
+                    sender="eventqrxpress@gmail.com"
+                )
+                mail.send(msg)
+                # login_user(execution) # Marco sus datos como logeado para que vea verificacion
+                logout_user()
+                # return render_template('validacionCorreo.html', nombre=user.nombre, email=user.email)##########Cambiar
+                return redirect(url_for('index'))
+            else:
+                flash("Algo salió mal, intenta de nuevo")
+                # return render_template('formularioLoginRegister.html')
+                return redirect(url_for('index'))
+        else:
+            flash("El correo ingresado ya ha sido registrado")
+            # return render_template('formularioLoginRegister.html')
+            return redirect(url_for(f"registroInvitado/{request.form['id_evento']}", id=request.form['id_evento']))
+
+
 
 # Registro de una nueva cuenta
 @app.route('/registro', methods=['POST'])
@@ -239,6 +306,32 @@ def confirm_email(token):
         else:
             # print('llego')
             ModelUser.confirm_user(db, email)
+            flash('Gracias por confirmar tu cuenta. Por favor inicia sesión.', 'success')
+            return redirect(url_for('login'))
+    else:  # Codigo expiro
+        flash('Algo salió mal. Por favor intenta de nuevo')
+        return redirect(url_for('login'))
+#Confirmar email Invitado
+@app.route('/confirmInvitado/<token>')
+# @login_required
+def confirm_email_invitado(token):
+    try:
+        email = confirm_token(token)  # Regresa el email!
+    except:
+        # En caso de cuenta creada pero no confirmada
+        flash('Algo salió mal. Por favor intenta de nuevo')
+        return redirect(url_for('login'))
+    # print(f"El email es: {email}")
+    user = ModelConfirmaciones.consulta_email(db, email)
+    print("///////////")
+    print(user.confirmed)
+    if user != None:
+        if user.confirmed:
+            flash('Tu cuenta ya está confirmada. Por favor inicia sesión.', 'success')
+            return redirect(url_for('login'))
+        else:
+            # print('llego')
+            ModelConfirmaciones.confirm_user(db, email)
             flash('Gracias por confirmar tu cuenta. Por favor inicia sesión.', 'success')
             return redirect(url_for('login'))
     else:  # Codigo expiro
@@ -390,6 +483,7 @@ def registrarEvento():
         ciudad = request.form['ciudad']
         id_deSalon= ModelSalon.consultarId(db, ciudad)
         #ruta
+
         execution = ModelEvento.register(db, nombre = request.form['nombre'], fecha = request.form['fecha'], horario = request.form['horario'],
         asistentes=request.form['asistentes'], tipo=request.form['tipo'], lugar=request.form['lugar'],
         id_usuario=usuario.id, id_salon=id_deSalon)  # Registralo en la BD

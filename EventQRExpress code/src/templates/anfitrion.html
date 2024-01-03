@@ -10,6 +10,7 @@
   <link rel="icon" type="image/png" href="../static/img/logo.png">
   <!-- Titulo de la pagina en la pestaña -->
   <title>EventQRXpress | Anfitrión</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Estilos CSS -->
   <link rel="stylesheet" href="../static/css/general.css">
   <link rel="stylesheet" href="../static/css/menuUsuario.css">
@@ -232,7 +233,7 @@
       </form>
 
       <!-- Formulario Paso #3 - Confirmar datos del evento -->
-      <form action="/registrarEvento" method="post" class="formulario_crear paso" id="paso3" onsubmit="eventoCreado(event)">
+      <form action="/registrarEvento" method="post" class="formulario_crear paso" id="paso3" onsubmit="eventoCreado(event, '{{id}}', '{{idEvento}}')">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <!-- Titulo del formulario -->
         <h3>Confirme los datos de su evento</h3>
@@ -331,10 +332,10 @@
           <p class="nombre_evento">Nombre del evento</p>
         </div> -->
 
-        <a href="#gestionar" class="contenedor_imagen" onclick="cambiarImagen('../static/img/invitacion01.webp')">
-          <img src="../static/img/invitacion01.webp" alt="Invitacion 01">
+        <!-- <a href="#gestionar" class="contenedor_imagen">
+          <img src="../static/img/invitacion01.webp" alt="Invitacion 01" onclick="cambiarImagen(this)">
           <p>Nombre del evento</p>
-        </a>
+        </a> -->
 
        
 
@@ -343,9 +344,11 @@
                 <img src="{{ imagen['src'] }}" alt="{{ imagen['alt'] }}" onclick="obtenerDatosEvento(this)">
                 <p class="nombre_evento">{{ imagen['nombre_evento'] }}</p>
             </div> -->
-            <a href="#gestionar" class="contenedor_imagen" onclick="obtenerDatosEvento(this)">
-              <img src="{{ imagen['src'] }}" alt="{{ imagen['alt'] }}">
-              <p>{{ imagen['nombre_evento'] }}</p>
+            <!-- {% set ruta = imagen['src'] %}
+            {% set ruta_formateada = ruta|replace("'", "\\'") %} -->
+            <a href="#gestionar" class="contenedor_imagen" >
+              <img src="{{ ruta }}" alt="{{ imagen['alt'] }}" onclick="cambiarImagen(this); obtenerDatosEvento(this)">
+              <!-- <p>{{ imagen['nombre_evento'] }}</p> -->
             </a>
         {% endfor %}
       </div>
@@ -365,37 +368,37 @@
           <p class="valor">
             <i class='bx bxs-calendar-event'></i>
             <span class="nombre_valor">Nombre del evento:</span>
-            <span class="texto_valor">nombreEvento</span>
+            <span class="texto_valor" id="datos_nombre">nombreEvento</span>
           </p>
           <!-- Campo para FECHA -->
           <p class="valor">
             <i class='bx bx-calendar'></i>
             <span class="nombre_valor">Fecha:</span>
-            <span class="texto_valor">DD / MM / AAAA</span>
+            <span class="texto_valor" id="datos_fecha">DD / MM / AAAA</span>
           </p>
           <!-- Campo para HORARIO -->
           <p class="valor">
             <i class='bx bxs-watch'></i>
             <span class="nombre_valor">"Horario:"</span>
-            <span class="texto_valor">HH:MM x.m.</span>
+            <span class="texto_valor" id="datos_horario">HH:MM x.m.</span>
           </p>
           <!-- Campo para NUMERO DE ASISTENTES -->
           <p class="valor">
             <i class='bx bx-male-female'></i>
             <span class="nombre_valor">Número estimado de asistentes:</span>
-            <span class="texto_valor">###</span>
+            <span class="texto_valor" id="datos_asistentes">###</span>
           </p>
           <!-- Campo para TIPO DE EVENTO -->
           <p class="valor">
             <i class='bx bxs-balloon'></i>
             <span class="nombre_valor">Tipo de evento:</span>
-            <span class="texto_valor">(XV años / Boda / Reunión)</span>
+            <span class="texto_valor" id="datos_tipo">(XV años / Boda / Reunión)</span>
           </p>
           <!-- Campo para LUGAR DEL EVENTO -->
           <p class="valor">
             <i class='bx bxs-map'></i>
             <span class="nombre_valor">Lugar del evento:</span>
-            <span class="texto_valor">Salon de eventos NOMBRE <small><br>Nombre de la calle, Numelo
+            <span class="texto_valor" id="datos_lugar">Salon de eventos NOMBRE <small><br>Nombre de la calle, Numelo
                 Colonia/Distrito/Region, Ciudad.</small></span>
           </p>
           <!-- Campo para LINK DE INVITACION -->
@@ -857,7 +860,8 @@
   <script src="../static/js/actualizarInvitacion.js"></script>
   <script src="../static/js/alertas.js"></script>
   <script src="../static/js/gestionarEvento.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 </body>
 
 </html>

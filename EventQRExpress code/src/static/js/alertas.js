@@ -39,8 +39,9 @@ function passwordActualizado(event) {
   });
 }
 // Alerta con mensaje de confirmacion al cambiar contraseña
-function eventoCreado(event) {
+function eventoCreado(event, id, idEvento) {
   event.preventDefault();
+  convertir_HTML_Imagen(id, idEvento);
   Swal.fire({
     icon: "success",
     title: "Evento Creado",
@@ -51,6 +52,60 @@ function eventoCreado(event) {
       event.target.submit();
     }
   });
+}
+
+
+function convertir_HTML_Imagen(id, idEvento) {
+  // Nombre que tendra la imagen
+  
+
+  // Convertir elemento HTML en JPG
+  domtoimage.toJpeg(document.getElementById('contenedor_invitacion'), { quality: 1.5 })
+    .then(function (dataUrl) {
+      var nombreArchivo = id + "_" + idEvento+".png";
+      // Agrega un botón de descarga
+      var downloadButton = document.createElement('a');
+      downloadButton.href = dataUrl;
+      downloadButton.download = nombreArchivo;
+      downloadButton.innerText = 'Descargar';
+      downloadButton.style.display = 'block';
+      // Envía la imagen al servidor para guardar en la ruta específica
+      enviar_Imagen_Servidro(dataUrl, nombreArchivo);
+    })
+    .catch(function (error) {
+      console.error('Error al convertir HTML a imagen:', error);
+    });
+}
+// Función para enviar la imagen al servidor
+function enviar_Imagen_Servidro(dataUrl, nombreArchivo) {
+  // Mensaje de éxito en la consola del navegador
+  console.log('Enviando al servidor:', dataUrl);
+  // Obtener el token CSRF del meta tag en el HTML
+  var csrfToken = document.querySelector('meta[name=csrf-token]').content;
+  // Crear una nueva solicitud XMLHttpRequest
+  var xhr = new XMLHttpRequest();
+  // Configurar la solicitud POST al servidor
+  xhr.open('POST', 'http://127.0.0.1:5000/guardarImagen', true);
+  // Establecer encabezados necesarios para la solicitud
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('X-CSRFToken', csrfToken);
+  // Configurar una función que se llamará cada vez que cambie el estado de la solicitud
+  xhr.onreadystatechange = function () {
+    // Verificar si la solicitud ha sido completada
+    if (xhr.readyState === 4) {
+      // Verificar si la respuesta del servidor es exitosa
+      if (xhr.status === 200) {
+        // Mensaje de éxito en la consola del navegador
+        console.log('Archivo guardado correctamente en el servidor');
+      } else {
+        // Mensajes de error en la consola del navegador si la respuesta del servidor no fue exitosa
+        console.error('Error al enviar el archivo al servidor. Estado:', xhr.status);
+        console.error('Respuesta del servidor:', xhr.responseText);
+      }
+    }
+  };
+  // Enviar la solicitud al servidor, incluyendo la información de la imagen y el nombre del archivo
+  xhr.send(JSON.stringify({ imgUrl: dataUrl, fileName: nombreArchivo }));
 }
 
 // Alerta para preguntar si desea cerrar sesion, en caso de confirmar sale alerta de confirmacion
@@ -253,20 +308,21 @@ function noAsistira() {
 }
 
 // Alerta con mensaje de confirmacion de registro de invitados, despues sale una alerta con recordatorio para no olvidar la contraseña
-function registroInvitado() {
+function registroInvitado(event) {
+  // console.log(id, idEvento);
+  event.preventDefault();
   Swal.fire({
     icon: "success",
     title: "Registro de Invitados",
     text: "Se ha realizado el registro con éxito.",
     confirmButtonText: "¡Genial!",
   }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire({
-        icon: "info",
-        title: "Recordatorio",
-        text: "Genial! En unos días te haremos envio del formulario para seleccionar tus asientos, no olvides tu contraseña.",
-      });
-    }
+    Swal.fire({
+      icon: "info",
+      title: "Recordatorio",
+      text: "Genial! En unos días te haremos envio del formulario para seleccionar tus asientos, no olvides tu contraseña.",
+    });
+    event.target.submit();
   });
 }
 

@@ -17,7 +17,7 @@
   <!-- Box-Icons -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <!-- Libreria de alertas -->
-  <link rel="stylesheet" href="sweetalert2.min.css">
+  <link rel="stylesheet" href="../sweetalert2.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -30,7 +30,7 @@
     <div class="detalles_usuario">
       <div class="datos_usuario">
         <i class='bx bxs-user-circle'></i>
-        <p class="nombre">NombreAnfitrion</p>
+        <p class="nombre">{{nombre}}</p>
         <a href="#configuracion" class="configuracion"></a>
       </div>
       <i class='bx bx-menu' id="btn"></i>
@@ -41,7 +41,7 @@
       <!-- Mensaje de anfitrion para invitado -->
       <div class="mensaje">
         <p>¡Excelente!</p>
-        <p>Estoy emocionado/a por tu asistencia a mi TIPODEEVENTO.</p>
+        <p>Estoy emocionado/a por tu asistencia a mi {{tipo}}.</p>
         <p>Quiero que disfrutes al máximo. Por favor, registra los datos solicitados para confirmar tu asistencia al
           evento.</p>
         <p>¡No puedo esperar para celebrar juntos/as!</p>
@@ -63,13 +63,14 @@
     <!-- Seccion FORMULARIO DE REGISTRO INVITADO -->
     <section class="registro" id="registro">
       <!-- Campo para el nombre del evento -->
-      <h1>Nombre del Evento</h1>
+      <h1>{{nombre_evento}}</h1>
       <!-- Titulo del formulario -->
       <h3>Registro de invitado</h3>
 
       <!-- Formulario REGISTRO DE INVITADOS -->
-      <form action="" method="post" id="formulario_registrar_invitado" autocomplete="off" novalidate>
-
+      <form action="/registroInvitado" method="post" id="formulario_registrar_invitado" autocomplete="off" novalidate>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="id_evento" value="{{ id }}">
         <!-- Contenedor con imagen de la invitacion -->
         <div class="invitacion">
           <img src="../static/img/invitacion01.webp" alt="">
@@ -88,7 +89,7 @@
           <div class="input-box">
             <div class="contenido_campo">
               <i class='bx bxs-envelope'></i>
-              <input type="text" name="email" placeholder="Correo electrónico" id="email_register" required>
+              <input type="text" name="email" placeholder="Correo electrónico" id="email_register"  required>
             </div>
             <span id="email_register_msg" class="error-msg"></span>
           </div>
@@ -96,7 +97,7 @@
           <div class="input-box">
             <div class="contenido_campo">
               <i class='bx bxs-lock-alt'></i>
-              <input type="password" name="password" placeholder="Contraseña" id="password_register" required>
+              <input type="password" name="password" placeholder="Contraseña" id="password_register"  required>
             </div>
             <span id="password_register_msg" class="error-msg"></span>
           </div>
@@ -104,7 +105,7 @@
           <div class="input-box">
             <div class="contenido_campo">
               <i class='bx bxs-lock-alt'></i>
-              <input type="password" placeholder="Confirmar contraseña" id="password2_register" required>
+              <input type="password" placeholder="Confirmar contraseña" id="password2_register"  required>
             </div>
             <span id="password2_register_msg" class="error-msg"></span>
           </div>
@@ -112,14 +113,13 @@
           <div class="input-box">
             <div class="contenido_campo">
               <i class='bx bx-male-female'></i>
-              <input type="password" placeholder="Número de asistentes (incluyendote)" id="numeroAsistentes_register"
-                required>
+              <input type="number" placeholder="Número de asistentes (incluyendote)" id="numeroAsistentes_register" name="asistentes" required>
             </div>
             <span id="numeroAsistentes_register_msg" class="error-msg"></span>
           </div>
           <!-- Boton del formulario -->
+          <button type="submit" class="btn-form input-box" id="submitBtn_register" onsubmit="registroInvitado(event)">Registrar</button>
           <div class="input-box">
-            <button type="submit" class="btn-form input-box" id="submitBtn_register" disabled>Registrar</button>
           </div>
         </div>
       </form>
@@ -142,6 +142,16 @@
   </main>
   <!-- Scripts -->
   <script src="../static/js/barraLateral.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../static/js/alertas.js"></script>
+  <script src="../static/js/barraLateral.js"></script>
+  <script src="../static/js/actualizarBarraLateral.js"></script>
+  <script src="../static/js/seleccionarInvitacion.js"></script>
+  <script src="../static/js/invitacionSeleccionada.js"></script>
+  <script src="../static/js/actualizarInvitacion.js"></script>
+  <script src="../static/js/gestionarEvento.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 </body>
 
 </html>
