@@ -63,3 +63,47 @@ class ModelConfirmaciones():
             db.connection.commit()
         except Exception as ex:
             raise Exception(ex)   
+    
+    @classmethod
+    def consultAll(self, db): #Nota esta consulta es para obtener el registro que contengan la ubicacion que enviamos retorna un objeto de tipo locker
+        try:
+            cursor = db.connection.cursor()
+            sql = f"SELECT id, nombre, email, asistentes FROM confirmaciones where confirmed = '1'"
+            cursor.execute(sql)
+            list_confirmaciones=[]
+            while True:
+                row = cursor.fetchone()
+                if row == None:
+                    break
+                list_confirmaciones.append( Confirmaciones(password="None",id=row[0], confirmed="", nombre=row[1], email=row[2], asistentes=row[3], id_evento=""))
+            
+            if len(list_confirmaciones)>0:
+                return list_confirmaciones
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
+            
+    @classmethod
+    def get_by_id(self, db, id):
+        try:
+            cursor = db.connection.cursor()
+            sql = f"SELECT id, email, nombre FROM confirmaciones WHERE id = '{id}'"
+            cursor.execute(sql)
+            row = cursor.fetchone()
+            if row != None:
+                return Confirmaciones(password="None",id=row[0], confirmed="", nombre=row[2], email=row[1], asistentes="", id_evento="")
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
+
+    @classmethod
+    def delete(self, db, id):
+        try:
+            cursor = db.connection.cursor()
+            sql = 'DELETE FROM confirmaciones WHERE id ='+ id
+            cursor.execute(sql)
+            db.connection.commit()
+        except Exception as ex:
+            raise Exception(ex)

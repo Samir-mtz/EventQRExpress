@@ -66,6 +66,7 @@ function obtenerDatosEvento(elemento) {
       document.getElementById("datos_asistentes").innerHTML = data.asistentes;
       document.getElementById("datos_tipo").innerHTML = data.tipo;
       document.getElementById("datos_lugar").innerHTML = data.lugar;
+      document.getElementById("link_invitacion").innerHTML = "http://127.0.0.1:5000/ConfirmacionEvento/"+partes[1];
     });
 
   // Mostrar el valor en la consola (puedes hacer lo que quieras con el valor)

@@ -61,18 +61,20 @@
   <main class="contenido"  >
     <!-- Seccion CONFIRMACION de la pagina -->
     <section class="confirmacion" id="confirmacion">
-      <h1>Nombre del Evento</h1>
+      <h1>{{tipo}}</h1>
       <!-- Formulario Confirmacion - Confirmacion del invitado -->
       <form action="" class="formulario_confirmacion" id="formulario_confirmacion"">
         <!-- Titulo del formulario -->
         <h3>Confirmación de asistencia</h3>
         <div class="contenedor_invitacion" id="contenedor_invitacion" >
-
+            <div>
+              <img src="/static/img/eventos/{{id_usuario}}/{{id_usuario}}_{{id}}.png" alt="Invitacion">
+            </div>
         </div>
         <!-- Botones del formulario -->
         <div class="botones_formulario">
           <button class="no btn_formulario" onclick="noAsistira(); return false;">No Asistiré</button>
-          <a class="yes btn_formulario" href="./administrador.html">Si Asistiré</a>
+          <a class="yes btn_formulario" href="/RegistroInvitado/{{id}}">Si Asistiré</a>
         </div>
       </form>
     </section>
@@ -96,7 +98,7 @@
   <!-- Scripts -->
   <script src="../static/js/barraLateral.js"></script>
   <script src="../static/js/alertas.js"></script>
-  <script src="../static/js/invitacionInvitado.js"></script>
+  <!-- <script src="../static/js/invitacionInvitado.js"></script> -->
 
 </body>
 

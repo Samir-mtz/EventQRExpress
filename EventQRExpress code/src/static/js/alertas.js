@@ -223,22 +223,51 @@ function preguntaEliminarRegistroInvitado() {
     cancelButtonText: "No",
   }).then((result) => {
     if (result.isConfirmed) {
+      async function obtenerDireccion() {
+        var lugarEvento = document.getElementById('id_confirmacion').value;
+        let direccion = '';
+        const url = "http://127.0.0.1:5000/deleteConfirmacion/" + lugarEvento;
+        try {
+          const response = await fetch(url);
+        } catch (error) {
+          // Manejar errores si es necesario
+          console.error('Error en la solicitud fetch:', error);
+          throw error; // Puedes lanzar el error nuevamente si es necesario
+        }
+      }
+      obtenerDireccion();
+      
       Swal.fire({
         icon: "success",
         title: "Eliminado",
         text: "Se ha eliminado el registro con éxito",
-      });
+      }).then(() => location.reload(true));
     }
   });
 }
 
 // Alerta con mensaje de confirmacion de envio del link para seleccionar asientos (Uno por uno)
-function enviarLinkConfirmacion() {
+function enviarLinkConfirmacion(id) {
+  async function enviarCorreo(id) {
+    // let direccion = '';
+    const url = "http://127.0.0.1:5000/enviarCorreo/" + id;
+    try {
+      const response = await fetch(url);
+    } catch (error) {
+      // Manejar errores si es necesario
+      console.error('Error en la solicitud fetch:', error);
+      throw error; // Puedes lanzar el error nuevamente si es necesario
+    }
+  }
+  
+  enviarCorreo(id);
+
   Swal.fire({
     icon: "success",
     title: "Enlace de Confirmación",
     text: "Se ha enviado el enlace de confirmación.",
     confirmButtonText: "¡Genial!",
+
   });
 }
 

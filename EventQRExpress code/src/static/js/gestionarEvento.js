@@ -5,3 +5,7 @@ function cambiarImagen(elemento) {
   let src = elemento.getAttribute("src");
   document.getElementById("contenedorInvitacion").innerHTML = `<img src="${src}" alt="">`;
 }
+
+function eliminarConfirmacion(elemento){
+  
+}

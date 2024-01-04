@@ -100,6 +100,39 @@ def jsondatos(id):
 @app.route('/direccion/<ciudad>')
 def consultarDireccion(ciudad):
     return jsonify(ModelSalon.consultarDireccion(db, ciudad))
+#########################################################################################
+############################ Enviar  Correo  ############################################
+######################################################################################### 
+@app.route('/enviarCorreo/<id>')
+def enviarCorreo(id):
+    confirmacion = ModelConfirmaciones.get_by_id(db, id)
+    token = generate_confirmation_token(confirmacion.email) 
+    # Envio de correo
+    confirm_url = url_for(
+        'confirm_email_seleccion', token=token, _external=True)
+    template = render_template(
+        'correoLinkInvitado.html', confirm_url=confirm_url)
+    subject = "Seleccion de asientos - Eventqrxpress"
+
+    msg = Message(
+        subject,
+        recipients=[''+confirmacion.email],
+        html=template,
+        sender="eventqrxpress@gmail.com"
+    )
+    mail.send(msg)
+    # login_user(execution) # Marco sus datos como logeado para que vea verificacion
+    # logout_user()
+    # return render_template('validacionCorreo.html', nombre=user.nombre, email=user.email)##########Cambiar
+    return redirect(url_for('index'))
+
+#########################################################################################
+############################ Funciones CRUD  ############################################
+######################################################################################### 
+@app.route('/deleteConfirmacion/<id>')
+def deleteConfirmacion(id):
+    ModelConfirmaciones.delete(db, id)
+    return redirect(url_for('homeCliente'))
 
 #########################################################################################
 ##################################### Usuario Anfitrion ###################################
@@ -154,6 +187,10 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+@app.route('/seleccionarAsiento')
+def seleccionarAsiento():
+    return render_template('registroAsistentesInvitado.html')
+
 # Home principal de usuario
 @app.route('/homeCliente')
 @login_required
@@ -177,7 +214,10 @@ def homeCliente():
                     imagenes.append({"src": ruta_imagen, "alt": nombre_evento, "nombre_evento": nombre_evento})
         # print(imagenes)
         evento = ModelEvento.lastId(db) + 1
-        return render_template('anfitrion.html', imagenes=imagenes, id=user.id, idEvento=evento)
+
+        list_confirmaciones = ModelConfirmaciones.consultAll(db)
+
+        return render_template('anfitrion.html', imagenes=imagenes, id=user.id, idEvento=evento, confirmaciones=list_confirmaciones)
     elif user.tipo == 'admin':
         return redirect(url_for('admin'))
     else:
@@ -186,8 +226,10 @@ def homeCliente():
 @app.route('/ConfirmacionEvento/<id>')
 def confirmacionInvitacion(id):
     evento = ModelEvento.datosEvento(db, id)
+    # print(evento)
+    # print(evento['id_usuario'])
     user = ModelUser.get_by_id(db, evento['id_usuario'])
-    return render_template('confirmacionInvitado.html', nombre=user.nombre, tipo=evento['tipo'])
+    return render_template('confirmacionInvitado.html', nombre=user.nombre, tipo=evento['tipo'], id=id, id_usuario=evento['id_usuario'])
 
 @app.route('/RegistroInvitado/<id>')
 def registroInvitado(id):
@@ -323,8 +365,8 @@ def confirm_email_invitado(token):
         return redirect(url_for('login'))
     # print(f"El email es: {email}")
     user = ModelConfirmaciones.consulta_email(db, email)
-    print("///////////")
-    print(user.confirmed)
+    # print("///////////")
+    # print(user.confirmed)
     if user != None:
         if user.confirmed:
             flash('Tu cuenta ya está confirmada. Por favor inicia sesión.', 'success')
@@ -337,6 +379,34 @@ def confirm_email_invitado(token):
     else:  # Codigo expiro
         flash('Algo salió mal. Por favor intenta de nuevo')
         return redirect(url_for('login'))
+
+
+#Ir a seleccion de asiento
+@app.route('/confirmAsientos/<token>')
+# @login_required
+def confirm_email_seleccion(token):
+    try:
+        email = confirm_token(token)  # Regresa el email!
+    except:
+        # En caso de cuenta creada pero no confirmada
+        flash('Algo salió mal. Por favor intenta de nuevo')
+        return redirect(url_for('index'))
+    # print(f"El email es: {email}")
+    user = ModelConfirmaciones.consulta_email(db, email)
+    # print("///////////")
+    # print(user.confirmed)
+    if user != None:
+        if user.confirmed:
+            flash('Tu cuenta ya está confirmada. Por favor inicia sesión.', 'success')
+            return redirect(url_for('seleccionarAsiento'))
+        else:
+            # print('llego')
+            ModelConfirmaciones.confirm_user(db, email)
+            flash('Gracias por confirmar tu cuenta. Por favor inicia sesión.', 'success')
+            return redirect(url_for('index'))
+    else:  # Codigo expiro
+        flash('Algo salió mal. Por favor intenta de nuevo')
+        return redirect(url_for('index'))
 
 
 # Reenvío de correo
