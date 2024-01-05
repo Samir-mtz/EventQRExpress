@@ -197,7 +197,7 @@ function preguntaCancelarRegistroEvento() {
 }
 
 // Alerta para preguntar si se desea editar un registro de los invitados (Solo hazta donde confirman asistencia)
-function preguntaEditarRegistroInvitado() {
+function preguntaEditarRegistroInvitado(button) {
   Swal.fire({
     icon: "question",
     title: "Editar Registro",
@@ -207,7 +207,66 @@ function preguntaEditarRegistroInvitado() {
     cancelButtonColor: "#f90c0c",
     confirmButtonText: "Sí",
     cancelButtonText: "No",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      editarRegistroInvitado(button);
+    }
   });
+}
+
+function intercambiarBotonesInvitado(button) {
+  if (button.classList.contains("editar")) {
+    // Cambiar a modo "Guardar"
+    button.classList.remove("editar");
+    button.classList.add("guardar");
+    button.innerHTML = "Guardar <i class='bx bxs-save'></i>";
+    button.setAttribute("onclick", "guardarCambiosInvitado(this)");
+  } else if (button.classList.contains("guardar")) {
+    // Cambiar a modo "Editar"
+    button.classList.remove("guardar");
+    button.classList.add("editar");
+    button.innerHTML = "Editar <i class='bx bxs-edit-alt'></i>";
+    button.setAttribute("onclick", "preguntaEditarRegistroInvitado(this)");
+  }
+}
+
+function editarRegistroInvitado(button) {
+  // Lógica para editar registro aquí
+  console.log("Editando registro...");
+  // Obtiene la fila actual
+  var fila = button.closest("tr");
+  // Obtiene todas las celdas de la fila
+  var celdas = fila.querySelectorAll("td");
+  // Itera sobre las celdas y reemplaza los span con input
+  celdas.forEach(function (celda, index) {
+    if (index < 3) {
+      var span = celda.querySelector("span");
+      var input = document.createElement("input");
+      input.value = span.innerText.trim();
+      span.replaceWith(input);
+    }
+  });
+  // Puedes agregar más funcionalidad según tus necesidades
+  intercambiarBotonesInvitado(button);
+}
+
+function guardarCambiosInvitado(button) {
+  // Lógica para guardar la edición aquí
+  console.log("Guardando edición...");
+  // Obtiene la fila actual
+  var fila = button.closest("tr");
+  // Obtiene todas las celdas de la fila
+  var celdas = fila.querySelectorAll("td");
+  // Itera sobre las celdas y reemplaza los input con span
+  celdas.forEach(function (celda, index) {
+    if (index < 3) {
+      var input = celda.querySelector("input");
+      var span = document.createElement("span");
+      span.innerText = input.value.trim();
+      input.replaceWith(span);
+    }
+  });
+  intercambiarBotonesInvitado(button);
 }
 
 // Alerta para preguntar si se desea eliminar un registro de los invitados (Solo hazta donde confirman asistencia)
@@ -282,7 +341,7 @@ function enviarLinksConfirmacion() {
 }
 
 // Alerta para preguntar si se desea editar un registro de los asistentes (Incluido los asientos, solo si hay disponibles)
-function preguntaEditarRegistroAsistente() {
+function preguntaEditarRegistroConfirmado(button) {
   Swal.fire({
     icon: "question",
     title: "Editar Registro",
@@ -292,7 +351,66 @@ function preguntaEditarRegistroAsistente() {
     cancelButtonColor: "#f90c0c",
     confirmButtonText: "Sí",
     cancelButtonText: "No",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      editarRegistroConfirmado(button);
+    }
   });
+}
+
+function intercambiarBotonesConfirmado(button) {
+  if (button.classList.contains("editar")) {
+    // Cambiar a modo "Guardar"
+    button.classList.remove("editar");
+    button.classList.add("guardar");
+    button.innerHTML = "Guardar <i class='bx bxs-save'></i>";
+    button.setAttribute("onclick", "guardarCambiosConfirmado(this)");
+  } else if (button.classList.contains("guardar")) {
+    // Cambiar a modo "Editar"
+    button.classList.remove("guardar");
+    button.classList.add("editar");
+    button.innerHTML = "Editar <i class='bx bxs-edit-alt'></i>";
+    button.setAttribute("onclick", "preguntaEditarRegistroConfirmado(this)");
+  }
+}
+
+function editarRegistroConfirmado(button) {
+  // Lógica para editar registro aquí
+  console.log("Editando registro...");
+  // Obtiene la fila actual
+  var fila = button.closest("tr");
+  // Obtiene todas las celdas de la fila
+  var celdas = fila.querySelectorAll("td");
+  // Itera sobre las celdas y reemplaza los span con input
+  celdas.forEach(function (celda, index) {
+    if (index < 2) {
+      var span = celda.querySelector("span");
+      var input = document.createElement("input");
+      input.value = span.innerText.trim();
+      span.replaceWith(input);
+    }
+  });
+  // Puedes agregar más funcionalidad según tus necesidades
+  intercambiarBotonesConfirmado(button);
+}
+
+function guardarCambiosConfirmado(button) {
+  // Lógica para guardar la edición aquí
+  console.log("Guardando edición...");
+  // Obtiene la fila actual
+  var fila = button.closest("tr");
+  // Obtiene todas las celdas de la fila
+  var celdas = fila.querySelectorAll("td");
+  // Itera sobre las celdas y reemplaza los input con span
+  celdas.forEach(function (celda, index) {
+    if (index < 2) {
+      var input = celda.querySelector("input");
+      var span = document.createElement("span");
+      span.innerText = input.value.trim();
+      input.replaceWith(span);
+    }
+  });
+  intercambiarBotonesConfirmado(button);
 }
 
 // Alerta para preguntar si se desea eliminar un registro de los asistentes (Incluido los asientos, solo si hay disponibles)

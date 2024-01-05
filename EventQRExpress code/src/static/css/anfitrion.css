@@ -327,12 +327,11 @@ select:focus {
   border-radius: 4%;
 }
 
-#contenedor_invitacion {
+.contenedor_invitacion {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 450px;
-  margin-left: 20px;
 }
 
 /************************ INVITACION 1 ************************/
@@ -448,6 +447,7 @@ select:focus {
 .contenedor_2 {
   display: flex;
   height: 280px;
+  width: 600px;
   border: 3px solid rgb(0, 0, 0);
   margin: 5px;
   border-radius: 10px;
@@ -542,6 +542,10 @@ select:focus {
   width: 50px;
 }
 
+.contenedor_2 img{
+  width: 300px;
+  height: auto;
+}
 /************************ INVITACION 3 ************************/
 
 .contenedor_3{
@@ -652,7 +656,6 @@ select:focus {
   width: 50px;
 }
 
-
 /************************ Formulario para el paso 3 ************************/
 
 .valores_evento{
@@ -663,6 +666,7 @@ select:focus {
 
 .valores_evento .contenedor_valores{
   flex: 1.5;
+  padding-right: 20px;
 }
 
 .valores_evento .contenedor_valores .valor {
@@ -803,12 +807,12 @@ select:focus {
   justify-content: center;
   flex-direction: column;
   height: 300px;
-  width: 300px;
+  width: 450px;
 }
 
 .contenedor_imagen img{
-    max-width: 90%;
-    max-height: 80%;
+    max-width: 100%; 
+    max-height: 100%;
     height: auto;
     border-radius: 8px;
 }
@@ -974,72 +978,59 @@ td, th {
 
 /**********  Dimensiones de la tabla 1 ***********/
 
-/* Columna de NUMERO DE INVITADO */
-.tabla1 .subtitulos_tabla th:nth-child(1) {
-  width: 60px;
-}
 /* Columna de NOMBRE */
-.tabla1 .subtitulos_tabla th:nth-child(2) {
-  width: 200px;
+.tabla1 .subtitulos_tabla th:nth-child(1) {
+  width: 300px;
 }
 /* Columna de CORREO */
-.tabla1 .subtitulos_tabla th:nth-child(3) {
-  width: 200px;
-}
-/* Columna de CONFIRMACION */
-.tabla1 .subtitulos_tabla th:nth-child(4) {
-  width: 90px;
+.tabla1 .subtitulos_tabla th:nth-child(2) {
+  width: 300px;
 }
 /* Columna de ASISTENTES */
-.tabla1 .subtitulos_tabla th:nth-child(5) {
+.tabla1 .subtitulos_tabla th:nth-child(3) {
   width: 70px;
 }
-/* Columna de ROL */
-.tabla1 .subtitulos_tabla th:nth-child(6) {
-  width: 50px;
-}
 /* Columna de ACCIONES */
-.tabla1 .subtitulos_tabla th:nth-child(7) {
+.tabla1 .subtitulos_tabla th:nth-child(4) {
   width: 500px;
 }
 
 /**********  Dimensiones de la tabla 2 ***********/
 
-/* Columna de NUMERO DE INVITADO */
+/* Columna de NOMBRE INVITADO */
 .tabla2 .subtitulos_tabla th:nth-child(1) {
-  width: 60px;
+  width: 300px;
 }
-/* Columna de NOMBRE */
+/* Columna de NOMBRE ASISTENTES */
 .tabla2 .subtitulos_tabla th:nth-child(2) {
-  width: 200px;
+  width: 300px;
 }
-/* Columna de CORREO */
+/* Columna de ASIENTO */
 .tabla2 .subtitulos_tabla th:nth-child(3) {
-  width: 200px;
-}
-/* Columna de CONFIRMACION */
-.tabla2 .subtitulos_tabla th:nth-child(4) {
-  width: 80px;
-}
-/* Columna de ASISTENTES */
-.tabla2 .subtitulos_tabla th:nth-child(5) {
-  width: 130px;
-}
-/* Columna de ROL */
-.tabla2 .subtitulos_tabla th:nth-child(6) {
-  width: 300px;
-}
-/* Columna de ACCIONES */
-.tabla2 .subtitulos_tabla th:nth-child(7) {
-  width: 300px;
+  width: 500px;
 }
 
-.valores_tabla {
-  font-size: 12px;
+.valores_tabla,
+.valores_asistente{
+  font-size: 16px;
   text-align: center;
 }
 
+.valores_tabla input,
+.valores_asistente input{
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  border: none;
+  background: none;
+  font-size: 12px;
+  background: white;
+  padding: 1px;
+}
+
 .valores_tabla button,
+.valores_asistente button,
 .contenedor_tablas button{
   border: none;
   background: none;
@@ -1048,23 +1039,33 @@ td, th {
 }
 
 .valores_tabla button:hover,
+.valores_asistente button:hover,
 .contenedor_tablas button:hover{
   cursor: pointer;
 }
 
+.valores_asistente .editar,
 .valores_tabla .editar{
   color: rgb(255, 225, 0);
 }
 
+.valores_asistente .guardar,
+.valores_tabla .guardar{
+  color: rgb(0, 68, 255);
+}
+
+.valores_asistente .eliminar,
 .valores_tabla .eliminar {
   color: rgb(255, 0, 0);
 }
 
+.valores_asistente .enviar,
 .valores_tabla .enviar,
 .contenedor_tablas .boton_todos button{
   color: rgb(3, 169, 3);
 }
 
+.valores_asistente .no_enviar,
 .valores_tabla .no_enviar{
   color: rgb(143, 143, 143);
 }
