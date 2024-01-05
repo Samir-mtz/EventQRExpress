@@ -56,39 +56,54 @@ function eventoCreado(event, id, idEvento) {
 
 
 function convertir_HTML_Imagen(id, idEvento) {
-  // Nombre que tendra la imagen
-  
+  // Obtener el contenedor
+  var contenedor = document.getElementById("contenedor_invitacion");
 
-  // Convertir elemento HTML en JPG
-  domtoimage.toJpeg(document.getElementById('contenedor_invitacion'), { quality: 1.5 })
+  // Guardar las dimensiones originales del contenedor
+  var originalWidth = contenedor.offsetWidth;
+  var originalHeight = contenedor.offsetHeight;
+
+  // Estilos del contenedor
+  contenedor.style.width = "10000px";
+  contenedor.style.height = "650px";
+  contenedor.style.transform = "scale(1.5)";
+
+  // Convertir elemento HTML en PNG
+  domtoimage
+    .toPng(contenedor)
     .then(function (dataUrl) {
-      var nombreArchivo = id + "_" + idEvento+".png";
+      var nombreArchivo = id + "_" + idEvento + ".png";
+      // Restaurar el estilo del contenedor
+      contenedor.style.width = originalWidth + "px";
+      contenedor.style.height = originalHeight + "px";
+      contenedor.style.transform = "scale(1)";
+      contenedor.style.backgroundColor = "";
       // Agrega un botón de descarga
-      var downloadButton = document.createElement('a');
+      var downloadButton = document.createElement("a");
       downloadButton.href = dataUrl;
       downloadButton.download = nombreArchivo;
-      downloadButton.innerText = 'Descargar';
-      downloadButton.style.display = 'block';
-      // Envía la imagen al servidor para guardar en la ruta específica
+      downloadButton.innerText = "Descargar";
+      downloadButton.style.display = "block";
       enviar_Imagen_Servidro(dataUrl, nombreArchivo);
     })
     .catch(function (error) {
-      console.error('Error al convertir HTML a imagen:', error);
+      console.error("Error al convertir HTML a imagen:", error);
     });
 }
+
 // Función para enviar la imagen al servidor
 function enviar_Imagen_Servidro(dataUrl, nombreArchivo) {
   // Mensaje de éxito en la consola del navegador
-  console.log('Enviando al servidor:', dataUrl);
+  console.log("Enviando al servidor:", dataUrl);
   // Obtener el token CSRF del meta tag en el HTML
-  var csrfToken = document.querySelector('meta[name=csrf-token]').content;
+  var csrfToken = document.querySelector("meta[name=csrf-token]").content;
   // Crear una nueva solicitud XMLHttpRequest
   var xhr = new XMLHttpRequest();
   // Configurar la solicitud POST al servidor
-  xhr.open('POST', 'http://127.0.0.1:5000/guardarImagen', true);
+  xhr.open("POST", "http://127.0.0.1:5000/guardarImagen", true);
   // Establecer encabezados necesarios para la solicitud
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.setRequestHeader('X-CSRFToken', csrfToken);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("X-CSRFToken", csrfToken);
   // Configurar una función que se llamará cada vez que cambie el estado de la solicitud
   xhr.onreadystatechange = function () {
     // Verificar si la solicitud ha sido completada
@@ -96,11 +111,14 @@ function enviar_Imagen_Servidro(dataUrl, nombreArchivo) {
       // Verificar si la respuesta del servidor es exitosa
       if (xhr.status === 200) {
         // Mensaje de éxito en la consola del navegador
-        console.log('Archivo guardado correctamente en el servidor');
+        console.log("Archivo guardado correctamente en el servidor");
       } else {
         // Mensajes de error en la consola del navegador si la respuesta del servidor no fue exitosa
-        console.error('Error al enviar el archivo al servidor. Estado:', xhr.status);
-        console.error('Respuesta del servidor:', xhr.responseText);
+        console.error(
+          "Error al enviar el archivo al servidor. Estado:",
+          xhr.status
+        );
+        console.error("Respuesta del servidor:", xhr.responseText);
       }
     }
   };

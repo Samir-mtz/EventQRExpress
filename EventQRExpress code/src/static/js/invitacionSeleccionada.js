@@ -44,18 +44,20 @@ function obtenerContenido(opcion) {
       switch (opcion) {
         case "opcion1":
           contenedorInvitacion.innerHTML = `
-            <div id="" class="contendor_invitacion_1" id="contenedor_invitacion">
-              <p class="texto_invitacion">Invitación</p>
-              <p class="titulo">`+nombreEvento+`</p>
-              <p class="fecha_evento">`+fechaFinal+`</p>
-              <div class="horario_evento">`+horario+`</div>
-              <div class="lugar">`+"Lugar: <br>"+direccion+`</div>
-              <p class="imagen_invitacion"><img src="../static/img/logo.png" alt=""></p>
+            <div class="contenedor_1" id="contenedor_invitacionf">
+              <div id="" class="contendor_invitacion_1" id="contenedor_invitacion">
+                <p class="texto_invitacion">Invitación</p>
+                <p class="titulo">`+nombreEvento+`</p>
+                <p class="fecha_evento">`+fechaFinal+`</p>
+                <div class="horario_evento">`+horario+`</div>
+                <div class="lugar">`+"Lugar: <br>"+direccion+`</div>
+                <p class="imagen_invitacion"><img src="../static/img/logo.png" alt=""></p>
+              </div>
             </div>`;
             break;
         case "opcion2":
           contenedorInvitacion.innerHTML = `
-            <div class="contenedor_2" id="contenedor_invitacion">
+            <div class="contenedor_2" id="contenedor_invitacionf">
               <div id="" class="contendor_invitacion_2">
                 <p class="texto_invitacion">Invitación</p>
                 <p class="fecha_evento">`+fechaFinal+`</p>
@@ -69,7 +71,7 @@ function obtenerContenido(opcion) {
             break;
         case "opcion3":
           contenedorInvitacion.innerHTML = `
-            <div class="contenedor_3" id="contenedor_invitacion">
+            <div class="contenedor_3" id="contenedor_invitacionf">
               <div id="" class="contendor_invitacion_3">
                 <p class="texto_invitacion">Invitación</p>
                 <p class="titulo">`+nombreEvento+`</p>
