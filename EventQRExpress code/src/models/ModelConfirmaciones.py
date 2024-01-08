@@ -8,7 +8,7 @@ class ModelConfirmaciones():
             encrypted_password = User.generate_password(user.password)
             cursor = db.connection.cursor()
             sql = f"INSERT INTO confirmaciones (nombre, email, password, confirmed, asistentes, id_evento, invitacion ) VALUES ('{user.nombre}', '{user.email}', '{encrypted_password}', False, '{user.asistentes}', '{user.id_evento}', 'Null')"
-            print(sql)
+            # print(sql)
             cursor.execute(sql)
             db.connection.commit()
             try:

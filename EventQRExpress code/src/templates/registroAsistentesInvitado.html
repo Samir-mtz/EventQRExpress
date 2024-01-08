@@ -273,14 +273,14 @@
             </table>
           </div>
           <div id="contenedor_invitacion" class="contenedor_invitacion">
-            <!-- <img src="{{ imagen[0]['src'] }}" alt="{{ imagen[0]['alt'] }}"> -->
-            <img src="../static/img/eventos/1/1_1.png" alt="">
+            <img src="{{ imagen[0]['src'] }}" alt="{{ imagen[0]['alt'] }}">
+            <!-- <img src="../static/img/invitacion02.webp" alt=""> -->
           </div>
         </div>
         <!-- Botones del formulario -->
         <div class="botones_formulario">
           <button type="button" class="no" onclick="anteriorPaso();">Corregir</button>
-          <button type="button" class="yes"" onclick="enviarDatosJSON('{{evento.id_usuario}}','{{evento.id}}','{{usuario.id}}')">Confirmar</button>
+          <button type="button" class="yes"" onclick="enviarDatosJSON()">Confirmar</button>
         </div>
       </form>
     </section>
@@ -323,8 +323,6 @@
   <script src="../static/js/alertas.js"></script>
   <script src="../static/js/invitado.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
 
 </body>

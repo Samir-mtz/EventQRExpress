@@ -14,7 +14,7 @@ function actualizarInterfaz() {
 }
 
 function enviarDatosJSON(id, idEvento, idConfirmacion) {
-  convertir_HTML_Imagen_Invitacion(id, idEvento, idConfirmacion);
+  // convertir_HTML_Imagen_Invitacion(id, idEvento, idConfirmacion);
   Swal.fire({
     icon: "question",
     title: "Confirmar Registro",
