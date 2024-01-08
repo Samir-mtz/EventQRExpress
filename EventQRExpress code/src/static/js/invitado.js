@@ -16,8 +16,8 @@ function actualizarInterfaz() {
 function enviarDatosJSON(){
   Swal.fire({
     icon: "question",
-    title: "Editar Registro",
-    text: "¿Está seguro de que desea editar el registro?",
+    title: "Confirmar Registro",
+    text: "¿Está seguro de que desea registrar a sus asistentes?",
     showCancelButton: true,
     confirmButtonColor: "#009a06",
     cancelButtonColor: "#f90c0c",
@@ -25,7 +25,6 @@ function enviarDatosJSON(){
     cancelButtonText: "No",
   }).then((result) => {
     if (result.isConfirmed) {
-      
       var dataToSend = { Registros: registrosArray };
       var csrfToken = document.querySelector("meta[name=csrf-token]").content;
       // Realizar la solicitud POST utilizando fetch
@@ -41,6 +40,16 @@ function enviarDatosJSON(){
       .then(data => {
           console.log('Respuesta del servidor:', data);
           // Puedes hacer algo con la respuesta del servidor aquí
+          Swal.fire({
+            icon: "success",
+            title: "Registro Exitoso",
+            text: "Tu registro fue exitoso, enviaremos un correo con las invitaciones.",
+            confirmButtonText: "¡Genial!",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "../";
+            }
+          });
       })
       .catch(error => {
           console.error('Error al enviar la petición:', error);

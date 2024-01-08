@@ -381,19 +381,16 @@ def confirm_email_invitado(token):
         # En caso de cuenta creada pero no confirmada
         flash('Algo salió mal. Por favor intenta de nuevo')
         return redirect(url_for('login'))
-    # print(f"El email es: {email}")
     user = ModelConfirmaciones.consulta_email(db, email)
-    # print("///////////")
-    # print(user.confirmed)
     if user != None:
         if user.confirmed:
             flash('Tu cuenta ya está confirmada. Por favor inicia sesión.', 'success')
-            return redirect(url_for('login'))
+            return render_template('invitadoConfirmado.html')
         else:
             # print('llego')
             ModelConfirmaciones.confirm_user(db, email)
             flash('Gracias por confirmar tu cuenta. Por favor inicia sesión.', 'success')
-            return redirect(url_for('login'))
+            return render_template('invitadoConfirmado.html')
     else:  # Codigo expiro
         flash('Algo salió mal. Por favor intenta de nuevo')
         return redirect(url_for('login'))
@@ -591,7 +588,8 @@ def registrarAsistente():
         for registro in registros['Registros']:
             # print(registro)
             ModelUsuariosConfirmados.register(db,nombre=registro['nombre'], id_confirmacion=registro['id_confirmacion'], asiento=registro['asiento'])
-        return redirect(url_for('index')) ######CAMBIAR POR PANTALLA DE ENVIAMOS CORREO CON QR
+        mensaje = {'status': 'success', 'message': 'Operación exitosa'}
+        return jsonify(mensaje)
 
 
 # Reenvío de correo
