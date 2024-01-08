@@ -23,6 +23,7 @@ import base64
 from models.ModelUser import ModelUser
 from models.ModelSalon import ModelSalon
 from models.ModelEvento import ModelEvento
+from models.ModelUsuariosConfirmados import ModelUsuariosConfirmados
 from models.ModelConfirmaciones import ModelConfirmaciones
 
 # Entities:
@@ -93,9 +94,18 @@ def guardar_archivo():
 def jsonroutedestino(capacidad):
     return jsonify(ModelSalon.consultarSalon(db, capacidad))
 
+
 @app.route('/datosEvento/<id>')
 def jsondatos(id):
     return jsonify(ModelEvento.datosEvento(db, id))
+
+@app.route('/confirmados/<id>')
+def jsondatosCdonfirmados(id):
+    return jsonify(ModelConfirmaciones.consultAll(db, id))
+
+@app.route('/invitadosAsistentes/<id>')
+def jsoninvitadosAsistentes(id):
+    return jsonify(ModelUsuariosConfirmados.consultAll(db, id))
 
 @app.route('/direccion/<ciudad>')
 def consultarDireccion(ciudad):
@@ -187,9 +197,16 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-@app.route('/seleccionarAsiento')
-def seleccionarAsiento():
-    return render_template('registroAsistentesInvitado.html')
+@app.route('/seleccionarAsiento/<token>')
+def seleccionarAsiento(token):
+    email = confirm_token(token)
+    usuario = ModelConfirmaciones.consulta_email(db, email)
+    evento = ModelEvento.datosEvento(db, usuario.id_evento)
+    ruta_imagen = os.path.join('..\static', 'img', 'eventos', str(evento['id_usuario']), f"{evento['id_usuario']}_{evento['id']}.png")
+    imagen = [] 
+    imagen.append({"src": ruta_imagen, "alt": "Invitacion"})
+    # print(usuario.nombre)
+    return render_template('registroAsistentesInvitado.html', usuario=usuario, evento=evento, imagen=imagen)
 
 # Home principal de usuario
 @app.route('/homeCliente')
@@ -215,9 +232,10 @@ def homeCliente():
         # print(imagenes)
         evento = ModelEvento.lastId(db) + 1
 
-        list_confirmaciones = ModelConfirmaciones.consultAll(db)
+        # list_confirmaciones = ModelConfirmaciones.consultAll(db)
+        # lista_confirmados = ModelUsuariosConfirmados.consultAll(db, )
 
-        return render_template('anfitrion.html', imagenes=imagenes, id=user.id, idEvento=evento, confirmaciones=list_confirmaciones)
+        return render_template('anfitrion.html', imagenes=imagenes, id=user.id, idEvento=evento)
     elif user.tipo == 'admin':
         return redirect(url_for('admin'))
     else:
@@ -398,7 +416,8 @@ def confirm_email_seleccion(token):
     if user != None:
         if user.confirmed:
             flash('Tu cuenta ya está confirmada. Por favor inicia sesión.', 'success')
-            return redirect(url_for('seleccionarAsiento'))
+            token = generate_confirmation_token(email) 
+            return redirect(url_for('seleccionarAsiento', token=token))
         else:
             # print('llego')
             ModelConfirmaciones.confirm_user(db, email)
@@ -564,6 +583,15 @@ def registrarEvento():
             # flash("Algo salió mal, intenta de nuevo")
             # return render_template('formularioLoginRegister.html')
             return redirect(url_for('homeCliente'))
+
+@app.route('/registrarAsistente/', methods=['POST'])
+def registrarAsistente():
+    if request.method == 'POST':
+        registros = request.json 
+        for registro in registros['Registros']:
+            # print(registro)
+            ModelUsuariosConfirmados.register(db,nombre=registro['nombre'], id_confirmacion=registro['id_confirmacion'], asiento=registro['asiento'])
+        return redirect(url_for('index')) ######CAMBIAR POR PANTALLA DE ENVIAMOS CORREO CON QR
 
 
 # Reenvío de correo

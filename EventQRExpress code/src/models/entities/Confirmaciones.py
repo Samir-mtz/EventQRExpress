@@ -8,3 +8,13 @@ class Confirmaciones():
         self.id_evento = id_evento
         self.password = password
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'nombre': self.nombre,
+            'email': self.email,
+            'password': self.password,
+            'confirmed': self.confirmed,
+            'asistentes': self.asistentes,
+            'id_evento': self.id_evento
+        }

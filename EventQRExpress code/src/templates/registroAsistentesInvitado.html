@@ -5,6 +5,7 @@
   <!-- Metadatos -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../static/img/logo.png">
   <!-- Titulo de la pagina en la pestaña -->
@@ -30,7 +31,7 @@
     <div class="detalles_usuario">
       <div class="datos_usuario">
         <i class='bx bxs-user-circle'></i>
-        <p class="nombre">NombreAnfitrion</p>
+        <p class="nombre">{{usuario.nombre}}</p>
         <a href="#configuracion" class="configuracion"></a>
       </div>
       <i class='bx bx-menu' id="btn"></i>
@@ -60,7 +61,7 @@
 
     <!-- Seccion CREAR EVENTO de la pagina -->
     <section class="crear" id="crear">
-      <h1>Nombre del Evento</h1>
+      <h1>{{evento.nombre}}</h1>
 
 
       <!-- Formulario Paso #1 - Registro de asistentes -->
@@ -237,8 +238,7 @@
             <p class="valor">
               <i class='bx bx-male-female'></i>
               <span class="nombre_valor">Número estimado de asistentes: </span>
-              <input type="number" name="numeroAsistentes" id="numeroAsistentes" autocomplete="off" value=""
-                oninput="actualizarValoresAsistentes()">
+              <input type="number" name="numeroAsistentes" id="numeroAsistentes" autocomplete="off" value="{{usuario.asistentes}}" oninput="actualizarValoresAsistentes()">
             </p>
 
             <div class="datos_asistentes" id="datosAsistentes">
@@ -248,7 +248,7 @@
         <!-- Botones del formulario -->
         <div class="botones_formulario">
           <button type="button" class="no" onclick="preguntaCancelarSeleccionAsientos();">Cancelar</button>
-          <button type="button" class="yes" onclick="siguientePaso();">Guardar</button>
+          <button type="button" class="yes" onclick="siguientePaso('{{usuario.id}}');">Guardar</button>
         </div>
       </form>
 
@@ -273,13 +273,14 @@
             </table>
           </div>
           <div id="contenedor_invitacion" class="contenedor_invitacion">
-            <img src="../static/img/invitacion02.webp" alt="">
+            <img src="{{ imagen[0]['src'] }}" alt="{{ imagen[0]['alt'] }}">
+            <!-- <img src="../static/img/invitacion02.webp" alt=""> -->
           </div>
         </div>
         <!-- Botones del formulario -->
         <div class="botones_formulario">
           <button type="button" class="no" onclick="anteriorPaso();">Corregir</button>
-          <button type="button" class="yes"">Confirmar</button>
+          <button type="button" class="yes"" onclick="enviarDatosJSON()">Confirmar</button>
         </div>
       </form>
     </section>
@@ -321,6 +322,7 @@
   <script src="../static/js/actualizarDatosAsistentes.js"></script>
   <script src="../static/js/alertas.js"></script>
   <script src="../static/js/invitado.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 </body>

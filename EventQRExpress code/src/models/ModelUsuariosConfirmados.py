@@ -1,24 +1,33 @@
-from .entities.Usuarios_confirmados import Usuarios_confirmados
-class ModelUsuarios_confirmados():
+from .entities.UsuariosConfirmados import UsuariosConfirmados
+class ModelUsuariosConfirmados():
     @classmethod
-    def register(self, db, user):
+    def register(self, db, nombre, id_confirmacion, asiento):
         try:
-            encrypted_password = User.generate_password(user.password)
             cursor = db.connection.cursor()
-            sql = f"INSERT INTO usuarios (nombre, email, password, confirmed, asistentes, id_evento, invitacion ) VALUES ('{user.nombre}', '{user.email}', '{encrypted_password}', False, '{user.asistentes}', '{user.id_evento}', Null)"
+            sql = f"INSERT INTO usuarios_confirmados (nombre, id_confirmacion, asiento) VALUES ('{nombre}', '{id_confirmacion}', '{asiento}')"
             cursor.execute(sql)
             db.connection.commit()
-            try:
-                cursor = db.connection.cursor()
-                sql = f"SELECT id, email, password, nombre FROM usuarios WHERE email = '{user.email}'"
-                cursor.execute(sql)
-                row = cursor.fetchone()
-                if row != None:
-                    user = Confirmaciones(id=row[0], email=row[1], password=User.check_password(row[2], user.password), nombre=row[3])
-                    return user
-                else:
-                    return None
-            except Exception as ex:
-                raise Exception(ex)
+            return "Succes"
         except Exception as ex:
             raise Exception(ex)
+
+    @classmethod
+    def consultAll(self, db, id): #Nota esta consulta es para obtener el registro que contengan la ubicacion que enviamos retorna un objeto de tipo locker
+        try:
+            cursor = db.connection.cursor()
+            sql = f"SELECT id, asiento, nombre FROM usuarios_confirmados where id_confirmacion = '{id}'"
+            cursor.execute(sql)
+            list_confirmaciones=[]
+            while True:
+                row = cursor.fetchone()
+                if row == None:
+                    break
+                list_confirmaciones.append( UsuariosConfirmados(id=row[0], asiento=row[1], nombre=row[2], id_confirmacion=id).to_dict())
+            
+            if len(list_confirmaciones)>0:
+                return list_confirmaciones
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
+    

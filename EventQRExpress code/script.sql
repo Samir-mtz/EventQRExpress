@@ -56,7 +56,7 @@ CREATE TABLE
         id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
         nombre VARCHAR(100) NOT NULL,
         id_confirmacion INT NOT NULL,
-        asiento INT NOT NULL,
+        asiento VARCHAR(20) NOT NULL,
         FOREIGN KEY (id_confirmacion) REFERENCES confirmaciones(id)
     );
 
