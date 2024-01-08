@@ -68,9 +68,9 @@ function convertir_HTML_Imagen_Invitacion(id, idEvento, idConfirmacion) {
   var originalHeight = contenedor.offsetHeight;
 
   // Estilos del contenedor
-  contenedor.style.width = "10000px";
-  contenedor.style.height = "650px";
-  contenedor.style.transform = "scale(1.5)";
+  contenedor.style.width = "1300px";
+  contenedor.style.height = "300px";
+  contenedor.style.transform = "scale(1.2)";
 
   // Convertir elemento HTML en PNG
   domtoimage
