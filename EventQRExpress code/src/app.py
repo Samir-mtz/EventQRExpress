@@ -87,6 +87,28 @@ def guardar_archivo():
         print(f"Error al guardar el archivo: {e}")
         return jsonify({'error': f'Error al guardar el archivo: {e}'}), 500
 
+# Descargar imagen invitacion
+@app.route('/guardarImagenInvitacion', methods=['POST'])
+def guardar_archivo_invitacion():
+    # user = ModelUser.consulta_email(db, current_user.email)
+    try:
+        data_url = request.json['imgUrl']
+        base64_data = data_url.split(',')[1]
+        # Obtén el nombre y id del usuario (carpeta donde se almacenara)
+        nombreArchivo = request.json.get('fileName', '')
+        idUsuario = nombreArchivo.split('_')[0]
+        # Ruta donde se guardará la iamgen
+        carpeta_especifica = os.path.join(app.root_path, 'static', 'img', 'eventos', idUsuario)
+        if not os.path.exists(carpeta_especifica):
+            os.makedirs(carpeta_especifica)
+        # Guardar el archivo en la carpeta específica con el nombre
+        with open(os.path.join(carpeta_especifica, nombreArchivo), 'wb') as f:
+            f.write(base64.b64decode(base64_data))
+        return jsonify({'message': 'Archivo guardado correctamente'})
+    except Exception as e:
+        print(f"Error al guardar el archivo: {e}")
+        return jsonify({'error': f'Error al guardar el archivo: {e}'}), 500
+
 
 #########################################################################################
 ############################ Funciones de consulta  #####################################
@@ -1361,5 +1383,6 @@ if __name__ == '__main__':
     app.register_error_handler(401, status_401)
     app.register_error_handler(404, status_404)
     # Obtener la dirección IP local
-    host = socket.gethostbyname(socket.gethostname())
-    app.run(host=host, port=5000)
+    # host = socket.gethostbyname(socket.gethostname())
+    # app.run(host=host, port=5000)
+    app.run()

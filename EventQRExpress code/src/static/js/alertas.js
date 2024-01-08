@@ -54,7 +54,6 @@ function eventoCreado(event, id, idEvento) {
   });
 }
 
-
 function convertir_HTML_Imagen(id, idEvento) {
   // Obtener el contenedor
   var contenedor = document.getElementById("contenedor_invitacion");
@@ -73,6 +72,42 @@ function convertir_HTML_Imagen(id, idEvento) {
     .toPng(contenedor)
     .then(function (dataUrl) {
       var nombreArchivo = id + "_" + idEvento + ".png";
+      // Restaurar el estilo del contenedor
+      contenedor.style.width = originalWidth + "px";
+      contenedor.style.height = originalHeight + "px";
+      contenedor.style.transform = "scale(1)";
+      contenedor.style.backgroundColor = "";
+      // Agrega un botón de descarga
+      var downloadButton = document.createElement("a");
+      downloadButton.href = dataUrl;
+      downloadButton.download = nombreArchivo;
+      downloadButton.innerText = "Descargar";
+      downloadButton.style.display = "block";
+      enviar_Imagen_Servidro(dataUrl, nombreArchivo);
+    })
+    .catch(function (error) {
+      console.error("Error al convertir HTML a imagen:", error);
+    });
+}
+
+function convertir_HTML_Imagen_Invitacion(id, idEvento, idConfirmacion) {
+  // Obtener el contenedor
+  var contenedor = document.getElementById("contenedor_invitacion");
+
+  // Guardar las dimensiones originales del contenedor
+  var originalWidth = contenedor.offsetWidth;
+  var originalHeight = contenedor.offsetHeight;
+
+  // Estilos del contenedor
+  contenedor.style.width = "10000px";
+  contenedor.style.height = "650px";
+  contenedor.style.transform = "scale(1.5)";
+
+  // Convertir elemento HTML en PNG
+  domtoimage
+    .toPng(contenedor)
+    .then(function (dataUrl) {
+      var nombreArchivo = id + "_" + idEvento + idConfirmacion + ".png";
       // Restaurar el estilo del contenedor
       contenedor.style.width = originalWidth + "px";
       contenedor.style.height = originalHeight + "px";
@@ -475,7 +510,7 @@ function noAsistira() {
 // Alerta con mensaje de confirmacion de registro de invitados, despues sale una alerta con recordatorio para no olvidar la contraseña
 function registroInvitado(event) {
   // console.log(id, idEvento);
-  event.preventDefault();
+  // event.preventDefault();
   Swal.fire({
     icon: "success",
     title: "Registro de Invitados",
@@ -487,7 +522,7 @@ function registroInvitado(event) {
       title: "Recordatorio",
       text: "Genial! En unos días te haremos envio del formulario para seleccionar tus asientos, no olvides tu contraseña.",
     });
-    event.target.submit();
+    // event.target.submit();
   });
 }
 

@@ -48,6 +48,7 @@
     contenedorQR.innerHTML = "";
     // Link de la imagen de la invitacion
     var link = "https://www.google.com/";
+    // http://192.168.143.245:5000/img/eventos/2/2_3_6.png
     // Crear un elemento para el código QR
     const qrElement = document.createElement("div");
     // Dimensiones del código QR
@@ -59,6 +60,7 @@
     const QR = new QRCode(qrElement, opcionesQR);
     // Generar el código QR
     QR.makeCode(link);
+    // QR.makeCode({{url}});
     // Agregar el elemento del código QR al contenedor
     contenedorQR.appendChild(qrElement);
     flag = true;
