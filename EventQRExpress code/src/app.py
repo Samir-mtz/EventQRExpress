@@ -627,14 +627,12 @@ def registrarAsistente():
         # Envio de correo
         # print("///////////////////////////////////////////////////////////////////////////////////////////")
         # print(carpeta_especifica)
-        url = "192.168.143.245:5000" + carpeta_especifica
+        url = "169.254.221.49:5000" + carpeta_especifica
         template = render_template('correoQRInvitacion.html', url=url)
         subject = "Invitacion - Eventqrxpress"
 
         msg = Message(subject, recipients=[email], html=template, sender="eventqrxpress@gmail.com")
         mail.send(msg)
-
-
         mensaje = {'status': 'success', 'message': 'Operación exitosa'}
         return jsonify(mensaje)
 
@@ -1402,5 +1400,6 @@ if __name__ == '__main__':
     app.register_error_handler(401, status_401)
     app.register_error_handler(404, status_404)
     # Obtener la dirección IP local
-    app.run(host=host, port=5000)
+    app.run()
+    # app.run(host=host, port=5000)
     # app.run()
