@@ -616,6 +616,23 @@ def registrarAsistente():
         for registro in registros['Registros']:
             # print(registro)
             ModelUsuariosConfirmados.register(db,nombre=registro['nombre'], id_confirmacion=registro['id_confirmacion'], asiento=registro['asiento'])
+
+        # hash_email = confirm_token(email)
+        token = generate_confirmation_token(email)
+        confirmacion = ModelConfirmaciones.get_by_id(db, registro['id_confirmacion'])
+        evento = ModelEvento.datosEvento(db, confirmacion.id_evento)
+        email = ''
+        carpeta = f"{evento['id_usuario']}/{evento['id_usuario']}_{evento['id']}_{confirmacion.id}.png"
+        carpeta_especifica = os.path.join(app.root_path, 'static', 'img', 'eventos', carpeta)
+        # Envio de correo
+        url = "192.168.143.245:5000" + carpeta_especifica
+        template = render_template('correoQRInvitacion.html', url=url)
+        subject = "Invitacion - Eventqrxpress"
+
+        msg = Message(subject, recipients=[email], html=template, sender="eventqrxpress@gmail.com")
+        mail.send(msg)
+
+
         mensaje = {'status': 'success', 'message': 'Operación exitosa'}
         return jsonify(mensaje)
 

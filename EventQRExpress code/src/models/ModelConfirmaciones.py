@@ -102,11 +102,11 @@ class ModelConfirmaciones():
     def get_by_id(self, db, id):
         try:
             cursor = db.connection.cursor()
-            sql = f"SELECT id, email, nombre FROM confirmaciones WHERE id = '{id}'"
+            sql = f"SELECT id, email, nombre, id_evento FROM confirmaciones WHERE id = '{id}'"
             cursor.execute(sql)
             row = cursor.fetchone()
             if row != None:
-                return Confirmaciones(password="None",id=row[0], confirmed="", nombre=row[2], email=row[1], asistentes="", id_evento="")
+                return Confirmaciones(password="None",id=row[0], confirmed="", nombre=row[2], email=row[1], asistentes="", id_evento=row[3])
             else:
                 return None
         except Exception as ex:
