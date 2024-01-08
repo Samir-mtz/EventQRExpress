@@ -38,6 +38,19 @@ class ModelConfirmaciones():
                 return False
         except Exception as ex:
             raise Exception(ex)
+    @classmethod
+    def check_email_evento(self, db, email, id):
+        try:
+            cursor = db.connection.cursor()
+            sql = f"SELECT id, nombre FROM confirmaciones WHERE email = '{email}' and id_evento = '{id}'"
+            cursor.execute(sql)
+            row = cursor.fetchone()
+            if row != None:
+                return True
+            else:
+                return False
+        except Exception as ex:
+            raise Exception(ex)
 
     @classmethod
     def consulta_email(self, db, email):

@@ -262,7 +262,7 @@ def registerInvitado():
         if current_user.is_active == True:
             logout_user()
         # ¿El correo no esta registrado?
-        if ModelConfirmaciones.check_email(db, request.form['email']) == False:
+        if ModelConfirmaciones.check_email_evento(db, request.form['email'], request.form['id_evento']) == False:
             user = Confirmaciones(id=1, email= request.form['email'],
                         password = request.form['password'],
                         nombre = request.form['nombre'],
