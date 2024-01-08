@@ -11,6 +11,7 @@ from models.token import generate_confirmation_token, confirm_token
 from flask import jsonify
 import shutil
 import os
+import socket
 from datetime import datetime
 
 
@@ -230,7 +231,12 @@ def homeCliente():
                     nombre_evento = os.path.splitext(archivo)[0]  # Nombre del archivo sin extensión
                     imagenes.append({"src": ruta_imagen, "alt": nombre_evento, "nombre_evento": nombre_evento})
         # print(imagenes)
-        evento = ModelEvento.lastId(db) + 1
+        # print(ModelEvento.lastId(db))
+        if(ModelEvento.lastId(db) != None):
+            evento = ModelEvento.lastId(db) + 1
+        else:
+            evento = 1
+        # evento = ModelEvento.lastId(db) + 1
 
         # list_confirmaciones = ModelConfirmaciones.consultAll(db)
         # lista_confirmados = ModelUsuariosConfirmados.consultAll(db, )
@@ -1348,9 +1354,12 @@ def status_404(error):
 
 
 # This forces the app to start at '/'
+
 if __name__ == '__main__':
     app.config.from_object(config['development'])
     csrf.init_app(app)
     app.register_error_handler(401, status_401)
     app.register_error_handler(404, status_404)
-    app.run()
+    # Obtener la dirección IP local
+    host = socket.gethostbyname(socket.gethostname())
+    app.run(host=host, port=5000)
