@@ -8,14 +8,13 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from config import config
 from flask_mail import Mail, Message
 from models.token import generate_confirmation_token, confirm_token
-from flask import jsonify
+from flask import Flask, render_template, request, jsonify
 import shutil
 import os
 import socket
 from datetime import datetime
 
 
-from flask import Flask, render_template, request, jsonify
 import base64
 
 
@@ -31,6 +30,7 @@ from models.ModelConfirmaciones import ModelConfirmaciones
 from models.entities.User import User
 from models.entities.Confirmaciones import Confirmaciones
 
+host = socket.gethostbyname(socket.gethostname())
 app = Flask(__name__)
 csrf = CSRFProtect()
 db = MySQL(app)
@@ -1402,6 +1402,5 @@ if __name__ == '__main__':
     app.register_error_handler(401, status_401)
     app.register_error_handler(404, status_404)
     # Obtener la dirección IP local
-    # host = socket.gethostbyname(socket.gethostname())
-    # app.run(host=host, port=5000)
-    app.run()
+    app.run(host=host, port=5000)
+    # app.run()

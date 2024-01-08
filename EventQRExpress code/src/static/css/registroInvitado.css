@@ -350,7 +350,7 @@ select:focus {
 
 .contenedor_confirmacion{
   height: 70%;
-  width: 100%;
+  width: 600px;
   margin: auto;
   display: flex;
   justify-content: space-around;
