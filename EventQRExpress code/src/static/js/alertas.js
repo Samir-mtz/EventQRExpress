@@ -63,7 +63,7 @@ function convertir_HTML_Imagen(id, idEvento) {
   var originalHeight = contenedor.offsetHeight;
 
   // Estilos del contenedor
-  contenedor.style.width = "10000px";
+  contenedor.style.width = "8000px";
   contenedor.style.height = "650px";
   contenedor.style.transform = "scale(1.5)";
 

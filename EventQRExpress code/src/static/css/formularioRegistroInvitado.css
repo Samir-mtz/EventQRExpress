@@ -62,37 +62,37 @@
 /* Contendor del formulario */
 .registro form {
   width: 60%;
-  margin: 20px 0px 0px;
+  height: 400px;
+  margin: 50px 0px 0px;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-/* Contenedor de la invitacion */
 .invitacion {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 450px;
-  height: 500px;
-  padding-right: 20px;
+  width: 60%;
+  height: 400px;
 }
 
 /* Imagen de la invitacion */
 .invitacion img {
   max-width: 100%;
   max-height: 100%;
+  height: auto;
   border-radius: 8px;
 }
 
 /* Contenedor de los campos del formulario */
 .input-boxes{
-  width: 50%;
+  width: 40%;
   height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
-
 
 /* Contenedor de cada campo del formulario */
 .input-box {
@@ -102,7 +102,6 @@
   justify-content: center;
   min-height: 40px;
   width: 100%;
-  margin: 10px 0;
   position: relative;
 }
 
