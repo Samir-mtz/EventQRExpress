@@ -512,16 +512,17 @@ function registroInvitado(event) {
   event.preventDefault();
   Swal.fire({
     icon: "success",
-    title: "Registro de Invitados",
+    title: "Registro de Invitado",
     text: "Se ha realizado el registro con éxito.",
     confirmButtonText: "¡Genial!",
   }).then((result) => {
     Swal.fire({
       icon: "info",
       title: "Recordatorio",
-      text: "Genial! En unos días te haremos envio del formulario para seleccionar tus asientos, no olvides tu contraseña.",
+      text: "Genial! En unos días te haremos envio del formulario para seleccionar tus asientos.",
+    }).then((result)=> {
+      event.target.submit();
     });
-    event.target.submit();
   });
 }
 
