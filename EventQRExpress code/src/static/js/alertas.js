@@ -509,8 +509,7 @@ function noAsistira() {
 
 // Alerta con mensaje de confirmacion de registro de invitados, despues sale una alerta con recordatorio para no olvidar la contraseña
 function registroInvitado(event) {
-  // console.log(id, idEvento);
-  // event.preventDefault();
+  event.preventDefault();
   Swal.fire({
     icon: "success",
     title: "Registro de Invitados",
@@ -522,7 +521,7 @@ function registroInvitado(event) {
       title: "Recordatorio",
       text: "Genial! En unos días te haremos envio del formulario para seleccionar tus asientos, no olvides tu contraseña.",
     });
-    // event.target.submit();
+    event.target.submit();
   });
 }
 

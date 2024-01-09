@@ -8,12 +8,12 @@ class ModelConfirmaciones():
             encrypted_password = User.generate_password(user.password)
             cursor = db.connection.cursor()
             sql = f"INSERT INTO confirmaciones (nombre, email, password, confirmed, asistentes, id_evento, invitacion ) VALUES ('{user.nombre}', '{user.email}', '{encrypted_password}', False, '{user.asistentes}', '{user.id_evento}', 'Null')"
-            # print(sql)
             cursor.execute(sql)
             db.connection.commit()
             try:
                 cursor = db.connection.cursor()
-                sql = f"SELECT id, email, password, nombre FROM usuarios WHERE email = '{user.email}'"
+                sql = f"SELECT id, email, password, nombre FROM confirmaciones WHERE email = '{user.email}'"
+                # print(sql)
                 cursor.execute(sql)
                 row = cursor.fetchone()
                 if row != None:

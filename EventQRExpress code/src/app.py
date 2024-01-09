@@ -274,14 +274,20 @@ def confirmacionInvitacion(id):
     evento = ModelEvento.datosEvento(db, id)
     # print(evento)
     # print(evento['id_usuario'])
-    user = ModelUser.get_by_id(db, evento['id_usuario'])
+    user = ModelUser.get_by_id(db, int(evento['id_usuario']))
     return render_template('confirmacionInvitado.html', nombre=user.nombre, tipo=evento['tipo'], id=id, id_usuario=evento['id_usuario'])
 
 @app.route('/RegistroInvitado/<id>')
 def registroInvitado(id):
     evento = ModelEvento.datosEvento(db, id)
     user = ModelUser.get_by_id(db, evento['id_usuario'])
-    return render_template('formularioRegistroInvitado.html', nombre=user.nombre, tipo=evento['tipo'], id=id, nombre_evento=evento['nombre'])
+    # email = confirm_token(token)
+    # usuario = ModelConfirmaciones.consulta_email(db, email)
+    # evento = ModelEvento.datosEvento(db, usuario.id_evento)
+    ruta_imagen = os.path.join('..\static', 'img', 'eventos', str(evento['id_usuario']), f"{evento['id_usuario']}_{evento['id']}.png")
+    imagen = [] 
+    imagen.append({"src": ruta_imagen, "alt": "Invitacion"})
+    return render_template('formularioRegistroInvitado.html', imagen=imagen, nombre=user.nombre, tipo=evento['tipo'], id=id, nombre_evento=evento['nombre'])
 
 # Registro de una nueva cuenta
 @app.route('/registroInvitado', methods=['POST'])
@@ -299,6 +305,7 @@ def registerInvitado():
                         confirmed=False
                         )
             execution = ModelConfirmaciones.register(db, user)# Registralo en la BD
+            
             # print("Registrado")
             if execution != None:  # Se registro con exito entonces tengo sus datos
                 token = generate_confirmation_token(user.email)

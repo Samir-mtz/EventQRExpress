@@ -68,12 +68,13 @@
       <h3>Registro de invitado</h3>
 
       <!-- Formulario REGISTRO DE INVITADOS -->
-      <form action="/registroInvitado" method="post" id="formulario_registrar_invitado" autocomplete="off" novalidate>
+      <form action="/registroInvitado" method="post" id="formulario_registrar_invitado" autocomplete="off" novalidate onsubmit=" return registroInvitado(event)">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <input type="hidden" name="id_evento" value="{{ id }}">
         <!-- Contenedor con imagen de la invitacion -->
         <div class="invitacion">
-          <img src="../static/img/invitacion01.webp" alt="">
+          <img src="{{ imagen[0]['src'] }}" alt="{{ imagen[0]['alt'] }}">
+          <!-- <img src="../static/img/invitacion01.webp" alt=""> -->
         </div>
 
         <div class="input-boxes">
@@ -118,7 +119,7 @@
             <span id="numeroAsistentes_register_msg" class="error-msg"></span>
           </div>
           <!-- Boton del formulario -->
-          <button type="submit" class="btn-form input-box" id="submitBtn_register" onsubmit="registroInvitado(this)">Registrar</button>
+          <button type="submit" class="btn-form input-box" id="submitBtn_register">Registrar</button>
           <div class="input-box">
           </div>
         </div>
