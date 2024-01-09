@@ -11,6 +11,7 @@ from models.token import generate_confirmation_token, confirm_token
 from flask import Flask, render_template, request, jsonify
 import shutil
 import os
+import re
 import socket
 from datetime import datetime
 
@@ -247,11 +248,12 @@ def homeCliente():
             # print("Entre")
             for archivo in os.listdir(ruta_carpeta):
                 if archivo.endswith(('.jpg', '.jpeg', '.png', '.gif', '.webp')):
-                    ruta_imagen = os.path.join('..\static', 'img', 'eventos', nombre_carpeta, archivo)
-                    # print(ruta_imagen)
+                    if not re.match(r'\d+_\d+_\d+\.\w+', archivo):
+                        ruta_imagen = os.path.join('..\static', 'img', 'eventos', nombre_carpeta, archivo)
+                        # print(ruta_imagen)
 
-                    nombre_evento = os.path.splitext(archivo)[0]  # Nombre del archivo sin extensión
-                    imagenes.append({"src": ruta_imagen, "alt": nombre_evento, "nombre_evento": nombre_evento})
+                        nombre_evento = os.path.splitext(archivo)[0]  # Nombre del archivo sin extensión
+                        imagenes.append({"src": ruta_imagen, "alt": nombre_evento, "nombre_evento": nombre_evento})
         # print(imagenes)
         # print(ModelEvento.lastId(db))
         if(ModelEvento.lastId(db) != None):
