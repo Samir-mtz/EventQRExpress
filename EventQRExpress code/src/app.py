@@ -298,7 +298,7 @@ def registerInvitado():
         # ¿El correo no esta registrado?
         if ModelConfirmaciones.check_email_evento(db, request.form['email'], request.form['id_evento']) == False:
             user = Confirmaciones(id=1, email= request.form['email'],
-                        password = request.form['password'],
+                        password = "",
                         nombre = request.form['nombre'],
                         asistentes = request.form['asistentes'],
                         id_evento = request.form['id_evento'],
