@@ -8,8 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Titulo de la pagina en la pestaña -->
   <title>EventQRXpress | Confirmación</title>
-  <!-- Librerias de JS para generar el codigo QR -->
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 
 <!-- Correo Electronico -->
@@ -35,41 +33,6 @@
       Atentamente,<br>
       EventQRXpress.
     </p>
-    <!-- QR con invitacion -->
-    <div id="contenedorQR" class="contenedorQR" style="display: flex; align-items: center; justify-content: center; background: #fff; width: 310px; height: 310px;"></div>
   </body>
 </center>
-<script>
-  // Funcion para generar codigo QR
-  function generarQR() {
-    // Obtenemos el contenido del formulario
-    const contenedorQR = document.getElementById("contenedorQR");
-    // Limpiar el contenido del contenedor QR
-    contenedorQR.innerHTML = "";
-    // Link de la imagen de la invitacion
-    var link = "{{url}}";
-    console.log(link);
-    // http://192.168.143.245:5000/img/eventos/2/2_3_6.png
-    // Crear un elemento para el código QR
-    const qrElement = document.createElement("div");
-    // Dimensiones del código QR
-    const opcionesQR = {
-      width: 300, // Ancho del código QR en píxeles
-      height: 300, // Alto del código QR en píxeles
-    };
-    // Inicializar QRCode
-    const QR = new QRCode(qrElement, opcionesQR);
-    // Generar el código QR
-    QR.makeCode(link);
-    // QR.makeCode({{url}});
-    // Agregar el elemento del código QR al contenedor
-    contenedorQR.appendChild(qrElement);
-    flag = true;
-  }
-  // Llamar a la función cuando la página se cargue
-  window.onload = function() {
-    generarQR();
-  };
-</script>
-
 </html>

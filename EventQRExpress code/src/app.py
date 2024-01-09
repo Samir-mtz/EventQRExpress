@@ -1,10 +1,12 @@
 #########################################################################################
 ####################################    Librerias   #####################################
 #########################################################################################
+import tempfile
 from flask import Flask, render_template, request, redirect, url_for, flash, g
 from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+import qrcode
 from config import config
 from flask_mail import Mail, Message
 from models.token import generate_confirmation_token, confirm_token
@@ -14,8 +16,8 @@ import os
 import re
 import socket
 from datetime import datetime
-
-
+import base64
+from io import BytesIO
 import base64
 
 
@@ -636,15 +638,41 @@ def registrarAsistente():
         # Envio de correo
         # print("///////////////////////////////////////////////////////////////////////////////////////////")
         # print(carpeta_especifica)
-        url = "169.254.221.49:5000" + carpeta_especifica
-        template = render_template('correoQRInvitacion.html', url=url)
-        subject = "Invitacion - Eventqrxpress"
+        img_path = generar_qr_temporal(f"http://127.0.0.1:5000/{carpeta_especifica}")
 
-        msg = Message(subject, recipients=[email], html=template, sender="eventqrxpress@gmail.com")
+        # Obtener el contenido HTML del template
+        url = f"http://127.0.0.1/{carpeta_especifica}"
+        template = render_template('correoQRInvitacion.html', url=url)
+
+        # Adjuntar la imagen .png y el contenido HTML al mensaje de correo
+        with app.open_resource(img_path) as img_file:
+            img_data = img_file.read()
+            msg = Message("Invitacion - Eventqrxpress", recipients=[email], sender="eventqrxpress@gmail.com")
+            msg.attach("imagen.png", "image/png", img_data)
+            msg.html = template  # Agregar el contenido HTML al mensaje
+
+        # Enviar el correo
         mail.send(msg)
+
         mensaje = {'status': 'success', 'message': 'Operación exitosa'}
         return jsonify(mensaje)
+        
+def generar_qr_temporal(link):
+    # Crear un código QR y guardar temporalmente en una ubicación única
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(link)
+    qr.make(fit=True)
 
+    # Crear un archivo temporal para la imagen .png
+    with tempfile.NamedTemporaryFile(delete=False, suffix='.png') as temp_file:
+        img = qr.make_image(fill_color="black", back_color="white")
+        img.save(temp_file.name)
+        return temp_file.name
 
 # Reenvío de correo
 @app.route('/resendRepartidor/<email>')
@@ -1409,6 +1437,6 @@ if __name__ == '__main__':
     app.register_error_handler(401, status_401)
     app.register_error_handler(404, status_404)
     # Obtener la dirección IP local
-    app.run()
-    # app.run(host=host, port=5000)
     # app.run()
+    # app.run(host=host, port=5000)
+    app.run()
