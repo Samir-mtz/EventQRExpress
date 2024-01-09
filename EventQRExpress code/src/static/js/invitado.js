@@ -68,9 +68,9 @@ function convertir_HTML_Imagen_Invitacion(id, idEvento, idConfirmacion) {
   var originalHeight = contenedor.offsetHeight;
 
   // Estilos del contenedor
-  contenedor.style.width = "1300px";
-  contenedor.style.height = "300px";
-  contenedor.style.transform = "scale(1.2)";
+  contenedor.style.width = "760px";
+  contenedor.style.height = "500px";
+  contenedor.style.transform = "scale(1.1)";
 
   // Convertir elemento HTML en PNG
   domtoimage
@@ -81,7 +81,6 @@ function convertir_HTML_Imagen_Invitacion(id, idEvento, idConfirmacion) {
       contenedor.style.width = originalWidth + "px";
       contenedor.style.height = originalHeight + "px";
       contenedor.style.transform = "scale(1)";
-      contenedor.style.backgroundColor = "";
       // Agrega un botón de descarga
       var downloadButton = document.createElement("a");
       downloadButton.href = dataUrl;
@@ -130,17 +129,18 @@ function enviar_Imagen_Servidro(dataUrl, nombreArchivo) {
   xhr.send(JSON.stringify({ imgUrl: dataUrl, fileName: nombreArchivo }));
 }
 // Función para ir al siguiente paso
+// Función para ir al siguiente paso
 function siguientePaso(id) {
   if (pasoActual < 2) {
     pasoActual++;
     actualizarInterfaz();
+    almacenarRegistros(parseInt(document.getElementById("numeroAsistentes").getAttribute("data-value")), id);
   }
+}
 
-  var numeroAsistentes = parseInt(
-    document.getElementById("numeroAsistentes").value
-  );
+function almacenarRegistros(numeroAsistentes,id) {
   var registros = [];
-
+  console.log("Asistentes: " + numeroAsistentes);
   for (var k = 1; k <= numeroAsistentes; k++) {
     var asistenteActual = {
       nombre: document.querySelector(`[name="nombreEvento${k}"]`).value,
@@ -153,35 +153,36 @@ function siguientePaso(id) {
   // Imprimir en consola los datos almacenados
   console.log("Datos almacenados:", registros);
 
-  // Obtener la tabla y su cuerpo
-  var tabla = document.getElementById("tablaAsistentes");
-  var tbody = tabla.getElementsByTagName("tbody")[0];
+ // Obtener la tabla y su cuerpo
+ var tabla = document.getElementById("tablaAsistentes");
+ var tbody = tabla.getElementsByTagName("tbody")[0];
 
-  // Limpiar el contenido existente en el tbody
-  tbody.innerHTML = "";
+ // Limpiar el contenido existente en el tbody
+ tbody.innerHTML = "";
 
-  // Agregar filas a la tabla
-  registros.forEach((asistente, indice) => {
-    var registro = {
-      nombre: asistente.nombre,
-      id_confirmacion: id,
-      asiento: asistente.mesa + asistente.asiento, // Combina "mesa" y "asiento"
-    };
-    registrosArray.push(registro);
+ // Agregar filas a la tabla en el orden deseado
+ registros.forEach((asistente, indice) => {
+   var registro = {
+     nombre: asistente.nombre,
+     id_confirmacion: id,
+     asiento: asistente.mesa + asistente.asiento,
+   };
+   registrosArray.push(registro);
 
-    var fila = tbody.insertRow();
-    fila.classList.add("valores_tabla"); // Agregar la clase
+   var fila = tbody.insertRow();
+   fila.classList.add("valores_tabla");
 
-    ["nombre", "mesa", "asiento"].forEach((clave, i) => {
-      var celda = fila.insertCell(i);
-      celda.textContent = asistente[clave];
-    });
+   // Añadir el número de asistente (incrementado en 1)
+   var celdaNoAsistente = fila.insertCell(0);
+   celdaNoAsistente.textContent = (indice + 1).toString().padStart(4, "0");
 
-    // Añadir el número de asistente (incrementado en 1)
-    var celdaNoAsistente = fila.insertCell(0);
-    celdaNoAsistente.textContent = (indice + 1).toString().padStart(4, "0");
-  });
+   ["nombre", "mesa", "asiento"].forEach((clave, i) => {
+     var celda = fila.insertCell(i + 1);
+     celda.textContent = asistente[clave];
+   });
+ });
 }
+
 // Función para ir al paso anterior
 function anteriorPaso() {
   if (pasoActual > 1) {
