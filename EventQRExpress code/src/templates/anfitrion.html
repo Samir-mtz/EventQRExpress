@@ -309,7 +309,8 @@
       <div class="campo-historial-eventos">
         {% for imagen in imagenes %}
         <a href="#gestionar" class="contenedor_imagen">
-          <img src="{{ imagen['src'] }}" alt="{{ imagen['alt'] }}" onclick="cambiarImagen(this); obtenerDatosEvento(this)">
+          <img src="{{ imagen['src'] }}" alt="{{ imagen['alt'] }}"
+            onclick="cambiarImagen(this); obtenerDatosEvento(this)">
           <!-- <p>{{ imagen['nombre_evento'] }}</p> -->
         </a>
         {% endfor %}
@@ -378,22 +379,22 @@
         <div class="contenedor_tabla">
           <table class="tabla1" id="tablaConfirmaciones">
             <!-- Titulo tabla -->
-            <tr class="titulo_tabla">
-              <th colspan="9">Registro de Confirmaciones</th>
-            </tr>
-            <!-- Subtitulos tabla -->
-            <tr class="subtitulos_tabla">
-              <!-- <th>No. Invitado</th> -->
-              <th>Nombre</th>
-              <th>Correo</th>
-              <!-- <th>Confirmación</th> -->
-              <th>No. de Asistentes</th>
-              <!-- <th>Rol</th> -->
-              <th colspan="3">Acciones</th>
-            </tr>
-           
-           
-            
+            <thead>
+              <tr class="titulo_tabla">
+                <th colspan="9">Tabla #1 - Registro de Confirmaciones</th>
+              </tr>
+              <!-- Subtitulos tabla -->
+              <tr class="subtitulos_tabla">
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>No. de Asistentes</th>
+                <th colspan="3">Acciones</th>
+              </tr>
+            </thead>
+            <!-- Cuerpo de la tabla -->
+            <tbody id="tbodyConfirmaciones">
+              <!-- Aquí se agregarán dinámicamente las filas de datos -->
+            </tbody>
           </table>
         </div>
         <div class="boton_todos">
@@ -401,9 +402,10 @@
         </div>
         <!-- Tabla #2 -->
         <div class="contenedor_tabla">
+
           <table class="tabla2" id="tablaAsistentes">
-            <div class="header_tabla">
-              <!-- Titulo tabla -->
+            <!-- Titulo tabla -->
+            <thead>
               <tr class="titulo_tabla">
                 <th colspan="8">Tabla #2 - Registro de Asistentes</th>
               </tr>
@@ -413,9 +415,11 @@
                 <th>Asiento</th>
                 <th colspan="2">Acciones</th>
               </tr>
-            </div>
-            <!-- Registro Tabla 2 -->
-            
+            </thead>
+            <!-- Cuerpo de la tabla -->
+            <tbody id="tbodyAsistentes">
+              <!-- Aquí se agregarán dinámicamente las filas de datos -->
+            </tbody>
           </table>
         </div>
       </div>
