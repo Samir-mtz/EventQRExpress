@@ -1,8 +1,16 @@
+document.addEventListener("DOMContentLoaded", function() {
+  // Obtén el número de asistentes al cargar la página
+  var numeroAsistentes = parseInt(document.getElementById("numeroAsistentes").getAttribute("data-value"));
+  // Llama a la función para actualizar los valores
+  actualizarValoresAsistentes(numeroAsistentes);
+});
+
+
 var datosAlmacenados = [];
 var sillasSeleccionadas = {};
 
-function actualizarValoresAsistentes() {
-  var numeroAsistentes = document.getElementById("numeroAsistentes").value;
+function actualizarValoresAsistentes(numeroAsistentes) {
+  // var numeroAsistentes = document.getElementById("numeroAsistentes").value;
   var datosAsistentes = document.getElementById("datosAsistentes");
 
   // Eliminar los campos HTML extras
