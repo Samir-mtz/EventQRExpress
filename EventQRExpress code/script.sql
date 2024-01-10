@@ -48,7 +48,7 @@ CREATE TABLE
         asistentes INT NOT NULL,
         id_evento INT NOT NULL,
         invitacion VARCHAR(100) NOT NULL,
-        FOREIGN KEY (id_evento) REFERENCES evento(id)
+        FOREIGN KEY (id_evento) REFERENCES evento(id) ON DELETE CASCADE
     );
 
 CREATE TABLE
@@ -57,7 +57,7 @@ CREATE TABLE
         nombre VARCHAR(100) NOT NULL,
         id_confirmacion INT NOT NULL,
         asiento VARCHAR(20) NOT NULL,
-        FOREIGN KEY (id_confirmacion) REFERENCES confirmaciones(id)
+        FOREIGN KEY (id_confirmacion) REFERENCES confirmaciones(id) ON DELETE CASCADE
     );
 
 

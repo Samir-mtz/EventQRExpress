@@ -110,8 +110,8 @@ function obtenerDatosEvento(elemento) {
         fila.appendChild(celdaEditar);
 
         var celdaEliminar = document.createElement("td");
-        celdaEliminar.innerHTML =
-          "<button class='eliminar' onclick='preguntaEliminarRegistroInvitado()'>Eliminar <i class='bx bxs-x-circle'></i></button>";
+        celdaEliminar.innerHTML = `<button class='eliminar' onclick='preguntaEliminarRegistroInvitado("${confirmacion.id}")'>Eliminar <i class='bx bxs-x-circle'></i></button>`;
+
         fila.appendChild(celdaEliminar);
 
         var celdaEnviar = document.createElement("td");
@@ -161,7 +161,7 @@ function obtenerDatosEvento(elemento) {
 
               var celdaEliminarAsistentes = document.createElement("td");
               celdaEliminarAsistentes.innerHTML =
-                "<button class='eliminar' onclick='preguntaEliminarRegistroInvitado()'>Eliminar <i class='bx bxs-x-circle'></i></button>";
+              `<button class='eliminar' onclick='preguntaEliminarRegistroInvitadoUsuario("${confirmacion2.id}")'>Eliminar <i class='bx bxs-x-circle'></i></button>`;
               filaAsistentes.appendChild(celdaEliminarAsistentes);
 
               // Agregar la fila al final del tbody

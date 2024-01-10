@@ -323,7 +323,7 @@ function guardarCambiosInvitado(button) {
 }
 
 // Alerta para preguntar si se desea eliminar un registro de los invitados (Solo hazta donde confirman asistencia)
-function preguntaEliminarRegistroInvitado() {
+function preguntaEliminarRegistroInvitado(id) {
   Swal.fire({
     icon: "warning",
     title: "Eliminar Registro",
@@ -336,9 +336,45 @@ function preguntaEliminarRegistroInvitado() {
   }).then((result) => {
     if (result.isConfirmed) {
       async function obtenerDireccion() {
-        var lugarEvento = document.getElementById('id_confirmacion').value;
-        let direccion = '';
-        const url = "http://127.0.0.1:5000/deleteConfirmacion/" + lugarEvento;
+        // var lugarEvento = document.getElementById('id_confirmacion').value;
+        // let direccion = '';
+        const url = "http://127.0.0.1:5000/deleteConfirmacion/" + id;
+        try {
+          const response = await fetch(url);
+        } catch (error) {
+          // Manejar errores si es necesario
+          console.error('Error en la solicitud fetch:', error);
+          throw error; // Puedes lanzar el error nuevamente si es necesario
+        }
+      }
+      obtenerDireccion();
+      
+      Swal.fire({
+        icon: "success",
+        title: "Eliminado",
+        text: "Se ha eliminado el registro con éxito",
+      }).then(() => location.reload(true));
+    }
+  });
+}
+
+//Eliminar Invitado
+function preguntaEliminarRegistroInvitadoUsuario(id) {
+  Swal.fire({
+    icon: "warning",
+    title: "Eliminar Registro",
+    text: "¿Está seguro de que desea eliminar el registro?",
+    showCancelButton: true,
+    confirmButtonColor: "#009a06",
+    cancelButtonColor: "#f90c0c",
+    confirmButtonText: "Sí",
+    cancelButtonText: "No",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      async function obtenerDireccion() {
+        // var lugarEvento = document.getElementById('id_confirmacion').value;
+        // let direccion = '';
+        const url = "http://127.0.0.1:5000/deleteInvitado/" + id;
         try {
           const response = await fetch(url);
         } catch (error) {

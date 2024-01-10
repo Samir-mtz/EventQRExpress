@@ -116,7 +116,7 @@ class ModelConfirmaciones():
     def delete(self, db, id):
         try:
             cursor = db.connection.cursor()
-            sql = 'DELETE FROM confirmaciones WHERE id ='+ id
+            sql = f"DELETE FROM confirmaciones WHERE id = {id}"
             cursor.execute(sql)
             db.connection.commit()
         except Exception as ex:

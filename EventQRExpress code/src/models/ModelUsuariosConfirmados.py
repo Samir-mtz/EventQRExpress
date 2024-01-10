@@ -30,4 +30,13 @@ class ModelUsuariosConfirmados():
                 return None
         except Exception as ex:
             raise Exception(ex)
-    
+
+    @classmethod
+    def delete(self, db, id):
+        try:
+            cursor = db.connection.cursor()
+            sql = f"DELETE FROM usuarios_confirmados WHERE id = {id}"
+            cursor.execute(sql)
+            db.connection.commit()
+        except Exception as ex:
+            raise Exception(ex)

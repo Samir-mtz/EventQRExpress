@@ -170,6 +170,11 @@ def deleteConfirmacion(id):
     ModelConfirmaciones.delete(db, id)
     return redirect(url_for('homeCliente'))
 
+@app.route('/deleteInvitado/<id>')
+def deleteConfirmacionUsuario(id):
+    ModelUsuariosConfirmados.delete(db, id)
+    return redirect(url_for('homeCliente'))
+
 #########################################################################################
 ##################################### Usuario Anfitrion ###################################
 #########################################################################################
